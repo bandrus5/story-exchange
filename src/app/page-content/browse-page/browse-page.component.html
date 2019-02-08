@@ -1,3 +1,7 @@
-<div *ngFor="let story of displayedStories"> 
-  <p>{{story.title}}</p>
+<div class="browse-container">
+  <div *ngFor="let story of displayedStories"> 
+    <!-- <p>{{story.title}}</p> -->
+    <app-browse-story-card [story]="story"></app-browse-story-card>
+  </div>
+  <p>No more stories</p>
 </div>

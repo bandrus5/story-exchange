@@ -1,0 +1,11 @@
+.card {
+    width: 90vh;
+    height: 158px;
+    border: 1px solid #2DABF3;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+p {
+    margin-left: 10px;
+}

@@ -10,7 +10,7 @@ export class DataStore {
     allStories: Story[];
     allReviewReservations: ReviewReservation[];
 
-    loremText = "Lorem ipsum dolor sit amet consectetur adipiscing elit Pellentesque non euismod liber Pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati Praesent ultricies feugiat augue non".toLowerCase().split(" ");
+    loremText = "lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non".split(" ");
     userNames = ["bettyTheBot", "tommyj", "shj1996", "megera", "bandr", "mstbrn", "hotman"];
     genres = "Mystery Sci-Fi Fantasy Drama Romance Biography Humor".split(" ");
 
@@ -86,8 +86,7 @@ export class DataStore {
         for (var i = 0; i < 30; i++) {
             debugger;
             this.shuffleLoremText();
-            const title = this.loremText[2] + ' ' + this.loremText[3] + ' ' + this.loremText[4];
-            debugger;
+            const title = this.generateStoryTitle();
             const id = title + Math.random().toString();
             const blurb = this.loremText.slice(5, 18).join();
             const userName = this.userNames[Math.floor(Math.random()*this.userNames.length+1)];
@@ -98,6 +97,16 @@ export class DataStore {
             allStories.push(new Story(title, id, userName, genre, link, blurb, wordCount, new Date(), desiredReviews, []));
         }
         this.addStories(allStories);
+    }
+
+    generateStoryTitle(): string {
+        let title = "";
+        for (let i = Math.random()*2; i < 3.5; i+=1.0) {
+            let word = this.loremText[Math.floor(2 + i)];
+            word = word[0].toUpperCase() + word.substr(1);
+            title += word + " ";
+        }
+        return title;
     }
 
     generateUsers() {

@@ -7,7 +7,7 @@ import { PageContentComponent } from './page-content/page-content.component';
 import { BrowsePageComponent } from './page-content/browse-page/browse-page.component';
 import { YourStoriesPageComponent } from './page-content/your-stories-page/your-stories-page.component';
 import { ReviewingPageComponent } from './page-content/reviewing-page/reviewing-page.component';
-import { Story } from './types/Story';
+import { BrowseStoryCardComponent } from './page-content/browse-page/browse-story-card/browse-story-card.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { Story } from './types/Story';
     BrowsePageComponent,
     YourStoriesPageComponent,
     ReviewingPageComponent,
+    BrowseStoryCardComponent,
   ],
   imports: [
     BrowserModule
