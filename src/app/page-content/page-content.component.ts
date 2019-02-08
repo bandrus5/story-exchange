@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageContentComponent implements OnInit {
 
-  constructor() { }
+  public currentPage: 'browse'|'your-stories'|'reviewing';
+
+  constructor() { 
+    this.currentPage = 'browse';
+  }
 
   ngOnInit() {
+  }
+
+  setCurrentPage(newPage: 'browse'|'your-stories'|'reviewing') {
+    this.currentPage = newPage;
   }
 
 }

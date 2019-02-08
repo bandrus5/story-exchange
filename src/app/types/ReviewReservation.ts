@@ -1,4 +1,4 @@
-class ReviewReservation {
+export class ReviewReservation {
     story: string;
     reviewer: string;
     dateReserved: Date;

@@ -1,4 +1,6 @@
-class Story {
+import { ReviewReservation } from "./ReviewReservation";
+
+export class Story {
     title: string;
     storyID: string;
     author: string;
