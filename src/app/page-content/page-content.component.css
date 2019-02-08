@@ -1,0 +1,28 @@
+.page-content {
+    margin-top: 5px;
+}
+
+.tab-holder {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Rambla', sans-serif;
+}
+
+.tab {
+    border: 5px solid #2DABF3;
+    margin-right: 5px;
+    color: #2DABF3;
+}
+
+.tab p {
+    line-height: 1em;
+    padding: 4px;
+    margin: 0;
+}
+
+.content-viewer {
+    border: 5px solid #2DABF3;
+    width: 100%;
+    height: 80vh; 
+    margin-top: -5px;
+}

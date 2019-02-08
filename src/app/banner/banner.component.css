@@ -1,0 +1,16 @@
+.banner {
+    background-color: #2DABF3;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-family: 'Rambla', sans-serif;
+    width: 100%;
+}
+
+.banner p {
+    padding: 5px;
+}
+
+.right {
+    float: right;
+}
