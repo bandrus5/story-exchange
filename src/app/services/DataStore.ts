@@ -32,6 +32,12 @@ export class DataStore {
         // this.generateReviews();
     }
 
+    getStoriesByUsername(username: string): Story[] {
+        return this.allStories.filter((story) => {
+            return story.author == username;
+        });
+    }
+
     addUsers(users: User[]) {
         users.forEach(user => {
             this.allUsers.push(user);
@@ -62,6 +68,10 @@ export class DataStore {
         return this.loggedInUser.getCredit();
     }
 
+    getLoggedInUser(): User {
+        return this.loggedInUser;
+    }
+
     reserveReview(story: Story) {
         const reservation = new ReviewReservation(story.title, this.loggedInUser.getName(), new Date());
         this.addReviewReservations([reservation]);
@@ -83,22 +93,23 @@ export class DataStore {
     }
 
     generateStories() {
-        const story = new Story("A Wonderous Journey", "a123", "tommyj", "Biography", "superfakelink.com", "This story is going to be pretty boring unless you care about Western Canadian history, fair warning :)", 192560, new Date(), 12, []);
-        const story2 = new Story("Modestly Mean", "a124", "shj1996", "Romance", "inkitt.com/also-fake", "This is the first story I've ever finished!! I hope you like it, thanks for reviewing!", 43567, new Date(), 8, []);
-        const story3 = new Story("Uncovered", "uncovered", "bettyTheBot", "Sci-Fi", "http://berkeleyandrus.com/novels/Uncovered.pdf", "A super-hero action story with a bit of mystery mixed in...needs work, but plot has potential", 98567, new Date(), 10, []);
-        const story4 = new Story("Those Ills We Bear", "TIWB", "bettyTheBot", "Drama", "inkitt.com/so-fake", "The story of Hamlet, gender bent and put in a modern setting", 49230, new Date(), 7, []);
+        const story = new Story("A Wonderous Journey", "a123", "tommyj", "Biography", "superfakelink.com", "This story is going to be pretty boring unless you care about Western Canadian history, fair warning :)", 192560, this.generateRandomDate(), 12, []);
+        const story2 = new Story("Modestly Mean", "a124", "shj1996", "Romance", "inkitt.com/also-fake", "This is the first story I've ever finished!! I hope you like it, thanks for reviewing!", 43567, this.generateRandomDate(), 8, []);
+        const story3 = new Story("Uncovered", "uncovered", "bettyTheBot", "Sci-Fi", "http://berkeleyandrus.com/novels/Uncovered.pdf", "A super-hero action story with a bit of mystery mixed in...needs work, but plot has potential", 98567, new Date(2019, 1, 10), 10, []);
+        const story4 = new Story("Those Ills We Bear", "TIWB", "bettyTheBot", "Drama", "inkitt.com/so-fake", "The story of Hamlet, gender bent and put in a modern setting", 49230, new Date(2019, 1, 1), 7, []);
         let allStories = [story, story2, story3, story4];
         for (var i = 0; i < 30; i++) {
             this.shuffleLoremText();
             const title = this.generateStoryTitle();
             const id = title + Math.random().toString();
-            const blurb = this.loremText.slice(5, 18).join();
-            const userName = this.userNames[Math.floor(Math.random()*this.userNames.length+1)];
-            const genre = this.genres[Math.floor(Math.random()*this.genres.length+1)];
+            const blurb = this.generateStoryBlurb();
+            const userName = this.userNames[Math.floor(Math.random()*this.userNames.length)];
+            const genre = this.genres[Math.floor(Math.random()*this.genres.length)];
             const link = "superfakelink.com";
             const wordCount = 35000 + Math.floor(Math.random()*100000);
             const desiredReviews = 4 + Math.floor(Math.random()*12);
-            allStories.push(new Story(title, id, userName, genre, link, blurb, wordCount, new Date(), desiredReviews, []));
+            const date = this.generateRandomDate();
+            allStories.push(new Story(title, id, userName, genre, link, blurb, wordCount, date, desiredReviews, []));
         }
         this.addStories(allStories);
     }
@@ -111,6 +122,20 @@ export class DataStore {
             title += word + " ";
         }
         return title;
+    }
+
+    generateStoryBlurb(): string {
+        let blurb = "";
+        for (let i = 5; i < 18; i++) {
+            blurb += this.loremText[i] + " ";
+        }
+        return blurb;
+    }
+
+    generateRandomDate(): Date {
+        const startDate = new Date(2018, 10, 1);
+        const endDate = new Date(2019, 0, 1);
+        return new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
     }
 
     generateUsers() {

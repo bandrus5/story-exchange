@@ -1,3 +1,6 @@
-<p>
-  your-stories-page works!
-</p>
+<div class="your-stories-container">
+  <button class="add-button">+ Add</button>
+  <div *ngFor="let story of stories">
+    <app-posted-story-card [story]="story"></app-posted-story-card>
+  </div>
+</div>

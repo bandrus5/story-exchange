@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStore } from '../../services/DataStore';
+import { Story } from '../../types/Story';
 
 @Component({
   selector: 'app-your-stories-page',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class YourStoriesPageComponent implements OnInit {
 
-  constructor() { }
+  private dataStore: DataStore;
+  public stories: Story[];
+  constructor() { 
+    this.dataStore = DataStore.getInstance();
+    this.stories = this.dataStore.getStoriesByUsername(this.dataStore.getLoggedInUser().getName());
+  }
 
   ngOnInit() {
   }

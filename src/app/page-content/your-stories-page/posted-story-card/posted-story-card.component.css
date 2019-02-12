@@ -1,12 +1,14 @@
 .card {
-    width: 90vh;
-    height: 158px;
+    width: 70%;
+    height: 126px;
     border: 1px solid #2DABF3;
-    margin: 10px;
+    margin: 10px auto;
     border-radius: 3px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: relative;
+
 }
 
 p {
@@ -33,7 +35,7 @@ button {
 
 .cta-col {
     position: relative;
-    width: 260px;
+    width: 276px;
 }
 
 .cta-buttons {
@@ -50,18 +52,4 @@ button {
     font-size: larger;
     line-height: 1em;
     margin-bottom: 10px;
-}
-
-.credit-container1 {
-    font-size: x-large;
-}
-
-.credit-container2 {
-    display: flex;
-    margin-top: 24px;
-}
-
-.credit-display {
-    margin-left: auto;
-    margin-right: auto;
 }

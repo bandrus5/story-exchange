@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="info-col">
+      <p class="story-title">{{story.title}}</p>
+      <p class="indent">{{getTimeDiffStatement()}}</p>
+      <p class="indent">Awaiting {{story.getReviewsLeft()}} reviews</p>
+    </div>
+    <div class="cta-col">
+      <div class="cta-buttons">
+        <button (click)="showReviews()">Show Reviews</button>
+        <button (click)="showMore()">See Story Details</button>
+      </div>
+    </div>
+  </div>
+  <app-story-info-modal 
+    *ngIf="shouldShowMore"
+    [story]="story"
+    (closeEvent)="closeDialog($event)"
+  ></app-story-info-modal>
+  

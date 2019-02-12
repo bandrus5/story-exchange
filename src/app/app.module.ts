@@ -9,6 +9,7 @@ import { YourStoriesPageComponent } from './page-content/your-stories-page/your-
 import { ReviewingPageComponent } from './page-content/reviewing-page/reviewing-page.component';
 import { BrowseStoryCardComponent } from './page-content/browse-page/browse-story-card/browse-story-card.component';
 import { StoryInfoModalComponent } from './story-info-modal/story-info-modal.component';
+import { PostedStoryCardComponent } from './page-content/your-stories-page/posted-story-card/posted-story-card.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { StoryInfoModalComponent } from './story-info-modal/story-info-modal.com
     ReviewingPageComponent,
     BrowseStoryCardComponent,
     StoryInfoModalComponent,
+    PostedStoryCardComponent,
   ],
   imports: [
     BrowserModule

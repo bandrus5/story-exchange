@@ -32,4 +32,9 @@ export class StoryInfoModalComponent implements OnInit {
   getStoryCredit(): number {
     return Math.round(this.story.wordCount * this.story.getReviewsLeft() / 100000); 
   }
+
+  reservable() {
+    debugger;
+    return this.story.author != this.dataStore.getLoggedInUser().getName();
+  }
 }

@@ -9,10 +9,10 @@
             <p class="indent">{{story.wordCount}} words</p>
             <p class="indent">Awaiting {{story.getReviewsLeft()}} reviews</p>
             <p class="indent">Author's notes: {{story.blurb}}</p>
-            <p class="indent">Reviewing this story is worth +{{getStoryCredit()}} credit</p>
+            <p *ngIf="reservable()" class="indent">Reviewing this story is worth +{{getStoryCredit()}} credit</p>
         </div>
         <div class="button-container">
-            <button (click)="reserveForReview()">Reserve for Review</button> 
+            <button *ngIf="reservable()" (click)="reserveForReview()">Reserve for Review</button> 
             <button (click)="close()">Exit</button>
         </div>
 	</div>

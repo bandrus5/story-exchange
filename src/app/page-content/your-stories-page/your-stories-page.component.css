@@ -1,0 +1,24 @@
+.your-stories-container {
+    position: relative;
+}
+
+button {
+    background-color: #2DABF3;
+    border: none;
+    color: white;
+    padding: 8px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 11px;
+    cursor: pointer;
+}
+
+.add-button {
+    margin: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-left: 15%;
+    font-size: xx-large;
+    margin-bottom: 0px;
+}
