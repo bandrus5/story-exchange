@@ -4,8 +4,62 @@
     border: 1px solid #2DABF3;
     margin: 10px;
     border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 p {
     margin-left: 10px;
+    line-height: 0.5em;
+}
+
+button {
+    background-color: #2DABF3;
+    border: none;
+    color: white;
+    padding: 8px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 11px;
+    cursor: pointer;
+}
+
+.info-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.cta-col {
+    position: relative;
+    width: 260px;
+}
+
+.cta-buttons {
+    position: absolute;
+    bottom: 16px;
+}
+
+.indent {
+    padding-left: 20px;
+    line-height: 0em;
+}
+
+.story-title {
+    font-size: larger;
+}
+
+.credit-container1 {
+    font-size: x-large;
+}
+
+.credit-container2 {
+    display: flex;
+    margin-top: 24px;
+}
+
+.credit-display {
+    margin-left: auto;
+    margin-right: auto;
 }

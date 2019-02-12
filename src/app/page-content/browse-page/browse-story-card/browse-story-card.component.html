@@ -1,6 +1,24 @@
 <div class="card">
-  <p>{{story.title}}</p>
-  <p>{{story.genre}}</p>
-  <p>{{story.wordCount}} words</p>
-  <p>Awaiting {{story.getReviewsLeft()}} reviews</p>
+  <div class="info-col">
+    <p class="story-title">{{story.title}}</p>
+    <p class="indent">{{story.genre}}</p>
+    <p class="indent">{{story.wordCount}} words</p>
+    <p class="indent">Awaiting {{story.getReviewsLeft()}} reviews</p>
+  </div>
+  <div class="cta-col">
+    <div class="credit-container1">
+      <div class="credit-container2">
+        <p class="credit-display">+{{getStoryCredit()}} Credit</p>
+      </div>
+    </div>
+    <div class="cta-buttons">
+      <button (click)="showMore()">See More</button>
+      <button>Reserve for Review</button>
+    </div>
+  </div>
 </div>
+<app-story-info-modal 
+  *ngIf="shouldShowMore"
+  [story]="story"
+  (closeEvent)="closeDialog($event)"
+></app-story-info-modal>

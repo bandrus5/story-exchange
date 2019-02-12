@@ -8,6 +8,7 @@ import { BrowsePageComponent } from './page-content/browse-page/browse-page.comp
 import { YourStoriesPageComponent } from './page-content/your-stories-page/your-stories-page.component';
 import { ReviewingPageComponent } from './page-content/reviewing-page/reviewing-page.component';
 import { BrowseStoryCardComponent } from './page-content/browse-page/browse-story-card/browse-story-card.component';
+import { StoryInfoModalComponent } from './story-info-modal/story-info-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { BrowseStoryCardComponent } from './page-content/browse-page/browse-stor
     YourStoriesPageComponent,
     ReviewingPageComponent,
     BrowseStoryCardComponent,
+    StoryInfoModalComponent,
   ],
   imports: [
     BrowserModule

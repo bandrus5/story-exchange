@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Story } from '../../../types/Story';
+import { DataStore } from '../../../services/DataStore';
 
 @Component({
   selector: 'app-browse-story-card',
@@ -9,9 +10,29 @@ import { Story } from '../../../types/Story';
 export class BrowseStoryCardComponent implements OnInit {
 
   @Input() story: Story;
-  constructor() { }
+  public shouldShowMore = false;
+  private dataStore: DataStore;
+  constructor() { 
+    this.dataStore = DataStore.getInstance(); 
+  }
 
   ngOnInit() {
+  }
+
+  getStoryCredit(): number {
+    return Math.round(this.story.wordCount * this.story.getReviewsLeft() / 100000); 
+  }
+
+  showMore() {
+    this.shouldShowMore = true;
+  }
+
+  closeDialog(e: Event) {
+    this.shouldShowMore = false;
+  }
+
+  reserveForReview() {
+    this.dataStore.reserveReview(this.story);
   }
 
 }

@@ -1,0 +1,19 @@
+<div class="dimmer"></div>
+<div class="dialog-container">
+	<div class="dialog">
+        <div class="close-button-container" (click)="close()"><div class="close-button">X</div></div>
+        <div class="info">
+            <p class="story-title">{{story.title}}</p>
+            <p class="indent">Posted by {{story.author}} two days ago</p>
+            <p class="indent">Genre: {{story.genre}}</p>
+            <p class="indent">{{story.wordCount}} words</p>
+            <p class="indent">Awaiting {{story.getReviewsLeft()}} reviews</p>
+            <p class="indent">Author's notes: {{story.blurb}}</p>
+            <p class="indent">Reviewing this story is worth +{{getStoryCredit()}} credit</p>
+        </div>
+        <div class="button-container">
+            <button (click)="reserveForReview()">Reserve for Review</button> 
+            <button (click)="close()">Exit</button>
+        </div>
+	</div>
+</div>

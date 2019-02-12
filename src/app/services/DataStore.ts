@@ -62,6 +62,11 @@ export class DataStore {
         return this.loggedInUser.getCredit();
     }
 
+    reserveReview(story: Story) {
+        const reservation = new ReviewReservation(story.title, this.loggedInUser.getName(), new Date());
+        this.addReviewReservations([reservation]);
+    }
+
     searchStories(searchQuery: string): Story[] {
         return this.allStories.filter(story => {
             (story.author.includes(searchQuery) || 
@@ -84,7 +89,6 @@ export class DataStore {
         const story4 = new Story("Those Ills We Bear", "TIWB", "bettyTheBot", "Drama", "inkitt.com/so-fake", "The story of Hamlet, gender bent and put in a modern setting", 49230, new Date(), 7, []);
         let allStories = [story, story2, story3, story4];
         for (var i = 0; i < 30; i++) {
-            debugger;
             this.shuffleLoremText();
             const title = this.generateStoryTitle();
             const id = title + Math.random().toString();
@@ -118,6 +122,7 @@ export class DataStore {
         const user6 = new User("mstbrn", "mist@mailinator.com", [], [], 64);
         const user7 = new User("hotman", "flameo@mailinator.com", [], [], 44);
 
+        this.logInUser(user1);
         this.allUsers = [user1, user2, user3, user4, user5, user6, user7];
     }
 
