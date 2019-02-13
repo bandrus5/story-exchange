@@ -10,6 +10,7 @@ import { ReviewingPageComponent } from './page-content/reviewing-page/reviewing-
 import { BrowseStoryCardComponent } from './page-content/browse-page/browse-story-card/browse-story-card.component';
 import { StoryInfoModalComponent } from './story-info-modal/story-info-modal.component';
 import { PostedStoryCardComponent } from './page-content/your-stories-page/posted-story-card/posted-story-card.component';
+import { AddStoryFormComponent } from './page-content/your-stories-page/add-story-form/add-story-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PostedStoryCardComponent } from './page-content/your-stories-page/poste
     BrowseStoryCardComponent,
     StoryInfoModalComponent,
     PostedStoryCardComponent,
+    AddStoryFormComponent,
   ],
   imports: [
     BrowserModule

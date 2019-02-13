@@ -1,0 +1,82 @@
+
+.dimmer {
+    background: #000;
+    opacity: 0.9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.dialog-container {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: calc(20vh);
+    left: calc(50vw - 300px);
+    z-index: 2;
+}
+
+.dialog {
+    background-color: white;
+    width: 600px;
+    border-radius: 4px;
+    z-index: 2;
+    margin-top: 45px;
+}
+
+
+.close-button-container {
+    width: 100%;
+    display: flex;
+    padding: 8px 8px 0 0;
+    margin-left: auto;
+    cursor: pointer;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    left: 577px;
+    font-family: 'Rambla', sans-serif;
+}
+
+.indent {
+    padding-left: 20px;
+    line-height: 1em;
+}
+
+.story-title {
+    font-size: larger;
+    color: #2DABF3;
+    font-weight: bold;
+}
+
+.info {
+    margin: 15px;
+    margin-left: 20px;
+}
+
+.button-container {
+    margin-bottom: 14px;
+    float: right;
+    margin-right: 16px;
+}
+
+button {
+    background-color: #2DABF3;
+    border: none;
+    color: white;
+    padding: 8px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 11px;
+    cursor: pointer;
+}
+
+.wide-input {
+    width: 350px;
+}

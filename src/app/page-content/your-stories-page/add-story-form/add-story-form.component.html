@@ -1,0 +1,33 @@
+<div class="dimmer"></div>
+<div class="dialog-container">
+	<div class="dialog">
+        <div class="close-button-container" (click)="close()"><div class="close-button">X</div></div>
+        <form 
+          name="add-story-form" 
+          (submit)="addStory(storyTitle.value, storyGenre.value, storyLink.value, storyBlurb.value, storyLength.value, storyReviews.value); $event.preventDefault()">
+          <input class="wide-input" maxlength="50" type="text" name="title" placeholder="Title" #storyTitle />
+          <input class="wide-input" maxlength="30" type="text" name="genre" placeholder="Genre" #storyGenre />
+          <input class="wide-input" maxLength="100" type="text" name="link" placeholder="Link (where can reviewers find your story?" #storyLink />
+          <textarea rows="8" cols="80" name="blurb" placeholder="Notes (what do you want reviewers to know about your story?" #storyBlurb></textarea>
+          <input class="wide-input" maxLength="10" type="number" name="length" placeholder="Word Count" #storyLength />
+          <select class="wide-input" name="desiredReviews" required #storyReviews>
+              <option selected disabled>Desired Reviews</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select> 
+          <div class="button-container">
+            <button type="button" (click)="close()">Cancel</button>
+            <button type="submit">Post Now</button>
+          </div>
+        </form>
+	</div>
+</div>
+

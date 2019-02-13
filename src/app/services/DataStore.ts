@@ -35,6 +35,8 @@ export class DataStore {
     getStoriesByUsername(username: string): Story[] {
         return this.allStories.filter((story) => {
             return story.author == username;
+        }).sort((a, b) => {
+            return b.datePosted.getTime() - a.datePosted.getTime();
         });
     }
 

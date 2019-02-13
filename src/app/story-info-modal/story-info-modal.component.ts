@@ -34,7 +34,6 @@ export class StoryInfoModalComponent implements OnInit {
   }
 
   reservable() {
-    debugger;
     return this.story.author != this.dataStore.getLoggedInUser().getName();
   }
 }
