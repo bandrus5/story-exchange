@@ -10,16 +10,24 @@
 }
 
 .tab {
-    border: 5px solid #2DABF3;
     margin-right: 5px;
     color: #2DABF3;
     cursor: pointer;
     font-size: x-large;
+    border-radius: 5px;
+}
+
+.tab:hover {
+    color: #2378bc
 }
 
 .selected-tab {
-    background-color: #2DABF3;
-    color: white;
+    text-decoration: underline;
+    cursor: auto;
+}
+
+.selected-tab:hover {
+    color: #2DABF3
 }
 
 .tab p {
@@ -29,7 +37,7 @@
 }
 
 .content-viewer {
-    border: 5px solid #2DABF3;
+    /* border: 5px solid #2DABF3; */
     width: 100%;
     margin-top: -5px;
 }

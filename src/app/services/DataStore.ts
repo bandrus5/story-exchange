@@ -12,7 +12,7 @@ export class DataStore {
 
     loremText = "lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non".split(" ");
     userNames = ["bettyTheBot", "tommyj", "shj1996", "megera", "bandr", "mstbrn", "hotman"];
-    genres = "Mystery Sci-Fi Fantasy Drama Romance Biography Humor".split(" ");
+    genres = "Mystery Sci-Fi Fantasy Drama Romance Adventure Action Horror Fan-Fiction Humor".split(" ");
 
     static instance: DataStore = null;
     public static getInstance() {
@@ -95,12 +95,12 @@ export class DataStore {
     }
 
     generateStories() {
-        const story = new Story("A Wonderous Journey", "a123", "tommyj", "Biography", "superfakelink.com", "This story is going to be pretty boring unless you care about Western Canadian history, fair warning :)", 192560, this.generateRandomDate(), 12, []);
+        const story = new Story("A Wonderous Journey", "a123", "tommyj", "Action", "superfakelink.com", "This story is going to be pretty boring unless you care about Western Canadian history, fair warning :)", 192560, this.generateRandomDate(), 12, []);
         const story2 = new Story("Modestly Mean", "a124", "shj1996", "Romance", "inkitt.com/also-fake", "This is the first story I've ever finished!! I hope you like it, thanks for reviewing!", 43567, this.generateRandomDate(), 8, []);
         const story3 = new Story("Uncovered", "uncovered", "bettyTheBot", "Sci-Fi", "http://berkeleyandrus.com/novels/Uncovered.pdf", "A super-hero action story with a bit of mystery mixed in...needs work, but plot has potential", 98567, new Date(2019, 1, 10), 10, []);
         const story4 = new Story("Those Ills We Bear", "TIWB", "bettyTheBot", "Drama", "inkitt.com/so-fake", "The story of Hamlet, gender bent and put in a modern setting", 49230, new Date(2019, 1, 1), 7, []);
         let allStories = [story, story2, story3, story4];
-        for (var i = 0; i < 30; i++) {
+        for (var i = 0; i < 500; i++) {
             this.shuffleLoremText();
             const title = this.generateStoryTitle();
             const id = title + Math.random().toString();
@@ -122,6 +122,9 @@ export class DataStore {
             let word = this.loremText[Math.floor(2 + i)];
             word = word[0].toUpperCase() + word.substr(1);
             title += word + " ";
+        }
+        if (title.length > 25) {
+            title = title.substr(0, 25);
         }
         return title;
     }

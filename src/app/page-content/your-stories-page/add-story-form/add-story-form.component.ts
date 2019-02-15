@@ -22,22 +22,13 @@ export class AddStoryFormComponent implements OnInit {
   } 
 
   addStory(title: string, genre: string, link: string, blurb: string, storyLength: string, storyReviews: string) {
-    debugger;
-    const newStory = new Story(title, title + '1234', this.dataStore.getLoggedInUser().getName(), genre, link, blurb, +storyLength, new Date(), +storyReviews, []);
-    this.dataStore.addStories([newStory]);
-    this.close();
+    if (title && genre && link && blurb && storyLength && storyReviews) {
+      const newStory = new Story(title, title + '1234', this.dataStore.getLoggedInUser().getName(), genre, link, blurb, +storyLength, new Date(), +storyReviews, []);
+      this.dataStore.addStories([newStory]);
+      this.close();
+    } else {
+      console.log("Not enough detail my dude");
+    }
   }
 
 }
-
-// <!-- 
-// title: string;
-//     .storyID: string;
-//     .author: string;
-//     .genre: string;
-//     .link: string;
-//     .blurb: string;
-//     .wordCount: number;
-//     .datePosted: Date;
-//     desiredReviews: number;
-//     completedReviews: ReviewReservation[]; -->

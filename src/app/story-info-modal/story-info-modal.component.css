@@ -50,7 +50,7 @@
 
 .story-title {
     font-size: larger;
-    color: #2DABF3;
+    color: #2378bc;
     font-weight: bold;
 }
 
@@ -66,7 +66,8 @@
 }
 
 button {
-    background-color: #2DABF3;
+    background-color: #2378bc;
+    border-radius: 5px;
     border: none;
     color: white;
     padding: 8px 7px;

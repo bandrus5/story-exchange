@@ -1,9 +1,9 @@
 .card {
-    width: 90vh;
+    width: 80vh;
     height: 158px;
-    border: 1px solid #2DABF3;
+    border: 1px solid gray;
     margin: 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -17,6 +17,7 @@ p {
 button {
     background-color: #2DABF3;
     border: none;
+    border-radius: 5px;
     color: white;
     padding: 8px 7px;
     text-align: center;
@@ -50,6 +51,7 @@ button {
     font-size: larger;
     line-height: 1em;
     margin-bottom: 10px;
+    color: #1c5899;
 }
 
 .credit-container1 {
@@ -64,4 +66,9 @@ button {
 .credit-display {
     margin-left: auto;
     margin-right: auto;
+    color: #1c5899;
+}
+
+.dark-button {
+    background-color: #2378bc;
 }

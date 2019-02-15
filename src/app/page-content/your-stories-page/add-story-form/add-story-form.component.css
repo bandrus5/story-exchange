@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     position: fixed;
-    top: calc(20vh);
+    top: calc(5vh);
     left: calc(50vw - 300px);
     z-index: 2;
 }
@@ -22,7 +22,7 @@
 .dialog {
     background-color: white;
     width: 600px;
-    border-radius: 4px;
+    border-radius: 5px;
     z-index: 2;
     margin-top: 45px;
 }
@@ -68,6 +68,7 @@
 button {
     background-color: #2DABF3;
     border: none;
+    border-radius: 5px;
     color: white;
     padding: 8px 7px;
     text-align: center;
@@ -78,5 +79,34 @@ button {
 }
 
 .wide-input {
-    width: 350px;
+    width: 366px;
+}
+
+.wide-select {
+    width: 366px;
+}
+
+.wide-textarea {
+    width: 572px;
+    font-family: 'Lora', serif;
+}
+
+input[type=text], input[type=number], select, textarea {
+    padding: 9px 9px;
+    margin: 4px 13px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #666;
+    background-color: white;
+}
+
+::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.form {
+    margin-bottom: 7px;
 }

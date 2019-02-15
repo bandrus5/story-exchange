@@ -15,7 +15,6 @@ export class YourStoriesPageComponent implements OnInit {
   constructor() { 
     this.dataStore = DataStore.getInstance();
     this.stories = this.dataStore.getStoriesByUsername(this.dataStore.getLoggedInUser().getName());
-    debugger;
   }
 
   ngOnInit() {
