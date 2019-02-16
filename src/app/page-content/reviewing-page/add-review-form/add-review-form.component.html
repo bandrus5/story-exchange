@@ -1,0 +1,18 @@
+<div class="dimmer"></div>
+<div class="dialog-container">
+	<div class="dialog">
+        <div class="close-button-container" (click)="close()"><div class="close-button">X</div></div>
+        <form 
+          name="add-story-form" 
+          class="form"
+          (submit)="addReview(storyReview.value); $event.preventDefault()">
+          <p>{{reservation.story}}</p>
+          <p>Reserved on [FIXME: insert date]</p>
+          <textarea class="wide-textarea" rows="8" cols="80" name="review" placeholder="What feedback do you have on {{reservation.story}}?" #storyReview></textarea>
+          <div class="button-container">
+            <button type="button" (click)="close()">Cancel</button>
+            <button type="submit">Send Review</button>
+          </div>
+        </form>
+	</div>
+</div>

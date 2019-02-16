@@ -18,7 +18,8 @@
 }
 
 .tab:hover {
-    color: #2378bc
+    color: #2378bc;
+    text-decoration: underline;
 }
 
 .selected-tab {

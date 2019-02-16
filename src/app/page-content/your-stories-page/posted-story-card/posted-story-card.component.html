@@ -6,14 +6,15 @@
     </div>
     <div class="cta-col">
       <div class="cta-buttons">
-        <button (click)="showReviews()">Show Reviews</button>
         <button (click)="showMore()">See Story Details</button>
+        <button (click)="showReviews()">See Reviews</button>
       </div>
     </div>
   </div>
   <app-story-info-modal 
     *ngIf="shouldShowMore"
     [story]="story"
+    [isReservable]="false"
     (closeEvent)="closeDialog($event)"
   ></app-story-info-modal>
   

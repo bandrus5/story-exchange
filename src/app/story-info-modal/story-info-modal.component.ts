@@ -10,6 +10,7 @@ import { DataStore } from '../services/DataStore';
 export class StoryInfoModalComponent implements OnInit {
 
   @Input() story: Story;
+  @Input() isReservable: boolean;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
   
   private dataStore: DataStore;
@@ -34,6 +35,6 @@ export class StoryInfoModalComponent implements OnInit {
   }
 
   reservable() {
-    return this.story.author != this.dataStore.getLoggedInUser().getName();
+    return this.isReservable && this.story.author != this.dataStore.getLoggedInUser().getName();
   }
 }

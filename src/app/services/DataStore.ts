@@ -29,7 +29,7 @@ export class DataStore {
         this.allReviewReservations = [];
         this.generateUsers();
         this.generateStories();
-        // this.generateReviews();
+        this.generateReviews();
     }
 
     getStoriesByUsername(username: string): Story[] {
@@ -62,8 +62,16 @@ export class DataStore {
         return this.loggedInUser.getPostedStories();
     }
 
+    getStoryByName(name: string): Story {
+        return this.allStories.filter(story => story.title == name)[0];
+    }
+
     getReservedStories(): ReviewReservation[] {
         return this.loggedInUser.getReservedStories();
+    }
+
+    getReviewedStories(): ReviewReservation[] {
+        return this.loggedInUser.getReviewedStories();
     }
 
     getCredit(): number {
@@ -137,6 +145,14 @@ export class DataStore {
         return blurb;
     }
 
+    generateReviewText(): string {
+        let review = "";
+        for (let i = 0; i < 130; i++) {
+            review += this.loremText[Math.floor(Math.random() * this.loremText.length)] + " ";
+        }
+        return review;
+    }
+
     generateRandomDate(): Date {
         const startDate = new Date(2018, 10, 1);
         const endDate = new Date(2019, 0, 1);
@@ -158,26 +174,28 @@ export class DataStore {
 
     generateReviews() {
         const stories = this.getAllStories();
-        for (var i = 0; i < 30; i++) {
-            const story = stories[Math.floor(Math.random()*stories.length+1)];
-            const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length+1)];
+        for (var i = 0; i < 20; i++) {
+            const story = stories[Math.floor(Math.random()*stories.length)];
+            const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length)];
             if (reviewer == story.author) {
                 i--;
                 continue;
             }
             const reservation = new ReviewReservation(story.title, reviewer, new Date());
+            this.allUsers.filter(user => user.getName() == reviewer)[0].addReservedStory(reservation);
             this.addReviewReservations([reservation]);
         }
-        for (var i = 0; i < 60; i++) {
+        for (var i = 0; i < 40; i++) {
             this.shuffleLoremText();
-            const story = stories[Math.floor(Math.random()*stories.length+1)];
-            const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length+1)];
+            const story = stories[Math.floor(Math.random()*stories.length)];
+            const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length)];
             if (reviewer == story.author) {
                 i--;
                 continue;
             }
-            const reviewText = this.loremText.splice(1, 40).join();
+            const reviewText = this.generateReviewText();
             const review = new ReviewReservation(story.title, reviewer, new Date(), new Date(), reviewText);
+            this.allUsers.filter(user => user.getName() == reviewer)[0].addReservedStory(review);
             this.addReviewReservations([review]);
         }
         const goodReview = new ReviewReservation("Uncovered", "shj1996", new Date());

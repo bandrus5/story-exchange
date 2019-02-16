@@ -1,0 +1,56 @@
+.card {
+    width: 70%;
+    height: 126px;
+    border: 1px solid grey;
+    margin: 10px auto;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+
+}
+
+p {
+    margin-left: 10px;
+    line-height: 0.5em;
+}
+
+button {
+    background-color: #2DABF3;
+    border: none;
+    color: white;
+    padding: 8px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 11px;
+    cursor: pointer;
+}
+
+.info-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.cta-col {
+    position: relative;
+    width: 276px;
+}
+
+.cta-buttons {
+    position: absolute;
+    bottom: 16px;
+}
+
+.indent {
+    padding-left: 20px;
+    line-height: 0em;
+}
+
+.story-title {
+    font-size: larger;
+    line-height: 1em;
+    margin-bottom: 10px;
+    color: #1c5899;
+}

@@ -3,13 +3,13 @@ export class ReviewReservation {
     reviewer: string;
     dateReserved: Date;
     reviewCompleted: Date|null;
-    reveiwText: string|null;
+    reviewText: string|null;
 
     constructor(story: string, reviewer: string, dateReserved: Date, reviewCompleted?: Date, reviewText?: string) {
         this.story = story;
         this.reviewer = reviewer;
         this.dateReserved = dateReserved;
         this.reviewCompleted = reviewCompleted;
-        this.reveiwText = reviewText;
+        this.reviewText = reviewText;
     }
 }

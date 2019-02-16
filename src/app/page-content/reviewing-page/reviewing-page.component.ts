@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStore } from '../../services/DataStore';
+import { ReviewReservation } from '../../types/ReviewReservation';
 
 @Component({
   selector: 'app-reviewing-page',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewingPageComponent implements OnInit {
 
-  constructor() { }
+  private dataStore: DataStore;
+  public allReviews: ReviewReservation[];
+  public uncompletedReviews: ReviewReservation[];
+  public completedReviews: ReviewReservation[];
+
+  constructor() { 
+    this.dataStore = DataStore.getInstance();
+    this.uncompletedReviews = this.dataStore.getReservedStories();
+    this.completedReviews = this.dataStore.getReviewedStories();
+  }
 
   ngOnInit() {
+  }
+
+  getUncompletedReviews() {
+    return this.uncompletedReviews.filter(review => review.reviewCompleted == null);
+  }
+
+  getCompletedReviews() {
+    return this.uncompletedReviews.filter(review => review.reviewCompleted != null).concat(this.completedReviews);
   }
 
 }

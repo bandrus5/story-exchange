@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="info-col">
+    <p class="story-title">{{review.story}}</p>
+    <p class="indent">{{getDateStatement()}}</p>
+  </div>
+  <div class="cta-col">
+    <div class="cta-buttons">
+      <button (click)="showDetails()">See Story Details</button>
+      <button *ngIf="!completed" (click)="addReview()">Add Review</button>
+    </div>
+  </div>
+</div>
+
+<app-story-info-modal 
+  *ngIf="shouldShowDetails"
+  [story]="getStory()"
+  [isReservable]="false"
+  (closeEvent)="closeDetails($event)"
+></app-story-info-modal>
+
+<app-add-review-form 
+  *ngIf="showAddForm" 
+  [reservation]="review" 
+  (closeEvent)="closeAddForm()">
+</app-add-review-form>

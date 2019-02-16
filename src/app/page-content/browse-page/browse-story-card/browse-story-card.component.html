@@ -20,5 +20,6 @@
 <app-story-info-modal 
   *ngIf="shouldShowMore"
   [story]="story"
+  [isReservable]="true"
   (closeEvent)="closeDialog($event)"
 ></app-story-info-modal>

@@ -11,6 +11,8 @@ import { BrowseStoryCardComponent } from './page-content/browse-page/browse-stor
 import { StoryInfoModalComponent } from './story-info-modal/story-info-modal.component';
 import { PostedStoryCardComponent } from './page-content/your-stories-page/posted-story-card/posted-story-card.component';
 import { AddStoryFormComponent } from './page-content/your-stories-page/add-story-form/add-story-form.component';
+import { StoryReviewCardComponent } from './page-content/reviewing-page/story-review-card/story-review-card.component';
+import { AddReviewFormComponent } from './page-content/reviewing-page/add-review-form/add-review-form.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { AddStoryFormComponent } from './page-content/your-stories-page/add-stor
     StoryInfoModalComponent,
     PostedStoryCardComponent,
     AddStoryFormComponent,
+    StoryReviewCardComponent,
+    AddReviewFormComponent,
   ],
   imports: [
     BrowserModule

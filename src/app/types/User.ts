@@ -21,7 +21,11 @@ export class User {
     }
 
     public getReservedStories(): ReviewReservation[] {
-        return this.reservedStories;
+        return this.reservedStories.filter(review => review.reviewCompleted == null);
+    }
+
+    public getReviewedStories(): ReviewReservation[] {
+        return this.reservedStories.filter(review => review.reviewCompleted != null);
     }
 
     public getCredit(): number {
@@ -30,5 +34,9 @@ export class User {
 
     public getName(): string {
         return this.name;
+    }
+
+    public addReservedStory(review: ReviewReservation) {
+        this.reservedStories.push(review);
     }
 }

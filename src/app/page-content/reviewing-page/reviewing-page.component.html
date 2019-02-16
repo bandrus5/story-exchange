@@ -1,3 +1,8 @@
-<p>
-  reviewing-page works!
-</p>
+<h1 class="completion-label">Uncompleted</h1>
+<div *ngFor="let review of getUncompletedReviews()">
+  <app-story-review-card [review]="review" [completed]="false"></app-story-review-card>
+</div>
+<h1 class="completion-label">Completed</h1>
+<div *ngFor="let review of getCompletedReviews()">
+  <app-story-review-card [review]="review" [completed]="true"></app-story-review-card>
+</div>
