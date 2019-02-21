@@ -13,7 +13,7 @@
         </div>
         <div class="button-container">
             <button *ngIf="reservable()" (click)="reserveForReview()">Reserve for Review</button> 
-            <button (click)="close()">Exit</button>
+            <button *ngIf="!reservable()" (click)="close()" class="light-button">Exit</button>
         </div>
 	</div>
 </div>

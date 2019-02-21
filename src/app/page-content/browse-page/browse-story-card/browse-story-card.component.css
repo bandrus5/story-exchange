@@ -1,4 +1,4 @@
-.card {
+/* .card {
     width: 80vh;
     height: 158px;
     border: 1px solid gray;
@@ -7,6 +7,18 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+} */
+
+.card {
+    width: 70%;
+    height: 126px;
+    border: 1px solid grey;
+    margin: 10px auto;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
 }
 
 p {
@@ -71,4 +83,10 @@ button {
 
 .dark-button {
     background-color: #2378bc;
+}
+
+.light-button {
+    border: 1px solid #2378bc;
+    color: #2378bc;
+    background-color: white;
 }

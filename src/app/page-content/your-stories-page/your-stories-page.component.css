@@ -15,10 +15,11 @@ button {
 }
 
 .add-button {
+    background-color: #2378bc;
     margin: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
     margin-left: 15%;
     font-size: xx-large;
     margin-bottom: 0px;
+    border-radius: 5px;
+    padding: 5px 12px;
 }

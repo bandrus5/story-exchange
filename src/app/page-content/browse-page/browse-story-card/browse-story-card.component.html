@@ -2,7 +2,7 @@
   <div class="info-col">
     <p class="story-title">{{story.title}}</p>
     <p class="indent">{{story.genre}}</p>
-    <p class="indent">{{story.wordCount}} words</p>
+    <!-- <p class="indent">{{story.wordCount}} words</p> -->
     <p class="indent">Awaiting {{story.getReviewsLeft()}} reviews</p>
   </div>
   <div class="cta-col">
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="cta-buttons">
-      <button class="dark-button" (click)="showMore()">See More</button>
+      <button class="light-button" (click)="showMore()">See More</button>
       <button class="dark-button">Reserve for Review</button>
     </div>
   </div>

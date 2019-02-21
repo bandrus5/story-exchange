@@ -5,8 +5,9 @@
   </div>
   <div class="cta-col">
     <div class="cta-buttons">
-      <button (click)="showDetails()">See Story Details</button>
-      <button *ngIf="!completed" (click)="addReview()">Add Review</button>
+      <button (click)="showDetails()" class="light-button">See Story Details</button>
+      <button *ngIf="!completed" class="dark-button" (click)="addReview()">Add Review</button>
+      <button *ngIf="completed" class="non-button" disabled>Completed</button>
     </div>
   </div>
 </div>

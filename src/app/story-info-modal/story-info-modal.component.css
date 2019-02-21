@@ -77,3 +77,9 @@ button {
     margin-left: 11px;
     cursor: pointer;
 }
+
+.light-button {
+    border: 1px solid #2378bc;
+    color: #2378bc;
+    background-color: white;
+}

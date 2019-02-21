@@ -1,14 +1,13 @@
 .card {
     width: 70%;
     height: 126px;
-    border: 1px solid #2DABF3;
+    border: 1px solid grey;
     margin: 10px auto;
     border-radius: 3px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     position: relative;
-
 }
 
 p {
@@ -19,6 +18,7 @@ p {
 button {
     background-color: #2DABF3;
     border: none;
+    border-radius: 5px;
     color: white;
     padding: 8px 7px;
     text-align: center;
@@ -52,4 +52,15 @@ button {
     font-size: larger;
     line-height: 1em;
     margin-bottom: 10px;
+    color: #1c5899;
+}
+
+.dark-button {
+    background-color: #2378bc;
+}
+
+.light-button {
+    border: 1px solid #2378bc;
+    color: #2378bc;
+    background-color: white;
 }
