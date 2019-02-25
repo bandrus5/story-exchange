@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataStore } from '../../services/DataStore';
 import { Story } from '../../types/Story';
 
@@ -11,10 +11,18 @@ export class BrowsePageComponent implements OnInit {
   dataStore: DataStore;
   public displayedStories: Story[];
 
+  @ViewChild('searchBar') searchBar; 
+
   constructor() {
     this.dataStore = DataStore.getInstance();
-    this.displayedStories = this.dataStore.getAllStories();
+    let loggedInName = this.dataStore.getLoggedInUser().getName();
+    this.displayedStories = this.dataStore.getAllStories().filter(story => story.author != loggedInName);
   } 
+
+  search(value: string) {
+    this.displayedStories = this.dataStore.searchStories(value);
+    this.searchBar.value = '';
+  }
 
   ngOnInit() {
   }

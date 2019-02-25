@@ -93,12 +93,10 @@ export class DataStore {
 
     searchStories(searchQuery: string): Story[] {
         return this.allStories.filter(story => {
-            (story.author.includes(searchQuery) || 
-            story.genre.includes(searchQuery) || 
-            story.title.includes(searchQuery)) &&
+            return (story.author.toLowerCase().includes(searchQuery.toLowerCase()) || 
+            story.genre.toLowerCase().includes(searchQuery.toLowerCase()) || 
+            story.title.toLowerCase().includes(searchQuery.toLowerCase())) &&
             story.author !== this.loggedInUser.getName();
-        }).sort((a, b) => {
-            return a.getReviewsLeft() - b.getReviewsLeft();
         });
     }
 

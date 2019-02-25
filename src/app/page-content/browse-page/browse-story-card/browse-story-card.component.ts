@@ -35,4 +35,15 @@ export class BrowseStoryCardComponent implements OnInit {
     this.dataStore.reserveReview(this.story);
   }
 
+  reserved() {
+    let user = this.dataStore.getLoggedInUser();
+    let stories = user.getReservedStories().filter(rStory => rStory.story == this.story.title);
+    return stories.length > 0;
+  }
+
+  reviewed() {
+    let user = this.dataStore.getLoggedInUser();
+    let stories = user.getReviewedStories().filter(rStory => rStory.story == this.story.title);
+    return stories.length > 0;
+  }
 }

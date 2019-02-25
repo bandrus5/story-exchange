@@ -13,13 +13,15 @@
     </div>
     <div class="cta-buttons">
       <button class="light-button" (click)="showMore()">See More</button>
-      <button class="dark-button">Reserve for Review</button>
+      <button *ngIf="!reserved() && !reviewed()" class="dark-button" (click)="reserveForReview()">Reserve for Review</button>
+      <button *ngIf="reserved() && !reviewed()" class="non-button">Reserved</button>
+      <button *ngIf="reviewed()" class="non-button">Reviewed</button>
     </div>
   </div>
 </div>
 <app-story-info-modal 
   *ngIf="shouldShowMore"
   [story]="story"
-  [isReservable]="true"
+  [isReservable]="!reserved() && !reviewed()"
   (closeEvent)="closeDialog($event)"
 ></app-story-info-modal>

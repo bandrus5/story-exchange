@@ -1,6 +1,14 @@
 <div class="browse-container">
+  <div class="search-container">
+      <input 
+        type="text" 
+        id="search-bar"
+        #searchBar
+        placeholder="Search for an author, story title, or genre"
+        (keydown.enter)="search(searchBar.value)"
+      >
+  </div>
   <div *ngFor="let story of displayedStories"> 
-    <!-- <p>{{story.title}}</p> -->
     <app-browse-story-card [story]="story"></app-browse-story-card>
   </div>
   <p>No more stories</p>
