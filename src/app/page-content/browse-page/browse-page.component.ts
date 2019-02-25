@@ -10,6 +10,8 @@ import { Story } from '../../types/Story';
 export class BrowsePageComponent implements OnInit {
   dataStore: DataStore;
   public displayedStories: Story[];
+  public showingSearchResults = false;
+  public searchString = "";
 
   @ViewChild('searchBar') searchBar; 
 
@@ -20,8 +22,17 @@ export class BrowsePageComponent implements OnInit {
   } 
 
   search(value: string) {
+    this.searchString = value;
     this.displayedStories = this.dataStore.searchStories(value);
     this.searchBar.value = '';
+    this.showingSearchResults = true;
+  }
+
+  clearSearch() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    this.showingSearchResults = false;
+    let loggedInName = this.dataStore.getLoggedInUser().getName();
+    this.displayedStories = this.dataStore.getAllStories().filter(story => story.author != loggedInName);
   }
 
   ngOnInit() {

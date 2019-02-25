@@ -232,7 +232,7 @@ var BannerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".browse-container {\n    position: relative;\n}"
+module.exports = ".browse-container {\n    position: relative;\n}\n\n.no-more-message {\n    width: 70%;\n    margin: auto;\n    text-align: center;\n}\n\n#search-bar {\n    width: 68%;\n    margin: 20px auto;\n    display: block;\n    height: 45px;\n    padding: 0px 10px;\n    font-size: 1rem;\n    border: 1px solid #D0CFCE;\n    outline: none;\n    border-radius: 25px;\n}\n\n.link {\n    color: #1c5899;\n    cursor: pointer;\n}"
 
 /***/ }),
 
@@ -243,7 +243,7 @@ module.exports = ".browse-container {\n    position: relative;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"browse-container\">\n  <div class=\"search-container\">\n      <input \n        type=\"text\" \n        id=\"search-bar\"\n        #searchBar\n        placeholder=\"Search for an author, story title, or genre\"\n        (keydown.enter)=\"search(searchBar.value)\"\n      >\n  </div>\n  <div *ngFor=\"let story of displayedStories\"> \n    <app-browse-story-card [story]=\"story\"></app-browse-story-card>\n  </div>\n  <p>No more stories</p>\n</div>"
+module.exports = "<div class=\"browse-container\">\n  <input \n    type=\"text\" \n    id=\"search-bar\"\n    #searchBar\n    placeholder=\"Search for an author, story title, or genre\"\n    (keydown.enter)=\"search(searchBar.value)\"\n  >\n  <p *ngIf=\"showingSearchResults\" class=\"no-more-message\">Showing results for {{searchString}}</p>\n  <div *ngFor=\"let story of displayedStories\"> \n    <app-browse-story-card [story]=\"story\"></app-browse-story-card>\n  </div>\n  <p class=\"no-more-message\">No more stories. Try a different search or <span class=\"link\" (click)=\"clearSearch()\">go back.</span></p>\n</div>"
 
 /***/ }),
 
@@ -272,14 +272,23 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var BrowsePageComponent = /** @class */ (function () {
     function BrowsePageComponent() {
+        this.showingSearchResults = false;
+        this.searchString = "";
         this.dataStore = _services_DataStore__WEBPACK_IMPORTED_MODULE_1__["DataStore"].getInstance();
         var loggedInName = this.dataStore.getLoggedInUser().getName();
         this.displayedStories = this.dataStore.getAllStories().filter(function (story) { return story.author != loggedInName; });
     }
     BrowsePageComponent.prototype.search = function (value) {
-        debugger;
+        this.searchString = value;
         this.displayedStories = this.dataStore.searchStories(value);
         this.searchBar.value = '';
+        this.showingSearchResults = true;
+    };
+    BrowsePageComponent.prototype.clearSearch = function () {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        this.showingSearchResults = false;
+        var loggedInName = this.dataStore.getLoggedInUser().getName();
+        this.displayedStories = this.dataStore.getAllStories().filter(function (story) { return story.author != loggedInName; });
     };
     BrowsePageComponent.prototype.ngOnInit = function () {
     };
@@ -1114,17 +1123,12 @@ var DataStore = /** @class */ (function () {
     };
     DataStore.prototype.searchStories = function (searchQuery) {
         var _this = this;
-        debugger;
         return this.allStories.filter(function (story) {
-            debugger;
             return (story.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 story.genre.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 story.title.toLowerCase().includes(searchQuery.toLowerCase())) &&
                 story.author !== _this.loggedInUser.getName();
         });
-        // }).sort((a, b) => {
-        //     return a.getReviewsLeft() - b.getReviewsLeft();
-        // });
     };
     DataStore.prototype.getAllStories = function () {
         return this.allStories;
