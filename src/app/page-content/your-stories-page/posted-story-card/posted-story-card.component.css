@@ -73,14 +73,12 @@ button {
 
 .reviews p {
     line-height: 1em;
-    border: 2px solid gray;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    border: 1px solid gray;
     padding-bottom: 17px;
     padding-top: 11px;
-    width: 68%;
-    margin: auto;
+    width: 63%;
+    margin: 6px auto;
+    padding-left: 10px;
 }
 
 .hidden {

@@ -11,6 +11,7 @@ export class AddReviewFormComponent implements OnInit {
 
   @Input() reservation: ReviewReservation;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
+  public charCount = 0;
   private dataStore: DataStore;
   constructor() { 
     this.dataStore = DataStore.getInstance();
@@ -23,12 +24,36 @@ export class AddReviewFormComponent implements OnInit {
   } 
 
   addReview(review: string) {
-    if (review.length > 100) {
+    if (review.length > 600) {
       this.reservation.reviewText = review;
       this.reservation.reviewCompleted = new Date();
+      let story = this.dataStore.getAllStories().filter(story => story.title == this.reservation.story)[0];
+      this.dataStore.getLoggedInUser().addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
       this.close();
     } else {
       console.log("Not enough detail my dude");
+    }
+  }
+
+  getDateStatement(): string {
+    let status = "";
+    let date: Date = null;
+    date = this.reservation.dateReserved;
+    status = "Reserved on ";
+    let stringDate = date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    return status + stringDate;
+  }
+
+  updateCharCount(review: string) {
+    this.charCount = review.length;
+  }
+
+  getLengthStatement(): string {
+    if (this.charCount < 600) {
+      return this.charCount + " / 600 characters";
+    }
+    else {
+      return this.charCount + " characters";
     }
   }
 }

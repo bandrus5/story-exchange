@@ -6,12 +6,13 @@
           name="add-story-form" 
           class="form"
           (submit)="addReview(storyReview.value); $event.preventDefault()">
-          <p>{{reservation.story}}</p>
-          <p>Reserved on [FIXME: insert date]</p>
-          <textarea class="wide-textarea" rows="8" cols="80" name="review" placeholder="What feedback do you have on {{reservation.story}}?" #storyReview></textarea>
+          <p class="title">{{reservation.story}}</p>
+          <p class="date">{{getDateStatement()}}</p>
+          <textarea class="wide-textarea" rows="8" cols="80" name="review" placeholder="What feedback do you have on {{reservation.story}}?" (keyup)="updateCharCount(storyReview.value)" #storyReview></textarea>
+          <p class="length-statement">{{getLengthStatement()}}</p>
           <div class="button-container">
-            <button type="button" (click)="close()">Cancel</button>
-            <button type="submit">Send Review</button>
+            <button type="button" class="light-button" (click)="close()">Cancel</button>
+            <button type="submit" class="dark-button">Send Review</button>
           </div>
         </form>
 	</div>

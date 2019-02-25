@@ -16,6 +16,7 @@ export class StoryReviewCardComponent implements OnInit {
   @Input() review: ReviewReservation;
 
   public shouldShowDetails: boolean;
+  public shouldShowReview: boolean;
 
   public showAddForm: boolean;
 
@@ -57,6 +58,18 @@ export class StoryReviewCardComponent implements OnInit {
 
   closeAddForm() {
     this.showAddForm = false;    
+  }
+
+  showReview() {
+    this.shouldShowReview = true;
+  }
+
+  hideReview() {
+    this.shouldShowReview = false;
+  }
+
+  getReviewText() {
+    return this.review.reviewText;
   }
 
 }

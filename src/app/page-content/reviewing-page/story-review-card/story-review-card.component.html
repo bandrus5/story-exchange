@@ -7,9 +7,15 @@
     <div class="cta-buttons">
       <button (click)="showDetails()" class="light-button">See Story Details</button>
       <button *ngIf="!completed" class="dark-button" (click)="addReview()">Add Review</button>
-      <button *ngIf="completed" class="non-button" disabled>Completed</button>
+      <button *ngIf="completed && !shouldShowReview" class="light-button" (click)="showReview()">See review</button>
+      <button *ngIf="completed && shouldShowReview" class="light-button" (click)="hideReview()">Hide review</button>
+      
     </div>
   </div>
+</div>
+
+<div class="review-container" [ngClass]="{hidden: !shouldShowReview}">
+  <p class="review">{{getReviewText()}}</p>
 </div>
 
 <app-story-info-modal 

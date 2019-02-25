@@ -20,7 +20,7 @@ export class BrowseStoryCardComponent implements OnInit {
   }
 
   getStoryCredit(): number {
-    return Math.round(this.story.wordCount * this.story.getReviewsLeft() / 100000); 
+    return 5 + Math.round(this.story.wordCount / 1000); 
   }
 
   showMore() {

@@ -11,7 +11,7 @@ export class DataStore {
     allReviewReservations: ReviewReservation[];
 
     loremText = "lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non".split(" ");
-    userNames = ["bettyTheBot", "tommyj", "shj1996", "megera", "bandr", "mstbrn", "hotman"];
+    userNames = ["bettyTheBot", "tommyj", "shj1996", "megera", "bandr", "mstbrn", "hotman", "merric", "neo", "crest", "xkcd", "fanboy", "heyho", "bgibbard", "meyer", "hackerman"];
     genres = "Mystery Sci-Fi Fantasy Drama Romance Adventure Action Horror Fan-Fiction Humor".split(" ");
 
     static instance: DataStore = null;
@@ -169,9 +169,18 @@ export class DataStore {
         const user5 = new User("bandr", "band@mailinator.com", [], [], 12);
         const user6 = new User("mstbrn", "mist@mailinator.com", [], [], 64);
         const user7 = new User("hotman", "flameo@mailinator.com", [], [], 44);
+        const user8 = new User("merric", "none", [], [], 15);
+        const user9 = new User("neo", "none", [], [], 15);
+        const user10 = new User("crest", "none", [], [], 15);
+        const user11 = new User("xkcd", "none", [], [], 15);
+        const user12 = new User("fanboy", "none", [], [], 15);
+        const user13 = new User("heyho", "none", [], [], 15);
+        const user14 = new User("bgibbard", "none", [], [], 15);
+        const user15 = new User("meyer", "none", [], [], 15);
+        const user16 = new User("hackerman", "none", [], [], 15);
 
         this.logInUser(user1);
-        this.allUsers = [user1, user2, user3, user4, user5, user6, user7];
+        this.allUsers = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16];
     }
 
     generateReviews() {

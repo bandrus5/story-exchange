@@ -32,6 +32,10 @@ export class User {
         return this.credit;
     }
 
+    public addCredit(newCredit: number) {
+        this.credit += newCredit;
+    }
+
     public getName(): string {
         return this.name;
     }

@@ -24,7 +24,7 @@ export class BrowsePageComponent implements OnInit {
   search(value: string) {
     this.searchString = value;
     this.displayedStories = this.dataStore.searchStories(value);
-    this.searchBar.value = '';
+    this.searchBar.nativeElement.value = '';
     this.showingSearchResults = true;
   }
 

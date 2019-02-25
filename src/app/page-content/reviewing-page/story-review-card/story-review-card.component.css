@@ -75,3 +75,23 @@ button {
 .non-button:hover {
     cursor: default;
 }
+
+.review-container {
+    max-height: 800px;
+    transition: max-height 0.8s ease 0.1s;
+    overflow: hidden;
+}
+
+.hidden {
+    max-height: 0px;
+}
+
+.review {
+    line-height: 1em;
+    border: 1px solid gray;
+    padding-bottom: 17px;
+    padding-top: 11px;
+    width: 63%;
+    margin: 6px auto;
+    padding-left: 10px;
+}

@@ -281,7 +281,7 @@ var BrowsePageComponent = /** @class */ (function () {
     BrowsePageComponent.prototype.search = function (value) {
         this.searchString = value;
         this.displayedStories = this.dataStore.searchStories(value);
-        this.searchBar.value = '';
+        this.searchBar.nativeElement.value = '';
         this.showingSearchResults = true;
     };
     BrowsePageComponent.prototype.clearSearch = function () {
@@ -366,7 +366,7 @@ var BrowseStoryCardComponent = /** @class */ (function () {
     BrowseStoryCardComponent.prototype.ngOnInit = function () {
     };
     BrowseStoryCardComponent.prototype.getStoryCredit = function () {
-        return Math.round(this.story.wordCount * this.story.getReviewsLeft() / 100000);
+        return 5 + Math.round(this.story.wordCount / 1000);
     };
     BrowseStoryCardComponent.prototype.showMore = function () {
         this.shouldShowMore = true;
@@ -482,7 +482,7 @@ var PageContentComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n.dimmer {\n    background: #000;\n    opacity: 0.9;\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    z-index: 1;\n}\n\n.dialog-container {\n    display: flex;\n    justify-content: center;\n    position: fixed;\n    top: calc(5vh);\n    left: calc(50vw - 300px);\n    z-index: 2;\n}\n\n.dialog {\n    background-color: white;\n    width: 600px;\n    border-radius: 5px;\n    z-index: 2;\n    margin-top: 45px;\n}\n\n.close-button-container {\n    width: 100%;\n    display: flex;\n    padding: 8px 8px 0 0;\n    margin-left: auto;\n    cursor: pointer;\n    position: relative;\n}\n\n.close-button {\n    position: absolute;\n    left: 577px;\n    font-family: 'Rambla', sans-serif;\n}\n\n.indent {\n    padding-left: 20px;\n    line-height: 1em;\n}\n\n.story-title {\n    font-size: larger;\n    color: #2DABF3;\n    font-weight: bold;\n}\n\n.info {\n    margin: 15px;\n    margin-left: 20px;\n}\n\n.button-container {\n    margin-bottom: 14px;\n    float: right;\n    margin-right: 16px;\n}\n\nbutton {\n    background-color: #2DABF3;\n    border: none;\n    border-radius: 5px;\n    color: white;\n    padding: 8px 7px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    margin-left: 11px;\n    cursor: pointer;\n}\n\n.wide-input {\n    width: 366px;\n}\n\n.wide-select {\n    width: 366px;\n}\n\n.wide-textarea {\n    width: 572px;\n    font-family: 'Lora', serif;\n}\n\ninput[type=text], input[type=number], select, textarea {\n    padding: 9px 9px;\n    margin: 4px 13px;\n    display: inline-block;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    box-sizing: border-box;\n    color: #666;\n    background-color: white;\n}\n\n::-webkit-input-placeholder {\n    color: #999;\n    opacity: 1;\n}\n\n::-ms-input-placeholder {\n    color: #999;\n    opacity: 1;\n}\n\n::placeholder {\n    color: #999;\n    opacity: 1;\n}\n\n.form {\n    margin-bottom: 7px;\n}"
+module.exports = "\n.dimmer {\n    background: #000;\n    opacity: 0.9;\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    z-index: 1;\n}\n\n.dialog-container {\n    display: flex;\n    justify-content: center;\n    position: fixed;\n    top: calc(5vh);\n    left: calc(50vw - 300px);\n    z-index: 2;\n}\n\n.dialog {\n    background-color: white;\n    width: 600px;\n    border-radius: 5px;\n    z-index: 2;\n    margin-top: 45px;\n}\n\n.close-button-container {\n    width: 100%;\n    display: flex;\n    padding: 8px 8px 0 0;\n    margin-left: auto;\n    cursor: pointer;\n    position: relative;\n}\n\n.close-button {\n    position: absolute;\n    left: 577px;\n    font-family: 'Rambla', sans-serif;\n}\n\n.indent {\n    padding-left: 20px;\n    line-height: 1em;\n}\n\n.story-title {\n    font-size: larger;\n    color: #2DABF3;\n    font-weight: bold;\n}\n\n.info {\n    margin: 15px;\n    margin-left: 20px;\n}\n\n.button-container {\n    margin-bottom: 14px;\n    float: right;\n    margin-right: 16px;\n}\n\nbutton {\n    background-color: #2DABF3;\n    border: none;\n    border-radius: 5px;\n    color: white;\n    padding: 8px 7px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    margin-left: 11px;\n    cursor: pointer;\n}\n\n.wide-input {\n    width: 366px;\n}\n\n.wide-select {\n    width: 366px;\n}\n\n.wide-textarea {\n    width: 572px;\n    font-family: 'Lora', serif;\n}\n\ninput[type=text], input[type=number], select, textarea {\n    padding: 9px 9px;\n    margin: 4px 13px;\n    display: inline-block;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    box-sizing: border-box;\n    color: #555;\n    background-color: white;\n}\n\n::-webkit-input-placeholder {\n    color: #999;\n    opacity: 1;\n}\n\n::-ms-input-placeholder {\n    color: #999;\n    opacity: 1;\n}\n\n::placeholder {\n    color: #999;\n    opacity: 1;\n}\n\n.form {\n    margin-bottom: 7px;\n}\n\n.dark-button {\n    background-color: #2378bc;\n}\n\n.light-button {\n    border: 1px solid #2378bc;\n    color: #2378bc;\n    background-color: white;\n}\n\n.length-statement {\n    line-height: 0;\n    text-align: right;\n    margin-top: 0;\n    color: #555;\n    padding: 7px 16px;\n}\n\n.title {\n    padding-left: 15px;\n    color: #1c5899;\n    font-size: 20px;\n}\n\n.date {\n    padding-left: 30px;\n    padding-top: 0;\n    margin-top: 0;\n    line-height: 0;\n}"
 
 /***/ }),
 
@@ -493,7 +493,7 @@ module.exports = "\n.dimmer {\n    background: #000;\n    opacity: 0.9;\n    pos
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"dimmer\"></div>\n<div class=\"dialog-container\">\n\t<div class=\"dialog\">\n        <div class=\"close-button-container\" (click)=\"close()\"><div class=\"close-button\">X</div></div>\n        <form \n          name=\"add-story-form\" \n          class=\"form\"\n          (submit)=\"addReview(storyReview.value); $event.preventDefault()\">\n          <p>{{reservation.story}}</p>\n          <p>Reserved on [FIXME: insert date]</p>\n          <textarea class=\"wide-textarea\" rows=\"8\" cols=\"80\" name=\"review\" placeholder=\"What feedback do you have on {{reservation.story}}?\" #storyReview></textarea>\n          <div class=\"button-container\">\n            <button type=\"button\" (click)=\"close()\">Cancel</button>\n            <button type=\"submit\">Send Review</button>\n          </div>\n        </form>\n\t</div>\n</div>"
+module.exports = "<div class=\"dimmer\"></div>\n<div class=\"dialog-container\">\n\t<div class=\"dialog\">\n        <div class=\"close-button-container\" (click)=\"close()\"><div class=\"close-button\">X</div></div>\n        <form \n          name=\"add-story-form\" \n          class=\"form\"\n          (submit)=\"addReview(storyReview.value); $event.preventDefault()\">\n          <p class=\"title\">{{reservation.story}}</p>\n          <p class=\"date\">{{getDateStatement()}}</p>\n          <textarea class=\"wide-textarea\" rows=\"8\" cols=\"80\" name=\"review\" placeholder=\"What feedback do you have on {{reservation.story}}?\" (keyup)=\"updateCharCount(storyReview.value)\" #storyReview></textarea>\n          <p class=\"length-statement\">{{getLengthStatement()}}</p>\n          <div class=\"button-container\">\n            <button type=\"button\" class=\"light-button\" (click)=\"close()\">Cancel</button>\n            <button type=\"submit\" class=\"dark-button\">Send Review</button>\n          </div>\n        </form>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -525,6 +525,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AddReviewFormComponent = /** @class */ (function () {
     function AddReviewFormComponent() {
         this.closeEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.charCount = 0;
         this.dataStore = _services_DataStore__WEBPACK_IMPORTED_MODULE_1__["DataStore"].getInstance();
     }
     AddReviewFormComponent.prototype.ngOnInit = function () {
@@ -533,13 +534,35 @@ var AddReviewFormComponent = /** @class */ (function () {
         this.closeEvent.emit();
     };
     AddReviewFormComponent.prototype.addReview = function (review) {
-        if (review.length > 100) {
+        var _this = this;
+        if (review.length > 600) {
             this.reservation.reviewText = review;
             this.reservation.reviewCompleted = new Date();
+            var story = this.dataStore.getAllStories().filter(function (story) { return story.title == _this.reservation.story; })[0];
+            this.dataStore.getLoggedInUser().addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
             this.close();
         }
         else {
             console.log("Not enough detail my dude");
+        }
+    };
+    AddReviewFormComponent.prototype.getDateStatement = function () {
+        var status = "";
+        var date = null;
+        date = this.reservation.dateReserved;
+        status = "Reserved on ";
+        var stringDate = date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+        return status + stringDate;
+    };
+    AddReviewFormComponent.prototype.updateCharCount = function (review) {
+        this.charCount = review.length;
+    };
+    AddReviewFormComponent.prototype.getLengthStatement = function () {
+        if (this.charCount < 600) {
+            return this.charCount + " / 600 characters";
+        }
+        else {
+            return this.charCount + " characters";
         }
     };
     __decorate([
@@ -583,7 +606,7 @@ module.exports = ".completion-label {\n    color: #2378bc;\n    text-align: cent
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"completion-label\">Uncompleted</h1>\n<div *ngFor=\"let review of getUncompletedReviews()\">\n  <app-story-review-card [review]=\"review\" [completed]=\"false\"></app-story-review-card>\n</div>\n<h1 class=\"completion-label\">Completed</h1>\n<div *ngFor=\"let review of getCompletedReviews()\">\n  <app-story-review-card [review]=\"review\" [completed]=\"true\"></app-story-review-card>\n</div>\n"
+module.exports = "<h1 class=\"completion-label\">Not Completed</h1>\n<div *ngFor=\"let review of getUncompletedReviews()\">\n  <app-story-review-card [review]=\"review\" [completed]=\"false\"></app-story-review-card>\n</div>\n<h1 class=\"completion-label\">Completed</h1>\n<div *ngFor=\"let review of getCompletedReviews()\">\n  <app-story-review-card [review]=\"review\" [completed]=\"true\"></app-story-review-card>\n</div>\n"
 
 /***/ }),
 
@@ -646,7 +669,7 @@ var ReviewingPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card {\n    width: 70%;\n    height: 126px;\n    border: 1px solid grey;\n    margin: 10px auto;\n    border-radius: 3px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    position: relative;\n\n}\n\np {\n    margin-left: 10px;\n    line-height: 0.5em;\n}\n\nbutton {\n    background-color: #2DABF3;\n    border: none;\n    color: white;\n    padding: 8px 7px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    margin-left: 11px;\n    cursor: pointer;\n    border-radius: 5px;\n}\n\n.info-col {\n    display: flex;\n    flex-direction: column;\n}\n\n.cta-col {\n    position: relative;\n    width: 276px;\n}\n\n.cta-buttons {\n    position: absolute;\n    bottom: 16px;\n}\n\n.indent {\n    padding-left: 20px;\n    line-height: 0em;\n}\n\n.story-title {\n    font-size: larger;\n    line-height: 1em;\n    margin-bottom: 10px;\n    color: #1c5899;\n}\n\n.dark-button {\n    background-color: #2378bc;\n}\n\n.light-button {\n    border: 1px solid #2378bc;\n    color: #2378bc;\n    background-color: white;\n}\n\n.non-button {\n    border: 1px solid white;\n    color: #2378bc;\n    background-color: white;\n}\n\n.non-button:hover {\n    cursor: default;\n}"
+module.exports = ".card {\n    width: 70%;\n    height: 126px;\n    border: 1px solid grey;\n    margin: 10px auto;\n    border-radius: 3px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    position: relative;\n\n}\n\np {\n    margin-left: 10px;\n    line-height: 0.5em;\n}\n\nbutton {\n    background-color: #2DABF3;\n    border: none;\n    color: white;\n    padding: 8px 7px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    margin-left: 11px;\n    cursor: pointer;\n    border-radius: 5px;\n}\n\n.info-col {\n    display: flex;\n    flex-direction: column;\n}\n\n.cta-col {\n    position: relative;\n    width: 276px;\n}\n\n.cta-buttons {\n    position: absolute;\n    bottom: 16px;\n}\n\n.indent {\n    padding-left: 20px;\n    line-height: 0em;\n}\n\n.story-title {\n    font-size: larger;\n    line-height: 1em;\n    margin-bottom: 10px;\n    color: #1c5899;\n}\n\n.dark-button {\n    background-color: #2378bc;\n}\n\n.light-button {\n    border: 1px solid #2378bc;\n    color: #2378bc;\n    background-color: white;\n}\n\n.non-button {\n    border: 1px solid white;\n    color: #2378bc;\n    background-color: white;\n}\n\n.non-button:hover {\n    cursor: default;\n}\n\n.review-container {\n    max-height: 800px;\n    transition: max-height 0.8s ease 0.1s;\n    overflow: hidden;\n}\n\n.hidden {\n    max-height: 0px;\n}\n\n.review {\n    line-height: 1em;\n    border: 1px solid gray;\n    padding-bottom: 17px;\n    padding-top: 11px;\n    width: 63%;\n    margin: 6px auto;\n    padding-left: 10px;\n}"
 
 /***/ }),
 
@@ -657,7 +680,7 @@ module.exports = ".card {\n    width: 70%;\n    height: 126px;\n    border: 1px 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"info-col\">\n    <p class=\"story-title\">{{review.story}}</p>\n    <p class=\"indent\">{{getDateStatement()}}</p>\n  </div>\n  <div class=\"cta-col\">\n    <div class=\"cta-buttons\">\n      <button (click)=\"showDetails()\" class=\"light-button\">See Story Details</button>\n      <button *ngIf=\"!completed\" class=\"dark-button\" (click)=\"addReview()\">Add Review</button>\n      <button *ngIf=\"completed\" class=\"non-button\" disabled>Completed</button>\n    </div>\n  </div>\n</div>\n\n<app-story-info-modal \n  *ngIf=\"shouldShowDetails\"\n  [story]=\"getStory()\"\n  [isReservable]=\"false\"\n  (closeEvent)=\"closeDetails($event)\"\n></app-story-info-modal>\n\n<app-add-review-form \n  *ngIf=\"showAddForm\" \n  [reservation]=\"review\" \n  (closeEvent)=\"closeAddForm()\">\n</app-add-review-form>"
+module.exports = "<div class=\"card\">\n  <div class=\"info-col\">\n    <p class=\"story-title\">{{review.story}}</p>\n    <p class=\"indent\">{{getDateStatement()}}</p>\n  </div>\n  <div class=\"cta-col\">\n    <div class=\"cta-buttons\">\n      <button (click)=\"showDetails()\" class=\"light-button\">See Story Details</button>\n      <button *ngIf=\"!completed\" class=\"dark-button\" (click)=\"addReview()\">Add Review</button>\n      <button *ngIf=\"completed && !shouldShowReview\" class=\"light-button\" (click)=\"showReview()\">See review</button>\n      <button *ngIf=\"completed && shouldShowReview\" class=\"light-button\" (click)=\"hideReview()\">Hide review</button>\n      \n    </div>\n  </div>\n</div>\n\n<div class=\"review-container\" [ngClass]=\"{hidden: !shouldShowReview}\">\n  <p class=\"review\">{{getReviewText()}}</p>\n</div>\n\n<app-story-info-modal \n  *ngIf=\"shouldShowDetails\"\n  [story]=\"getStory()\"\n  [isReservable]=\"false\"\n  (closeEvent)=\"closeDetails($event)\"\n></app-story-info-modal>\n\n<app-add-review-form \n  *ngIf=\"showAddForm\" \n  [reservation]=\"review\" \n  (closeEvent)=\"closeAddForm()\">\n</app-add-review-form>"
 
 /***/ }),
 
@@ -719,6 +742,15 @@ var StoryReviewCardComponent = /** @class */ (function () {
     };
     StoryReviewCardComponent.prototype.closeAddForm = function () {
         this.showAddForm = false;
+    };
+    StoryReviewCardComponent.prototype.showReview = function () {
+        this.shouldShowReview = true;
+    };
+    StoryReviewCardComponent.prototype.hideReview = function () {
+        this.shouldShowReview = false;
+    };
+    StoryReviewCardComponent.prototype.getReviewText = function () {
+        return this.review.reviewText;
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -840,7 +872,7 @@ var AddStoryFormComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card {\n    width: 70%;\n    height: 126px;\n    border: 1px solid grey;\n    margin: 10px auto;\n    border-radius: 3px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    position: relative;\n}\n\np {\n    margin-left: 10px;\n    line-height: 0.5em;\n}\n\nbutton {\n    background-color: #2DABF3;\n    border: none;\n    border-radius: 5px;\n    color: white;\n    padding: 8px 7px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    margin-left: 11px;\n    cursor: pointer;\n}\n\n.info-col {\n    display: flex;\n    flex-direction: column;\n}\n\n.cta-col {\n    position: relative;\n    width: 276px;\n}\n\n.cta-buttons {\n    position: absolute;\n    bottom: 16px;\n}\n\n.indent {\n    padding-left: 20px;\n    line-height: 0em;\n}\n\n.story-title {\n    font-size: larger;\n    line-height: 1em;\n    margin-bottom: 10px;\n    color: #1c5899;\n}\n\n.dark-button {\n    background-color: #2378bc;\n}\n\n.light-button {\n    border: 1px solid #2378bc;\n    color: #2378bc;\n    background-color: white;\n}\n\n.reviews {\n    max-height: 800px;\n    transition: max-height 0.8s ease 0.1s;\n    overflow: hidden;\n}\n\n.reviews p {\n    line-height: 1em;\n    border: 2px solid gray;\n    border-top: none;\n    border-left: none;\n    border-right: none;\n    padding-bottom: 17px;\n    padding-top: 11px;\n    width: 68%;\n    margin: auto;\n}\n\n.hidden {\n    max-height: 0;\n}\n\n.non-button {\n    border: 1px solid white;\n    color: #2378bc;\n    background-color: white;\n}\n\n.non-button:hover {\n    cursor: default;\n}"
+module.exports = ".card {\n    width: 70%;\n    height: 126px;\n    border: 1px solid grey;\n    margin: 10px auto;\n    border-radius: 3px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    position: relative;\n}\n\np {\n    margin-left: 10px;\n    line-height: 0.5em;\n}\n\nbutton {\n    background-color: #2DABF3;\n    border: none;\n    border-radius: 5px;\n    color: white;\n    padding: 8px 7px;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    margin-left: 11px;\n    cursor: pointer;\n}\n\n.info-col {\n    display: flex;\n    flex-direction: column;\n}\n\n.cta-col {\n    position: relative;\n    width: 276px;\n}\n\n.cta-buttons {\n    position: absolute;\n    bottom: 16px;\n}\n\n.indent {\n    padding-left: 20px;\n    line-height: 0em;\n}\n\n.story-title {\n    font-size: larger;\n    line-height: 1em;\n    margin-bottom: 10px;\n    color: #1c5899;\n}\n\n.dark-button {\n    background-color: #2378bc;\n}\n\n.light-button {\n    border: 1px solid #2378bc;\n    color: #2378bc;\n    background-color: white;\n}\n\n.reviews {\n    max-height: 800px;\n    transition: max-height 0.8s ease 0.1s;\n    overflow: hidden;\n}\n\n.reviews p {\n    line-height: 1em;\n    border: 1px solid gray;\n    padding-bottom: 17px;\n    padding-top: 11px;\n    width: 63%;\n    margin: 6px auto;\n    padding-left: 10px;\n}\n\n.hidden {\n    max-height: 0;\n}\n\n.non-button {\n    border: 1px solid white;\n    color: #2378bc;\n    background-color: white;\n}\n\n.non-button:hover {\n    cursor: default;\n}"
 
 /***/ }),
 
@@ -1053,7 +1085,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var DataStore = /** @class */ (function () {
     function DataStore() {
         this.loremText = "lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non".split(" ");
-        this.userNames = ["bettyTheBot", "tommyj", "shj1996", "megera", "bandr", "mstbrn", "hotman"];
+        this.userNames = ["bettyTheBot", "tommyj", "shj1996", "megera", "bandr", "mstbrn", "hotman", "merric", "neo", "crest", "xkcd", "fanboy", "heyho", "bgibbard", "meyer", "hackerman"];
         this.genres = "Mystery Sci-Fi Fantasy Drama Romance Adventure Action Horror Fan-Fiction Humor".split(" ");
         this.loggedInUser = null;
         this.allUsers = [];
@@ -1193,8 +1225,17 @@ var DataStore = /** @class */ (function () {
         var user5 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("bandr", "band@mailinator.com", [], [], 12);
         var user6 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("mstbrn", "mist@mailinator.com", [], [], 64);
         var user7 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("hotman", "flameo@mailinator.com", [], [], 44);
+        var user8 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("merric", "none", [], [], 15);
+        var user9 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("neo", "none", [], [], 15);
+        var user10 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("crest", "none", [], [], 15);
+        var user11 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("xkcd", "none", [], [], 15);
+        var user12 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("fanboy", "none", [], [], 15);
+        var user13 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("heyho", "none", [], [], 15);
+        var user14 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("bgibbard", "none", [], [], 15);
+        var user15 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("meyer", "none", [], [], 15);
+        var user16 = new _types_User__WEBPACK_IMPORTED_MODULE_1__["User"]("hackerman", "none", [], [], 15);
         this.logInUser(user1);
-        this.allUsers = [user1, user2, user3, user4, user5, user6, user7];
+        this.allUsers = [user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16];
     };
     DataStore.prototype.generateReviews = function () {
         var stories = this.getAllStories();
@@ -1440,6 +1481,9 @@ var User = /** @class */ (function () {
     };
     User.prototype.getCredit = function () {
         return this.credit;
+    };
+    User.prototype.addCredit = function (newCredit) {
+        this.credit += newCredit;
     };
     User.prototype.getName = function () {
         return this.name;
