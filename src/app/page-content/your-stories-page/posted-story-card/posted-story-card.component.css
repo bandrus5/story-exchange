@@ -64,3 +64,35 @@ button {
     color: #2378bc;
     background-color: white;
 }
+
+.reviews {
+    max-height: 800px;
+    transition: max-height 0.8s ease 0.1s;
+    overflow: hidden;
+}
+
+.reviews p {
+    line-height: 1em;
+    border: 2px solid gray;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding-bottom: 17px;
+    padding-top: 11px;
+    width: 68%;
+    margin: auto;
+}
+
+.hidden {
+    max-height: 0;
+}
+
+.non-button {
+    border: 1px solid white;
+    color: #2378bc;
+    background-color: white;
+}
+
+.non-button:hover {
+    cursor: default;
+}

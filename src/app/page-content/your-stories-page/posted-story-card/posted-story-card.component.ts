@@ -11,6 +11,7 @@ export class PostedStoryCardComponent implements OnInit {
 
   @Input() story: Story;
   public shouldShowMore = false;
+  public shouldShowReviews = false;
   private dataStore: DataStore;
   private now: number;
   constructor() { 
@@ -50,7 +51,25 @@ export class PostedStoryCardComponent implements OnInit {
   }
 
   showReviews() {
-    //TODO not implemented
+    this.shouldShowReviews = true;
   }
 
+  hideReviews() {
+    this.shouldShowReviews = false;
+  }
+
+  getStoryReviews() {
+    return this.story.completedReviews.filter(review => review.reviewText != null);
+  }
+
+  reviewsAvailable() {
+    return this.getStoryReviews().length >= 1;
+  }
+
+  getFormattedDate(date: Date) {
+    let month = date.getMonth();
+    let day = date.getDay();
+    let year = date.getFullYear();
+    return month + '/' + day + '/' + year;
+  }
 }

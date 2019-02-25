@@ -51,6 +51,10 @@ export class DataStore {
     }
 
     addReviewReservations(revRes: ReviewReservation[]) {
+        revRes.forEach(reservation => {
+            let title = reservation.story;
+            this.allStories.filter(story => story.title == title)[0].completedReviews.push(reservation);
+        });
         this.allReviewReservations.push(...revRes);
     }
 
@@ -174,7 +178,13 @@ export class DataStore {
 
     generateReviews() {
         const stories = this.getAllStories();
-        for (var i = 0; i < 20; i++) {
+        const goodReview = new ReviewReservation("Uncovered", "shj1996", new Date());
+        const goodReview2 = new ReviewReservation("Those Ills We Bear", "tommyj", this.generateRandomDate(), new Date(), "This was a great story! I really liked your characters. I felt like I could never predict what Jessica would do, but I actually kind of loved that about her character. I thought the plot was pretty good, but the first quarter was a little slow for me. Chapters 4 and 5 felt like they could be combined, for example, and I don't see why chapter 7 is there at all. The biggest weakness though was with setting - I never felt like I had a good idea of where the characters were. Take some time to describe the buildings, the weather, the yellow wallpaper, whatever it takes to give me some hints and let my imagination do the rest.");
+        const goodReview3 = new ReviewReservation("Those Ills We Bear", "shj1996", this.generateRandomDate(), this.generateRandomDate(), "Overall this was pretty solid. I like the way the characters interacted with each other and how you had a few that were constant but most of them fell in and out of the story. It made it seem more realistic. I also liked you pacing, although at some points it felt like you were stretching to hit a specific word count. If you want to improve, I would say my biggest issue was with prose. Tighten it up a little more and try to find your own voice, then keep that voice consistent throughout the story. Also, don't try to use big words if you don't know what they mean.");
+        const goodReview4 = new ReviewReservation("Uncovered", "tommyj", this.generateRandomDate(), new Date(), "This was a great story! I really liked your characters. I felt like I could never predict what Jessica would do, but I actually kind of loved that about her character. I thought the plot was pretty good, but the first quarter was a little slow for me. Chapters 4 and 5 felt like they could be combined, for example, and I don't see why chapter 7 is there at all. The biggest weakness though was with setting - I never felt like I had a good idea of where the characters were. Take some time to describe the buildings, the weather, the yellow wallpaper, whatever it takes to give me some hints and let my imagination do the rest.");
+        const goodReview5 = new ReviewReservation("Uncovered", "shj1996", this.generateRandomDate(), this.generateRandomDate(), "Overall this was pretty solid. I like the way the characters interacted with each other and how you had a few that were constant but most of them fell in and out of the story. It made it seem more realistic. I also liked you pacing, although at some points it felt like you were stretching to hit a specific word count. If you want to improve, I would say my biggest issue was with prose. Tighten it up a little more and try to find your own voice, then keep that voice consistent throughout the story. Also, don't try to use big words if you don't know what they mean.");
+        this.addReviewReservations([goodReview, goodReview2, goodReview3, goodReview4, goodReview5]);
+        for (var i = 0; i < 200; i++) {
             const story = stories[Math.floor(Math.random()*stories.length)];
             const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length)];
             if (reviewer == story.author) {
@@ -185,7 +195,7 @@ export class DataStore {
             this.allUsers.filter(user => user.getName() == reviewer)[0].addReservedStory(reservation);
             this.addReviewReservations([reservation]);
         }
-        for (var i = 0; i < 40; i++) {
+        for (var i = 0; i < 400; i++) {
             this.shuffleLoremText();
             const story = stories[Math.floor(Math.random()*stories.length)];
             const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length)];
@@ -198,9 +208,6 @@ export class DataStore {
             this.allUsers.filter(user => user.getName() == reviewer)[0].addReservedStory(review);
             this.addReviewReservations([review]);
         }
-        const goodReview = new ReviewReservation("Uncovered", "shj1996", new Date());
-        const goodReview2 = new ReviewReservation("Those Ills We Bear", "tommyj", new Date(), new Date(), "This was a great story! I really liked your characters. I felt like I could never predict what Jessica would do, but I actually kind of loved that about her character. I thought the plot was pretty good, but the first quarter was a little slow for me. Chapters 4 and 5 felt like they could be combined, for example, and I don't see why chapter 7 is there at all. The biggest weakness though was with setting - I never felt like I had a good idea of where the characters were. Take some time to describe the buildings, the weather, the yellow wallpaper, whatever it takes to give me some hints and let my imagination do the rest.");
-        this.addReviewReservations([goodReview, goodReview2]);
     }
 
     shuffleLoremText() {
