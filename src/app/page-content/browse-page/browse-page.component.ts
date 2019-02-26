@@ -18,12 +18,13 @@ export class BrowsePageComponent implements OnInit {
   constructor() {
     this.dataStore = DataStore.getInstance();
     let loggedInName = this.dataStore.getLoggedInUser().getName();
-    this.displayedStories = this.dataStore.getAllStories().filter(story => story.author != loggedInName);
+    this.displayedStories = this.dataStore.getAllStories().filter(story => story.author != loggedInName && story.getReviewsLeft() > 0);
   } 
 
   search(value: string) {
     this.searchString = value;
-    this.displayedStories = this.dataStore.searchStories(value);
+    let loggedInName = this.dataStore.getLoggedInUser().getName();
+    this.displayedStories = this.dataStore.searchStories(value).filter(story => story.author != loggedInName && story.getReviewsLeft() > 0);
     this.searchBar.nativeElement.value = '';
     this.showingSearchResults = true;
   }
@@ -32,7 +33,7 @@ export class BrowsePageComponent implements OnInit {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.showingSearchResults = false;
     let loggedInName = this.dataStore.getLoggedInUser().getName();
-    this.displayedStories = this.dataStore.getAllStories().filter(story => story.author != loggedInName);
+    this.displayedStories = this.dataStore.getAllStories().filter(story => story.author != loggedInName && story.getReviewsLeft() > 0);
   }
 
   ngOnInit() {

@@ -3,7 +3,7 @@
     <p class="story-title">{{story.title}}</p>
     <p class="indent">{{story.genre}}</p>
     <!-- <p class="indent">{{story.wordCount}} words</p> -->
-    <p class="indent">Awaiting {{story.getReviewsLeft()}} reviews</p>
+    <p class="indent">Awaiting {{story.getReviewsLeft()}} review{{story.getReviewsLeft() == 1 ? "" : "s"}}</p>
   </div>
   <div class="cta-col">
     <div class="credit-container1">

@@ -12,7 +12,7 @@ export class DataStore {
 
     loremText = "lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non".split(" ");
     userNames = ["bettyTheBot", "tommyj", "shj1996", "megera", "bandr", "mstbrn", "hotman", "merric", "neo", "crest", "xkcd", "fanboy", "heyho", "bgibbard", "meyer", "hackerman"];
-    genres = "Mystery Sci-Fi Fantasy Drama Romance Adventure Action Horror Fan-Fiction Humor".split(" ");
+    genres = "Mystery Sci-Fi Fantasy Drama Romance Adventure Action Horror Fan-Fiction Humor Other".split(" ");
 
     static instance: DataStore = null;
     public static getInstance() {
@@ -88,6 +88,7 @@ export class DataStore {
 
     reserveReview(story: Story) {
         const reservation = new ReviewReservation(story.title, this.loggedInUser.getName(), new Date());
+        this.loggedInUser.addReservedStory(reservation);
         this.addReviewReservations([reservation]);
     }
 
@@ -162,13 +163,13 @@ export class DataStore {
     }
 
     generateUsers() {
-        const user1 = new User("bettyTheBot", "betty@mailinator.com", [], [], 56);
+        const user1 = new User("bettyTheBot", "betty@mailinator.com", [], [], 506);
         const user2 = new User("tommyj", "tom@mailinator.com", [], [], -12);
         const user3 = new User("shj1996", "sash@mailinator.com", [], [], 119);
         const user4 = new User("megera", "booky@mailinator.com", [], [], 95);
-        const user5 = new User("bandr", "band@mailinator.com", [], [], 12);
-        const user6 = new User("mstbrn", "mist@mailinator.com", [], [], 64);
-        const user7 = new User("hotman", "flameo@mailinator.com", [], [], 44);
+        const user5 = new User("bandr", "band@mailinator.com", [], [], 120);
+        const user6 = new User("mstbrn", "mist@mailinator.com", [], [], 264);
+        const user7 = new User("hotman", "flameo@mailinator.com", [], [], 144);
         const user8 = new User("merric", "none", [], [], 15);
         const user9 = new User("neo", "none", [], [], 15);
         const user10 = new User("crest", "none", [], [], 15);
@@ -191,18 +192,18 @@ export class DataStore {
         const goodReview4 = new ReviewReservation("Uncovered", "tommyj", this.generateRandomDate(), new Date(), "This was a great story! I really liked your characters. I felt like I could never predict what Jessica would do, but I actually kind of loved that about her character. I thought the plot was pretty good, but the first quarter was a little slow for me. Chapters 4 and 5 felt like they could be combined, for example, and I don't see why chapter 7 is there at all. The biggest weakness though was with setting - I never felt like I had a good idea of where the characters were. Take some time to describe the buildings, the weather, the yellow wallpaper, whatever it takes to give me some hints and let my imagination do the rest.");
         const goodReview5 = new ReviewReservation("Uncovered", "shj1996", this.generateRandomDate(), this.generateRandomDate(), "Overall this was pretty solid. I like the way the characters interacted with each other and how you had a few that were constant but most of them fell in and out of the story. It made it seem more realistic. I also liked you pacing, although at some points it felt like you were stretching to hit a specific word count. If you want to improve, I would say my biggest issue was with prose. Tighten it up a little more and try to find your own voice, then keep that voice consistent throughout the story. Also, don't try to use big words if you don't know what they mean.");
         this.addReviewReservations([goodReview, goodReview2, goodReview3, goodReview4, goodReview5]);
-        for (var i = 0; i < 200; i++) {
+        for (var i = 0; i < 100; i++) {
             const story = stories[Math.floor(Math.random()*stories.length)];
             const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length)];
             if (reviewer == story.author) {
                 i--;
                 continue;
             }
-            const reservation = new ReviewReservation(story.title, reviewer, new Date());
+            const reservation = new ReviewReservation(story.title, reviewer, this.generateRandomDate());
             this.allUsers.filter(user => user.getName() == reviewer)[0].addReservedStory(reservation);
             this.addReviewReservations([reservation]);
         }
-        for (var i = 0; i < 400; i++) {
+        for (var i = 0; i < 500; i++) {
             this.shuffleLoremText();
             const story = stories[Math.floor(Math.random()*stories.length)];
             const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length)];
@@ -211,7 +212,7 @@ export class DataStore {
                 continue;
             }
             const reviewText = this.generateReviewText();
-            const review = new ReviewReservation(story.title, reviewer, new Date(), new Date(), reviewText);
+            const review = new ReviewReservation(story.title, reviewer, this.generateRandomDate(), this.generateRandomDate(), reviewText);
             this.allUsers.filter(user => user.getName() == reviewer)[0].addReservedStory(review);
             this.addReviewReservations([review]);
         }

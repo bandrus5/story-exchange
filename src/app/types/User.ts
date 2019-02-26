@@ -41,6 +41,6 @@ export class User {
     }
 
     public addReservedStory(review: ReviewReservation) {
-        this.reservedStories.push(review);
+        this.reservedStories.unshift(review);
     }
 }

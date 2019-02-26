@@ -141,3 +141,7 @@ input[type=text], input[type=number], select, textarea {
     margin-top: 0;
     line-height: 0;
 }
+
+.left-text {
+    float: left;
+}

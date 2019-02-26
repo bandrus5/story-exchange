@@ -29,7 +29,7 @@ export class AddStoryFormComponent implements OnInit {
     if (title && genre && link && blurb && storyLength && storyReviews) {
       const newStory = new Story(title, title + '1234', this.dataStore.getLoggedInUser().getName(), genre, link, blurb, +storyLength, new Date(), +storyReviews, []);
       this.dataStore.addStories([newStory]);
-      this.dataStore.getLoggedInUser().addCredit(-this.postingCostNow);
+      this.dataStore.getLoggedInUser().addCredit(-1 * this.postingCostNow);
       this.close();
     } else {
       console.log("Not enough detail my dude");
@@ -37,7 +37,6 @@ export class AddStoryFormComponent implements OnInit {
   }
 
   public updateCost(reviews: number, wordCount: number) {
-    debugger;
     let totalCost = 0;
     if (reviews > 0 && wordCount > 0) {
       totalCost = reviews * Math.floor(Math.round(5 + wordCount / 1000));
