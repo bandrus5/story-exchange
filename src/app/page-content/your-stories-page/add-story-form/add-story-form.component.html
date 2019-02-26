@@ -2,6 +2,7 @@
 <div class="dialog-container">
 	<div class="dialog">
         <div class="close-button-container" (click)="close()"><div class="close-button">X</div></div>
+        <h2>New Story</h2>
         <form 
           name="add-story-form" 
           class="form"
@@ -22,23 +23,24 @@
           </select>
           <input class="wide-input" maxLength="100" type="text" name="link" placeholder="Link (where can reviewers find your story?" #storyLink />
           <textarea class="wide-textarea" rows="8" cols="80" name="blurb" placeholder="Notes (what do you want reviewers to know about your story?" #storyBlurb></textarea>
-          <input class="wide-input" maxLength="10" type="number" name="length" placeholder="Word Count" #storyLength />
-          <select class="wide-select" name="desiredReviews" required #storyReviews>
-              <option selected disabled>Desired Reviews</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select> 
+          <input class="wide-input" maxLength="10" type="number" name="length" placeholder="Word Count" (change)="updateCost(storyReviews.value, storyLength.value)" #storyLength />
+          <select class="wide-select" name="desiredReviews" (change)="updateCost(storyReviews.value, storyLength.value)" required #storyReviews>
+            <option selected disabled>Desired Reviews</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <p class="warning">Posting this story will cost you {{postingCostNow + postingCostLater}} credit - {{postingCostNow}} today and {{postingCostLater}} as other authors review your story. Negative credit is allowed, but may cause your story to be marked as 'low priority'. Remember that you can gain credit by reviewing other author's stories!</p> 
           <div class="button-container">
-            <button type="button" (click)="close()">Cancel</button>
-            <button type="submit">Post Now</button>
+            <button type="button" class="light-button" (click)="close()">Cancel</button>
+            <button type="submit" class="dark-button">Post Now</button>
           </div>
         </form>
 	</div>

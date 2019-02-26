@@ -10,6 +10,10 @@ import { Story } from '../../../types/Story';
 export class AddStoryFormComponent implements OnInit {
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
   private dataStore: DataStore;
+
+  public postingCostNow: number = 0;
+  public postingCostLater: number = 0;
+  
   constructor() { 
     this.dataStore = DataStore.getInstance();
   }
@@ -25,10 +29,20 @@ export class AddStoryFormComponent implements OnInit {
     if (title && genre && link && blurb && storyLength && storyReviews) {
       const newStory = new Story(title, title + '1234', this.dataStore.getLoggedInUser().getName(), genre, link, blurb, +storyLength, new Date(), +storyReviews, []);
       this.dataStore.addStories([newStory]);
+      this.dataStore.getLoggedInUser().addCredit(-this.postingCostNow);
       this.close();
     } else {
       console.log("Not enough detail my dude");
     }
   }
 
+  public updateCost(reviews: number, wordCount: number) {
+    debugger;
+    let totalCost = 0;
+    if (reviews > 0 && wordCount > 0) {
+      totalCost = reviews * Math.floor(Math.round(5 + wordCount / 1000));
+    }
+    this.postingCostNow = Math.floor(totalCost / 3);
+    this.postingCostLater = Math.ceil(totalCost * 2 / 3);
+  }
 }

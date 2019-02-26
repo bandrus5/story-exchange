@@ -79,15 +79,16 @@ button {
 }
 
 .wide-input {
-    width: 366px;
+    width: 573px;
 }
 
 .wide-select {
-    width: 366px;
+    width: 573px;
 }
 
 .wide-textarea {
     width: 572px;
+    height: 100px;
     font-family: 'Lora', serif;
 }
 
@@ -109,4 +110,27 @@ input[type=text], input[type=number], select, textarea {
 
 .form {
     margin-bottom: 7px;
+}
+
+.dark-button {
+    background-color: #2378bc;
+}
+
+.light-button {
+    border: 1px solid #2378bc;
+    color: #2378bc;
+    background-color: white;
+}
+
+h2 {
+    padding-left: 14px;
+    font-size: larger;
+    margin-bottom: 7px;
+    color: #2378bc;
+}
+
+.warning {
+    font-size: small;
+    color: #555;
+    margin: 5px 22px 10px;
 }

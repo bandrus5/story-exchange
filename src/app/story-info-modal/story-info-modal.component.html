@@ -8,6 +8,7 @@
             <p class="indent">Genre: {{story.genre}}</p>
             <p class="indent">{{story.wordCount}} words</p>
             <p class="indent">Awaiting {{story.getReviewsLeft()}} reviews</p>
+            <p class="indent">Read it at <a href="{{story.link}}" target="blank">{{story.link}}</a></p>
             <p class="indent">Author's notes: {{story.blurb}}</p>
             <p *ngIf="reservable()" class="indent">Reviewing this story is worth +{{getStoryCredit()}} credit</p>
         </div>

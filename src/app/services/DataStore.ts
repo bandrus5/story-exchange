@@ -119,7 +119,7 @@ export class DataStore {
             const genre = this.genres[Math.floor(Math.random()*this.genres.length)];
             const link = "superfakelink.com";
             const wordCount = 35000 + Math.floor(Math.random()*100000);
-            const desiredReviews = 4 + Math.floor(Math.random()*12);
+            const desiredReviews = 2 + Math.floor(Math.random()*8);
             const date = this.generateRandomDate();
             allStories.push(new Story(title, id, userName, genre, link, blurb, wordCount, date, desiredReviews, []));
         }
@@ -206,7 +206,7 @@ export class DataStore {
             this.shuffleLoremText();
             const story = stories[Math.floor(Math.random()*stories.length)];
             const reviewer = this.userNames[Math.floor(Math.random()*this.userNames.length)];
-            if (reviewer == story.author) {
+            if (reviewer == story.author || story.getReviewsLeft() <= 0) {
                 i--;
                 continue;
             }
