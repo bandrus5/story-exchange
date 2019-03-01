@@ -1,6 +1,6 @@
 .card {
     width: 70%;
-    height: 126px;
+    height: 90px;
     border: 1px solid grey;
     margin: 10px auto;
     border-radius: 3px;
@@ -91,7 +91,9 @@ button {
     border: 1px solid gray;
     padding-bottom: 17px;
     padding-top: 11px;
-    width: 63%;
+    width: 60%;
     margin: 6px auto;
-    padding-left: 10px;
+    padding-left: 20px;
+    border-radius: 4px;
+    padding-right: 16px;
 }
