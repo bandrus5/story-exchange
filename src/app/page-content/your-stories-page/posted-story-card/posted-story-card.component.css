@@ -76,9 +76,11 @@ button {
     border: 1px solid gray;
     padding-bottom: 17px;
     padding-top: 11px;
-    width: 63%;
+    width: 60%;
     margin: 6px auto;
-    padding-left: 10px;
+    padding-left: 20px;
+    border-radius: 4px;
+    padding-right: 16px;
 }
 
 .hidden {
@@ -93,4 +95,9 @@ button {
 
 .non-button:hover {
     cursor: default;
+}
+
+.blue-text {
+    color: #1c5899;
+    text-emphasis: bold;
 }

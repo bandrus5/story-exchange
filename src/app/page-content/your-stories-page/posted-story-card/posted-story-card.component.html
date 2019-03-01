@@ -14,7 +14,7 @@
   </div>
 </div>
 <div class="reviews" [ngClass]="{hidden: !shouldShowReviews}">
-  <p *ngFor="let review of getStoryReviews()">{{review.reviewText}} - {{getFormattedDate(review.reviewCompleted)}}</p>
+  <p *ngFor="let review of getStoryReviews()"><span class="blue-text">{{getFormattedDate(review.reviewCompleted)}}:</span> {{review.reviewText}}</p>
 </div>
 <app-story-info-modal 
   *ngIf="shouldShowMore"
