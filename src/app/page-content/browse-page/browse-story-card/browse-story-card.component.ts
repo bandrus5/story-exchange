@@ -11,9 +11,7 @@ export class BrowseStoryCardComponent implements OnInit {
 
   @Input() story: Story;
   public shouldShowMore = false;
-  private dataStore: DataStore;
-  constructor() { 
-    this.dataStore = DataStore.getInstance(); 
+  constructor(private dataStore: DataStore) {
   }
 
   ngOnInit() {

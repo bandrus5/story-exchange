@@ -12,9 +12,7 @@ export class AddReviewFormComponent implements OnInit {
   @Input() reservation: ReviewReservation;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
   public charCount = 0;
-  private dataStore: DataStore;
-  constructor() { 
-    this.dataStore = DataStore.getInstance();
+  constructor(private dataStore: DataStore) {
   }
   ngOnInit() {
   }

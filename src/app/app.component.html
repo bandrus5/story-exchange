@@ -1,6 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-banner></app-banner>
-<app-page-content></app-page-content>
-<link href="https://fonts.googleapis.com/css?family=Rambla" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet"> 
+<div *ngIf="serverIp == ''">
+    <form (submit)="setServer(serverIp.value, serverPort.value); $event.preventDefault()">
+        <input type="text" name="serverIp" placeholder="Server IP" #serverIp>
+        <input type="text" name="serverPort" placeholder="Server Port" #serverPort>
+        <input type="submit" value="Submit">
+    </form>
+</div> 
+<div *ngIf="serverIp != ''">
+    <app-banner></app-banner>
+    <app-page-content></app-page-content>
+    <link href="https://fonts.googleapis.com/css?family=Rambla" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">     
+</div>
 

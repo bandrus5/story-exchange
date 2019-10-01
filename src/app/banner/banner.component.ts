@@ -8,11 +8,9 @@ import { User } from '../types/User';
 })
 export class BannerComponent implements OnInit {
 
-  private dataStore: DataStore;
   public loggedInUser: User;
-  constructor() {
-    this.dataStore = DataStore.getInstance();
-    this.loggedInUser = this.dataStore.getLoggedInUser();
+  constructor(dataStore: DataStore) {
+    this.loggedInUser = dataStore.getLoggedInUser();
   }
 
   ngOnInit() {

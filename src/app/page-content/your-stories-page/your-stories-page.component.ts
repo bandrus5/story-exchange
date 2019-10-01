@@ -9,11 +9,9 @@ import { Story } from '../../types/Story';
 })
 export class YourStoriesPageComponent implements OnInit {
 
-  private dataStore: DataStore;
   public stories: Story[];
   public showAddModal = false;
-  constructor() { 
-    this.dataStore = DataStore.getInstance();
+  constructor(private dataStore: DataStore) {
     this.stories = this.dataStore.getStoriesByUsername(this.dataStore.getLoggedInUser().getName());
   }
 

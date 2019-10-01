@@ -12,10 +12,8 @@ export class PostedStoryCardComponent implements OnInit {
   @Input() story: Story;
   public shouldShowMore = false;
   public shouldShowReviews = false;
-  private dataStore: DataStore;
   private now: number;
-  constructor() { 
-    this.dataStore = DataStore.getInstance(); 
+  constructor(private dataStore: DataStore) { 
     this.now = Date.now();
   }
 

@@ -1,6 +1,13 @@
 import { ReviewReservation } from "./ReviewReservation";
 
 export class Story {
+
+    static fromDTO(storyDTO): Story {
+        return new Story(storyDTO.title, storyDTO.storyID, storyDTO.author, storyDTO.genre, 
+            storyDTO.link, storyDTO.blurb, storyDTO.wordCount, storyDTO.datePosted, 
+            storyDTO.desiredReviews, storyDTO.completedReviews);
+    }
+
     title: string;
     storyID: string;
     author: string;

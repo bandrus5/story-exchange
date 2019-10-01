@@ -8,15 +8,13 @@ import { Story } from '../../types/Story';
   styleUrls: ['./browse-page.component.css']
 })
 export class BrowsePageComponent implements OnInit {
-  dataStore: DataStore;
   public displayedStories: Story[];
   public showingSearchResults = false;
   public searchString = "";
 
   @ViewChild('searchBar') searchBar; 
 
-  constructor() {
-    this.dataStore = DataStore.getInstance();
+  constructor(private dataStore: DataStore) {
     let loggedInName = this.dataStore.getLoggedInUser().getName();
     this.displayedStories = this.dataStore.getAllStories().filter(story => story.author != loggedInName && story.getReviewsLeft() > 0);
   } 

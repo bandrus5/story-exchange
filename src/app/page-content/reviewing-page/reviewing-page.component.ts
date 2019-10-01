@@ -9,13 +9,11 @@ import { ReviewReservation } from '../../types/ReviewReservation';
 })
 export class ReviewingPageComponent implements OnInit {
 
-  private dataStore: DataStore;
   public allReviews: ReviewReservation[];
   public uncompletedReviews: ReviewReservation[];
   public completedReviews: ReviewReservation[];
 
-  constructor() { 
-    this.dataStore = DataStore.getInstance();
+  constructor(private dataStore: DataStore) {
     this.uncompletedReviews = this.dataStore.getReservedStories();
     this.completedReviews = this.dataStore.getReviewedStories();
   }

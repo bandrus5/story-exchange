@@ -20,7 +20,7 @@ export class StoryReviewCardComponent implements OnInit {
 
   public showAddForm: boolean;
 
-  constructor() {
+  constructor(private dataStore: DataStore) {
   }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class StoryReviewCardComponent implements OnInit {
   }
 
   getStory(): Story {
-    return DataStore.getInstance().getStoryByName(this.review.story);
+    return this.dataStore.getStoryByName(this.review.story);
   }
 
   showDetails() {

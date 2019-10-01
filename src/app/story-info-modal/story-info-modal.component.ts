@@ -13,9 +13,7 @@ export class StoryInfoModalComponent implements OnInit {
   @Input() isReservable: boolean;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
   
-  private dataStore: DataStore;
-  constructor() { 
-    this.dataStore = DataStore.getInstance();
+  constructor(private dataStore: DataStore) { 
   }
 
   ngOnInit() {

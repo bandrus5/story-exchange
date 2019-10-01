@@ -9,13 +9,11 @@ import { Story } from '../../../types/Story';
 })
 export class AddStoryFormComponent implements OnInit {
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
-  private dataStore: DataStore;
 
   public postingCostNow: number = 0;
   public postingCostLater: number = 0;
   
-  constructor() { 
-    this.dataStore = DataStore.getInstance();
+  constructor(private dataStore: DataStore) {
   }
 
   ngOnInit() {
