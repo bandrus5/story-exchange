@@ -1,20 +1,35 @@
 <div class="dimmer"></div>
 <div class="dialog-container">
-	<div class="dialog">
-        <div class="close-button-container" (click)="close()"><div class="close-button">X</div></div>
-        <div class="info">
-            <p class="story-title">{{story.title}}</p>
-            <p class="indent">Posted by {{story.author}} two days ago</p>
-            <p class="indent">Genre: {{story.genre}}</p>
-            <p class="indent">{{story.wordCount}} words</p>
-            <p class="indent">Awaiting {{story.getReviewsLeft()}} review{{story.getReviewsLeft() == 1 ? "" : "s"}}</p>
-            <p class="indent">Read it at <a href="{{story.link}}" target="blank">{{story.link}}</a></p>
-            <p class="indent">Author's notes: {{story.blurb}}</p>
-            <p *ngIf="reservable()" class="indent">Reviewing this story is worth +{{getStoryCredit()}} credit</p>
-        </div>
-        <div class="button-container">
-            <button *ngIf="reservable()" (click)="reserveForReview()">Reserve for Review</button> 
-            <button *ngIf="!reservable()" (click)="close()" class="light-button">Exit</button>
-        </div>
-	</div>
+  <div class="dialog">
+    <div class="close-button-container" (click)="close()">
+      <div class="close-button">X</div>
+    </div>
+    <div class="info">
+      <p class="story-title">{{ story.title }}</p>
+      <p class="indent">Posted by {{ story.author }} two days ago</p>
+      <p class="indent">Genre: {{ story.genre }}</p>
+      <p class="indent">{{ story.wordCount }} words</p>
+      <p class="indent">
+        Awaiting {{ story.getReviewsLeft() }} review{{
+          story.getReviewsLeft() == 1 ? "" : "s"
+        }}
+      </p>
+      <p class="indent">
+        Read it at
+        <a href="{{ story.link }}" target="blank">{{ story.link }}</a>
+      </p>
+      <p class="indent">Author's notes: {{ story.blurb }}</p>
+      <p *ngIf="reservable()" class="indent">
+        Reviewing this story is worth +{{ getStoryCredit() }} credit
+      </p>
+    </div>
+    <div class="button-container">
+      <button *ngIf="reservable()" (click)="reserveForReview()">
+        Reserve for Review
+      </button>
+      <button *ngIf="!reservable()" (click)="close()" class="light-button">
+        Exit
+      </button>
+    </div>
+  </div>
 </div>

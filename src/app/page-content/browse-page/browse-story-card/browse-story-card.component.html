@@ -1,25 +1,37 @@
 <div class="card">
   <div class="info-col">
-    <p class="story-title">{{story.title}}</p>
-    <p class="indent">{{story.genre}}</p>
+    <p class="story-title">{{ story.title }}</p>
+    <p class="indent">{{ story.genre }}</p>
     <!-- <p class="indent">{{story.wordCount}} words</p> -->
-    <p class="indent">Awaiting {{story.getReviewsLeft()}} review{{story.getReviewsLeft() == 1 ? "" : "s"}}</p>
+    <p class="indent">
+      Awaiting {{ story.getReviewsLeft() }} review{{
+        story.getReviewsLeft() == 1 ? "" : "s"
+      }}
+    </p>
   </div>
   <div class="cta-col">
     <div class="credit-container1">
       <div class="credit-container2">
-        <p class="credit-display">+{{getStoryCredit()}} Credit</p>
+        <p class="credit-display">+{{ getStoryCredit() }} Credit</p>
       </div>
     </div>
     <div class="cta-buttons">
       <button class="light-button" (click)="showMore()">See More</button>
-      <button *ngIf="!reserved() && !reviewed()" class="dark-button" (click)="reserveForReview()">Reserve for Review</button>
-      <button *ngIf="reserved() && !reviewed()" class="non-button">Reserved</button>
+      <button
+        *ngIf="!reserved() && !reviewed()"
+        class="dark-button"
+        (click)="reserveForReview()"
+      >
+        Reserve for Review
+      </button>
+      <button *ngIf="reserved() && !reviewed()" class="non-button">
+        Reserved
+      </button>
       <button *ngIf="reviewed()" class="non-button">Reviewed</button>
     </div>
   </div>
 </div>
-<app-story-info-modal 
+<app-story-info-modal
   *ngIf="shouldShowMore"
   [story]="story"
   [isReservable]="!reserved() && !reviewed()"

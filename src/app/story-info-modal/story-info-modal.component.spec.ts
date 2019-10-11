@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StoryInfoModalComponent } from './story-info-modal.component';
+import { StoryInfoModalComponent } from "./story-info-modal.component";
 
-describe('StoryInfoModalComponent', () => {
+describe("StoryInfoModalComponent", () => {
   let component: StoryInfoModalComponent;
   let fixture: ComponentFixture<StoryInfoModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StoryInfoModalComponent ]
-    })
-    .compileComponents();
+      declarations: [StoryInfoModalComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('StoryInfoModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

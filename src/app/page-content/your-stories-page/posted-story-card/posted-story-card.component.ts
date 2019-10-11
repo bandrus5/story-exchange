@@ -1,27 +1,27 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DataStore } from '../../../services/DataStore';
-import { Story } from '../../../types/Story';
+import { Component, OnInit, Input } from "@angular/core";
+import { DataStore } from "../../../services/DataStore";
+import { Story } from "../../../types/Story";
 
 @Component({
-  selector: 'app-posted-story-card',
-  templateUrl: './posted-story-card.component.html',
-  styleUrls: ['./posted-story-card.component.css']
+  selector: "app-posted-story-card",
+  templateUrl: "./posted-story-card.component.html",
+  styleUrls: ["./posted-story-card.component.css"]
 })
 export class PostedStoryCardComponent implements OnInit {
-
   @Input() story: Story;
   public shouldShowMore = false;
   public shouldShowReviews = false;
   private now: number;
-  constructor(private dataStore: DataStore) { 
+  constructor(private dataStore: DataStore) {
     this.now = Date.now();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getStoryCredit(): number {
-    return Math.round(this.story.wordCount * this.story.getReviewsLeft() / 100000); 
+    return Math.round(
+      (this.story.wordCount * this.story.getReviewsLeft()) / 100000
+    );
   }
 
   showMore() {
@@ -37,11 +37,15 @@ export class PostedStoryCardComponent implements OnInit {
   }
 
   getTimeDiff() {
-    return Math.round((this.story.datePosted.getTime()-this.now)/(1000*60*60*24));
+    return Math.round(
+      (this.story.datePosted.getTime() - this.now) / (1000 * 60 * 60 * 24)
+    );
   }
 
   getTimeDiffStatement() {
-    const days = Math.round((this.now - this.story.datePosted.getTime())/(1000*60*60*24));
+    const days = Math.round(
+      (this.now - this.story.datePosted.getTime()) / (1000 * 60 * 60 * 24)
+    );
     if (days > 0) {
       return days == 1 ? "Posted yesterday" : "Posted " + days + " day(s) ago";
     }
@@ -57,7 +61,9 @@ export class PostedStoryCardComponent implements OnInit {
   }
 
   getStoryReviews() {
-    return this.story.completedReviews.filter(review => review.reviewText != null);
+    return this.story.completedReviews.filter(
+      review => review.reviewText != null
+    );
   }
 
   reviewsAvailable() {
@@ -68,6 +74,6 @@ export class PostedStoryCardComponent implements OnInit {
     let month = date.getMonth();
     let day = date.getDay();
     let year = date.getFullYear();
-    return month + '/' + day + '/' + year;
+    return month + "/" + day + "/" + year;
   }
 }

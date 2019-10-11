@@ -1,15 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ReviewReservation } from '../../../types/ReviewReservation';
-import { DataStore } from '../../../services/DataStore';
-import { Story } from '../../../types/Story';
+import { Component, OnInit, Input } from "@angular/core";
+import { ReviewReservation } from "../../../types/ReviewReservation";
+import { DataStore } from "../../../services/DataStore";
+import { Story } from "../../../types/Story";
 
 @Component({
-  selector: 'app-story-review-card',
-  templateUrl: './story-review-card.component.html',
-  styleUrls: ['./story-review-card.component.css']
+  selector: "app-story-review-card",
+  templateUrl: "./story-review-card.component.html",
+  styleUrls: ["./story-review-card.component.css"]
 })
 export class StoryReviewCardComponent implements OnInit {
-  
   @Input() title: string;
   @Input() completed: boolean;
 
@@ -20,11 +19,9 @@ export class StoryReviewCardComponent implements OnInit {
 
   public showAddForm: boolean;
 
-  constructor(private dataStore: DataStore) {
-  }
+  constructor(private dataStore: DataStore) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getDateStatement(): string {
     let status = "";
@@ -36,7 +33,8 @@ export class StoryReviewCardComponent implements OnInit {
       date = this.review.dateReserved;
       status = "Reserved on ";
     }
-    let stringDate = date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    let stringDate =
+      date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
     return status + stringDate;
   }
 
@@ -57,7 +55,7 @@ export class StoryReviewCardComponent implements OnInit {
   }
 
   closeAddForm() {
-    this.showAddForm = false;    
+    this.showAddForm = false;
   }
 
   showReview() {
@@ -71,5 +69,4 @@ export class StoryReviewCardComponent implements OnInit {
   getReviewText() {
     return this.review.reviewText;
   }
-
 }

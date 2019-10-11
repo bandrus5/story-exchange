@@ -1,14 +1,19 @@
 <div class="browse-container">
-  <input 
-    type="text" 
+  <input
+    type="text"
     id="search-bar"
     #searchBar
     placeholder="Search for an author, story title, or genre"
     (keydown.enter)="search(searchBar.value)"
-  >
-  <p *ngIf="showingSearchResults" class="no-more-message">Showing results for {{searchString}}</p>
-  <div *ngFor="let story of displayedStories"> 
+  />
+  <p *ngIf="showingSearchResults" class="no-more-message">
+    Showing results for {{ searchString }}
+  </p>
+  <div *ngFor="let story of displayedStories">
     <app-browse-story-card [story]="story"></app-browse-story-card>
   </div>
-  <p class="no-more-message">No more stories. Try a different search or <span class="link" (click)="clearSearch()">go back.</span></p>
+  <p class="no-more-message">
+    No more stories. Try a different search or
+    <span class="link" (click)="clearSearch()">go back.</span>
+  </p>
 </div>

@@ -1,25 +1,25 @@
 .your-stories-container {
-    position: relative;
+  position: relative;
 }
 
 button {
-    background-color: #2DABF3;
-    border: none;
-    color: white;
-    padding: 8px 7px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin-left: 11px;
-    cursor: pointer;
+  background-color: #2dabf3;
+  border: none;
+  color: white;
+  padding: 8px 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 11px;
+  cursor: pointer;
 }
 
 .add-button {
-    background-color: #2378bc;
-    margin: 20px;
-    margin-left: 15%;
-    font-size: xx-large;
-    margin-bottom: 0px;
-    border-radius: 5px;
-    padding: 5px 12px;
+  background-color: #2378bc;
+  margin: 20px;
+  margin-left: 15%;
+  font-size: xx-large;
+  margin-bottom: 0px;
+  border-radius: 5px;
+  padding: 5px 12px;
 }
