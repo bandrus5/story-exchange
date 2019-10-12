@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { DataStore } from "../../../services/DataStore";
-import { Story } from "../../../types/Story";
+import { Component, OnInit, Input } from '@angular/core';
+import { DataStore } from '../../../services/DataStore';
+import { Story } from '../../../types/Story';
 
 @Component({
-  selector: "app-posted-story-card",
-  templateUrl: "./posted-story-card.component.html",
-  styleUrls: ["./posted-story-card.component.css"]
+  selector: 'app-posted-story-card',
+  templateUrl: './posted-story-card.component.html',
+  styleUrls: ['./posted-story-card.component.css']
 })
 export class PostedStoryCardComponent implements OnInit {
   @Input() story: Story;
@@ -47,9 +47,9 @@ export class PostedStoryCardComponent implements OnInit {
       (this.now - this.story.datePosted.getTime()) / (1000 * 60 * 60 * 24)
     );
     if (days > 0) {
-      return days == 1 ? "Posted yesterday" : "Posted " + days + " day(s) ago";
+      return days == 1 ? 'Posted yesterday' : 'Posted ' + days + ' day(s) ago';
     }
-    return "Posted today";
+    return 'Posted today';
   }
 
   showReviews() {
@@ -74,6 +74,6 @@ export class PostedStoryCardComponent implements OnInit {
     let month = date.getMonth();
     let day = date.getDay();
     let year = date.getFullYear();
-    return month + "/" + day + "/" + year;
+    return month + '/' + day + '/' + year;
   }
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
-import { DataStore } from "../../../services/DataStore";
-import { ReviewReservation } from "../../../types/ReviewReservation";
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { DataStore } from '../../../services/DataStore';
+import { ReviewReservation } from '../../../types/ReviewReservation';
 
 @Component({
-  selector: "app-add-review-form",
-  templateUrl: "./add-review-form.component.html",
-  styleUrls: ["./add-review-form.component.css"]
+  selector: 'app-add-review-form',
+  templateUrl: './add-review-form.component.html',
+  styleUrls: ['./add-review-form.component.css']
 })
 export class AddReviewFormComponent implements OnInit {
   @Input() reservation: ReviewReservation;
@@ -30,17 +30,17 @@ export class AddReviewFormComponent implements OnInit {
         .addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
       this.close();
     } else {
-      console.log("Not enough detail my dude");
+      console.log('Not enough detail my dude');
     }
   }
 
   getDateStatement(): string {
-    let status = "";
+    let status = '';
     let date: Date = null;
     date = this.reservation.dateReserved;
-    status = "Reserved on ";
+    status = 'Reserved on ';
     let stringDate =
-      date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
+      date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
     return status + stringDate;
   }
 
@@ -50,9 +50,9 @@ export class AddReviewFormComponent implements OnInit {
 
   getLengthStatement(): string {
     if (this.charCount < 600) {
-      return this.charCount + " / 600 characters";
+      return this.charCount + ' / 600 characters';
     } else {
-      return this.charCount + " characters";
+      return this.charCount + ' characters';
     }
   }
 }

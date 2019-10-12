@@ -5,7 +5,7 @@
 .tab-holder {
   display: flex;
   flex-direction: row;
-  font-family: "Rambla", sans-serif;
+  font-family: 'Rambla', sans-serif;
   margin-left: 14px;
   border-bottom: 1px solid gray;
 }

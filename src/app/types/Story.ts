@@ -1,4 +1,4 @@
-import { ReviewReservation } from "./ReviewReservation";
+import { ReviewReservation } from './ReviewReservation';
 
 export class Story {
   static fromDTO(storyDTO): Story {

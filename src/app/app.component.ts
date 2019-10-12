@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {ServerProxy} from './services/ServerProxy';
-import {DataStore} from './services/DataStore';
+import { ServerProxy } from './services/ServerProxy';
+import { DataStore } from './services/DataStore';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +12,12 @@ export class AppComponent {
   serverIp = '';
   serverPort = '';
 
-  constructor(private serverProxy: ServerProxy, private dataStore: DataStore) {
-
-  }
+  constructor(private serverProxy: ServerProxy, private dataStore: DataStore) {}
 
   setServer(ip, port) {
     this.serverProxy.setServerInfo(ip, port);
     this.serverIp = ip;
     this.serverPort = port;
-    this.dataStore.refresh()
+    this.dataStore.refresh();
   }
 }

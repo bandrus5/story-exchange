@@ -38,7 +38,7 @@
 .close-button {
   position: absolute;
   left: 577px;
-  font-family: "Rambla", sans-serif;
+  font-family: 'Rambla', sans-serif;
 }
 
 .indent {
@@ -86,11 +86,11 @@ button {
 
 .wide-textarea {
   width: 572px;
-  font-family: "Lora", serif;
+  font-family: 'Lora', serif;
 }
 
-input[type="text"],
-input[type="number"],
+input[type='text'],
+input[type='number'],
 select,
 textarea {
   padding: 9px 9px;

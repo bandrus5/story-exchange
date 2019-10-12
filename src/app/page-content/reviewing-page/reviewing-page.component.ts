@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { DataStore } from "../../services/DataStore";
-import { ReviewReservation } from "../../types/ReviewReservation";
+import { Component, OnInit } from '@angular/core';
+import { DataStore } from '../../services/DataStore';
+import { ReviewReservation } from '../../types/ReviewReservation';
 
 @Component({
-  selector: "app-reviewing-page",
-  templateUrl: "./reviewing-page.component.html",
-  styleUrls: ["./reviewing-page.component.css"]
+  selector: 'app-reviewing-page',
+  templateUrl: './reviewing-page.component.html',
+  styleUrls: ['./reviewing-page.component.css']
 })
 export class ReviewingPageComponent implements OnInit {
   public allReviews: ReviewReservation[];

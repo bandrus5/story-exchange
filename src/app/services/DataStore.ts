@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { User } from "../types/User";
-import { Story } from "../types/Story";
-import { ReviewReservation } from "../types/ReviewReservation";
-import { ServerProxy } from "./ServerProxy";
+import { Injectable } from '@angular/core';
+import { User } from '../types/User';
+import { Story } from '../types/Story';
+import { ReviewReservation } from '../types/ReviewReservation';
+import { ServerProxy } from './ServerProxy';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DataStore {
   loggedInUser: User | null;
@@ -13,29 +13,29 @@ export class DataStore {
   allStories: Story[];
   allReviewReservations: ReviewReservation[];
 
-  loremText = "lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non".split(
-    " "
+  loremText = 'lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non'.split(
+    ' '
   );
   userNames = [
-    "bettyTheBot",
-    "tommyj",
-    "shj1996",
-    "megera",
-    "bandr",
-    "mstbrn",
-    "hotman",
-    "merric",
-    "neo",
-    "crest",
-    "xkcd",
-    "fanboy",
-    "heyho",
-    "bgibbard",
-    "meyer",
-    "hackerman"
+    'bettyTheBot',
+    'tommyj',
+    'shj1996',
+    'megera',
+    'bandr',
+    'mstbrn',
+    'hotman',
+    'merric',
+    'neo',
+    'crest',
+    'xkcd',
+    'fanboy',
+    'heyho',
+    'bgibbard',
+    'meyer',
+    'hackerman'
   ];
-  genres = "Mystery Sci-Fi Fantasy Drama Romance Adventure Action Horror Fan-Fiction Humor Other".split(
-    " "
+  genres = 'Mystery Sci-Fi Fantasy Drama Romance Adventure Action Horror Fan-Fiction Humor Other'.split(
+    ' '
   );
 
   private constructor(private server: ServerProxy) {
@@ -106,7 +106,7 @@ export class DataStore {
   }
 
   getLoggedInUser(): User {
-    return this.loggedInUser || new User("Error: No User", "", [], [], 1);
+    return this.loggedInUser || new User('Error: No User', '', [], [], 1);
   }
 
   reserveReview(story: Story) {
@@ -135,10 +135,10 @@ export class DataStore {
   }
 
   generateReviewText(): string {
-    let review = "";
+    let review = '';
     for (let i = 0; i < 130; i++) {
       review +=
-        this.loremText[Math.floor(Math.random() * this.loremText.length)] + " ";
+        this.loremText[Math.floor(Math.random() * this.loremText.length)] + ' ';
     }
     return review;
   }

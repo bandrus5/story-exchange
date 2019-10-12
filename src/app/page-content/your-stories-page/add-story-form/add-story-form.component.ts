@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { DataStore } from "../../../services/DataStore";
-import { Story } from "../../../types/Story";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DataStore } from '../../../services/DataStore';
+import { Story } from '../../../types/Story';
 
 @Component({
-  selector: "app-add-story-form",
-  templateUrl: "./add-story-form.component.html",
-  styleUrls: ["./add-story-form.component.css"]
+  selector: 'app-add-story-form',
+  templateUrl: './add-story-form.component.html',
+  styleUrls: ['./add-story-form.component.css']
 })
 export class AddStoryFormComponent implements OnInit {
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
@@ -32,7 +32,7 @@ export class AddStoryFormComponent implements OnInit {
     if (title && genre && link && blurb && storyLength && storyReviews) {
       const newStory = new Story(
         title,
-        title + "1234",
+        title + '1234',
         this.dataStore.getLoggedInUser().getName(),
         genre,
         link,
@@ -46,7 +46,7 @@ export class AddStoryFormComponent implements OnInit {
       this.dataStore.getLoggedInUser().addCredit(-1 * this.postingCostNow);
       this.close();
     } else {
-      console.log("Not enough detail my dude");
+      console.log('Not enough detail my dude');
     }
   }
 

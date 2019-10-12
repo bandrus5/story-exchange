@@ -1,5 +1,5 @@
-import { Story } from "./Story";
-import { ReviewReservation } from "./ReviewReservation";
+import { Story } from './Story';
+import { ReviewReservation } from './ReviewReservation';
 
 export class User {
   private name: string;

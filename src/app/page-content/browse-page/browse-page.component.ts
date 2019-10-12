@@ -1,18 +1,18 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { DataStore } from "../../services/DataStore";
-import { Story } from "../../types/Story";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DataStore } from '../../services/DataStore';
+import { Story } from '../../types/Story';
 
 @Component({
-  selector: "app-browse-page",
-  templateUrl: "./browse-page.component.html",
-  styleUrls: ["./browse-page.component.css"]
+  selector: 'app-browse-page',
+  templateUrl: './browse-page.component.html',
+  styleUrls: ['./browse-page.component.css']
 })
 export class BrowsePageComponent implements OnInit {
   public displayedStories: Story[];
   public showingSearchResults = false;
-  public searchString = "";
+  public searchString = '';
 
-  @ViewChild("searchBar") searchBar;
+  @ViewChild('searchBar') searchBar;
 
   constructor(private dataStore: DataStore) {
     let loggedInName = this.dataStore.getLoggedInUser().getName();
@@ -31,7 +31,7 @@ export class BrowsePageComponent implements OnInit {
       .filter(
         story => story.author != loggedInName && story.getReviewsLeft() > 0
       );
-    this.searchBar.nativeElement.value = "";
+    this.searchBar.nativeElement.value = '';
     this.showingSearchResults = true;
   }
 
