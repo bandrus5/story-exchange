@@ -8,17 +8,14 @@ import { DataStore } from '../../../services/DataStore';
   styleUrls: ['./browse-story-card.component.css']
 })
 export class BrowseStoryCardComponent implements OnInit {
-
   @Input() story: Story;
   public shouldShowMore = false;
-  constructor(private dataStore: DataStore) {
-  }
+  constructor(private dataStore: DataStore) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getStoryCredit(): number {
-    return 5 + Math.round(this.story.wordCount / 1000); 
+    return 5 + Math.round(this.story.wordCount / 1000);
   }
 
   showMore() {
@@ -35,13 +32,17 @@ export class BrowseStoryCardComponent implements OnInit {
 
   reserved() {
     let user = this.dataStore.getLoggedInUser();
-    let stories = user.getReservedStories().filter(rStory => rStory.story == this.story.title);
+    let stories = user
+      .getReservedStories()
+      .filter(rStory => rStory.story == this.story.title);
     return stories.length > 0;
   }
 
   reviewed() {
     let user = this.dataStore.getLoggedInUser();
-    let stories = user.getReviewedStories().filter(rStory => rStory.story == this.story.title);
+    let stories = user
+      .getReviewedStories()
+      .filter(rStory => rStory.story == this.story.title);
     return stories.length > 0;
   }
 }

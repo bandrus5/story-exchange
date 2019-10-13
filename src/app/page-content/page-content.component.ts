@@ -6,18 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-content.component.css']
 })
 export class PageContentComponent implements OnInit {
+  public currentPage: 'browse' | 'your-stories' | 'reviewing';
 
-  public currentPage: 'browse'|'your-stories'|'reviewing';
-
-  constructor() { 
+  constructor() {
     this.currentPage = 'browse';
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  setCurrentPage(newPage: 'browse'|'your-stories'|'reviewing') {
+  setCurrentPage(newPage: 'browse' | 'your-stories' | 'reviewing') {
     this.currentPage = newPage;
   }
-
 }

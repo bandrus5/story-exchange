@@ -9,7 +9,6 @@ import { Story } from '../../../types/Story';
   styleUrls: ['./story-review-card.component.css']
 })
 export class StoryReviewCardComponent implements OnInit {
-  
   @Input() title: string;
   @Input() completed: boolean;
 
@@ -20,23 +19,22 @@ export class StoryReviewCardComponent implements OnInit {
 
   public showAddForm: boolean;
 
-  constructor(private dataStore: DataStore) {
-  }
+  constructor(private dataStore: DataStore) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getDateStatement(): string {
-    let status = "";
+    let status = '';
     let date: Date = null;
     if (this.completed) {
       date = this.review.reviewCompleted;
-      status = "Reviewed on ";
+      status = 'Reviewed on ';
     } else {
       date = this.review.dateReserved;
-      status = "Reserved on ";
+      status = 'Reserved on ';
     }
-    let stringDate = date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+    let stringDate =
+      date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
     return status + stringDate;
   }
 
@@ -57,7 +55,7 @@ export class StoryReviewCardComponent implements OnInit {
   }
 
   closeAddForm() {
-    this.showAddForm = false;    
+    this.showAddForm = false;
   }
 
   showReview() {
@@ -71,5 +69,4 @@ export class StoryReviewCardComponent implements OnInit {
   getReviewText() {
     return this.review.reviewText;
   }
-
 }

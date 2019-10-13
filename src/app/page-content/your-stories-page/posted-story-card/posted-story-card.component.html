@@ -1,25 +1,47 @@
 <div class="card">
   <div class="info-col">
-    <p class="story-title">{{story.title}}</p>
-    <p class="indent">{{getTimeDiffStatement()}}</p>
-    <p class="indent">Awaiting {{story.getReviewsLeft()}} review{{story.getReviewsLeft() == 1 ? "" : "s"}}</p>
+    <p class="story-title">{{ story.title }}</p>
+    <p class="indent">{{ getTimeDiffStatement() }}</p>
+    <p class="indent">
+      Awaiting {{ story.getReviewsLeft() }} review{{
+        story.getReviewsLeft() == 1 ? '' : 's'
+      }}
+    </p>
   </div>
   <div class="cta-col">
     <div class="cta-buttons">
-      <button (click)="showMore()" class="light-button">See Story Details</button>
-      <button *ngIf="reviewsAvailable() && !shouldShowReviews" (click)="showReviews()" class="dark-button">See Reviews</button>
-      <button *ngIf="reviewsAvailable() && shouldShowReviews" (click)="hideReviews()" class="light-button">Hide Reviews</button>
+      <button (click)="showMore()" class="light-button">
+        See Story Details
+      </button>
+      <button
+        *ngIf="reviewsAvailable() && !shouldShowReviews"
+        (click)="showReviews()"
+        class="dark-button"
+      >
+        See Reviews
+      </button>
+      <button
+        *ngIf="reviewsAvailable() && shouldShowReviews"
+        (click)="hideReviews()"
+        class="light-button"
+      >
+        Hide Reviews
+      </button>
       <button *ngIf="!reviewsAvailable()" class="non-button">No reviews</button>
     </div>
   </div>
 </div>
-<div class="reviews" [ngClass]="{hidden: !shouldShowReviews}">
-  <p *ngFor="let review of getStoryReviews()"><span class="blue-text">{{getFormattedDate(review.reviewCompleted)}}:</span> {{review.reviewText}}</p>
+<div class="reviews" [ngClass]="{ hidden: !shouldShowReviews }">
+  <p *ngFor="let review of getStoryReviews()">
+    <span class="blue-text"
+      >{{ getFormattedDate(review.reviewCompleted) }}:</span
+    >
+    {{ review.reviewText }}
+  </p>
 </div>
-<app-story-info-modal 
+<app-story-info-modal
   *ngIf="shouldShowMore"
   [story]="story"
   [isReservable]="false"
   (closeEvent)="closeDialog($event)"
 ></app-story-info-modal>
-  

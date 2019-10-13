@@ -1,99 +1,98 @@
 .card {
-    width: 70%;
-    height: 90px;
-    border: 1px solid grey;
-    margin: 10px auto;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
-
+  width: 70%;
+  height: 90px;
+  border: 1px solid grey;
+  margin: 10px auto;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
 }
 
 p {
-    margin-left: 10px;
-    line-height: 0.5em;
+  margin-left: 10px;
+  line-height: 0.5em;
 }
 
 button {
-    background-color: #2DABF3;
-    border: none;
-    color: white;
-    padding: 8px 7px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin-left: 11px;
-    cursor: pointer;
-    border-radius: 5px;
+  background-color: #2dabf3;
+  border: none;
+  color: white;
+  padding: 8px 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 11px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .info-col {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .cta-col {
-    position: relative;
-    width: 276px;
+  position: relative;
+  width: 276px;
 }
 
 .cta-buttons {
-    position: absolute;
-    bottom: 16px;
+  position: absolute;
+  bottom: 16px;
 }
 
 .indent {
-    padding-left: 20px;
-    line-height: 0em;
+  padding-left: 20px;
+  line-height: 0em;
 }
 
 .story-title {
-    font-size: larger;
-    line-height: 1em;
-    margin-bottom: 10px;
-    color: #1c5899;
+  font-size: larger;
+  line-height: 1em;
+  margin-bottom: 10px;
+  color: #1c5899;
 }
 
 .dark-button {
-    background-color: #2378bc;
+  background-color: #2378bc;
 }
 
 .light-button {
-    border: 1px solid #2378bc;
-    color: #2378bc;
-    background-color: white;
+  border: 1px solid #2378bc;
+  color: #2378bc;
+  background-color: white;
 }
 
 .non-button {
-    border: 1px solid white;
-    color: #2378bc;
-    background-color: white;
+  border: 1px solid white;
+  color: #2378bc;
+  background-color: white;
 }
 
 .non-button:hover {
-    cursor: default;
+  cursor: default;
 }
 
 .review-container {
-    max-height: 800px;
-    transition: max-height 0.8s ease 0.1s;
-    overflow: hidden;
+  max-height: 800px;
+  transition: max-height 0.8s ease 0.1s;
+  overflow: hidden;
 }
 
 .hidden {
-    max-height: 0px;
+  max-height: 0px;
 }
 
 .review {
-    line-height: 1em;
-    border: 1px solid gray;
-    padding-bottom: 17px;
-    padding-top: 11px;
-    width: 60%;
-    margin: 6px auto;
-    padding-left: 20px;
-    border-radius: 4px;
-    padding-right: 16px;
+  line-height: 1em;
+  border: 1px solid gray;
+  padding-bottom: 17px;
+  padding-top: 11px;
+  width: 60%;
+  margin: 6px auto;
+  padding-left: 20px;
+  border-radius: 4px;
+  padding-right: 16px;
 }

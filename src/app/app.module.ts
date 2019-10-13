@@ -29,15 +29,10 @@ import { AddReviewFormComponent } from './page-content/reviewing-page/add-review
     PostedStoryCardComponent,
     AddStoryFormComponent,
     StoryReviewCardComponent,
-    AddReviewFormComponent,
+    AddReviewFormComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    HttpModule,
-  ],
-  providers: [
-  ],
+  imports: [BrowserModule, HttpClientModule, HttpModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

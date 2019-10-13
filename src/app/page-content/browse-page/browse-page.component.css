@@ -1,26 +1,26 @@
 .browse-container {
-    position: relative;
+  position: relative;
 }
 
 .no-more-message {
-    width: 70%;
-    margin: auto;
-    text-align: center;
+  width: 70%;
+  margin: auto;
+  text-align: center;
 }
 
 #search-bar {
-    width: 68%;
-    margin: 20px auto;
-    display: block;
-    height: 45px;
-    padding: 0px 10px;
-    font-size: 1rem;
-    border: 1px solid #D0CFCE;
-    outline: none;
-    border-radius: 25px;
+  width: 68%;
+  margin: 20px auto;
+  display: block;
+  height: 45px;
+  padding: 0px 10px;
+  font-size: 1rem;
+  border: 1px solid #d0cfce;
+  outline: none;
+  border-radius: 25px;
 }
 
 .link {
-    color: #1c5899;
-    cursor: pointer;
+  color: #1c5899;
+  cursor: pointer;
 }

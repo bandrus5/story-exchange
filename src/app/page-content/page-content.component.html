@@ -1,35 +1,35 @@
 <div class="page-content">
   <div class="tab-holder">
-    <div 
-      class="tab" 
+    <div
+      class="tab"
       (click)="setCurrentPage('browse')"
       [class.selected-tab]="currentPage === 'browse'"
     >
       <p>Browse</p>
     </div>
-    <div 
-      class="tab" 
+    <div
+      class="tab"
       (click)="setCurrentPage('your-stories')"
       [class.selected-tab]="currentPage === 'your-stories'"
     >
       <p>Your Stories</p>
     </div>
-    <div 
-      class="tab" 
+    <div
+      class="tab"
       (click)="setCurrentPage('reviewing')"
-      [class.selected-tab]="currentPage === 'reviewing'"  
+      [class.selected-tab]="currentPage === 'reviewing'"
     >
       <p>Reviewing</p>
     </div>
   </div>
   <div class="content-viewer">
-    <div *ngIf="currentPage=='browse'">
+    <div *ngIf="currentPage == 'browse'">
       <app-browse-page></app-browse-page>
     </div>
-    <div *ngIf="currentPage=='your-stories'">
+    <div *ngIf="currentPage == 'your-stories'">
       <app-your-stories-page></app-your-stories-page>
     </div>
-    <div *ngIf="currentPage=='reviewing'">
+    <div *ngIf="currentPage == 'reviewing'">
       <app-reviewing-page></app-reviewing-page>
     </div>
   </div>

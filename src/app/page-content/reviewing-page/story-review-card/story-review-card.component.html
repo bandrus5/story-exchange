@@ -1,32 +1,48 @@
 <div class="card">
   <div class="info-col">
-    <p class="story-title">{{review.story}}</p>
-    <p class="indent">{{getDateStatement()}}</p>
+    <p class="story-title">{{ review.story }}</p>
+    <p class="indent">{{ getDateStatement() }}</p>
   </div>
   <div class="cta-col">
     <div class="cta-buttons">
-      <button (click)="showDetails()" class="light-button">See Story Details</button>
-      <button *ngIf="!completed" class="dark-button" (click)="addReview()">Add Review</button>
-      <button *ngIf="completed && !shouldShowReview" class="light-button" (click)="showReview()">See review</button>
-      <button *ngIf="completed && shouldShowReview" class="light-button" (click)="hideReview()">Hide review</button>
-      
+      <button (click)="showDetails()" class="light-button">
+        See Story Details
+      </button>
+      <button *ngIf="!completed" class="dark-button" (click)="addReview()">
+        Add Review
+      </button>
+      <button
+        *ngIf="completed && !shouldShowReview"
+        class="light-button"
+        (click)="showReview()"
+      >
+        See review
+      </button>
+      <button
+        *ngIf="completed && shouldShowReview"
+        class="light-button"
+        (click)="hideReview()"
+      >
+        Hide review
+      </button>
     </div>
   </div>
 </div>
 
-<div class="review-container" [ngClass]="{hidden: !shouldShowReview}">
-  <p class="review">{{getReviewText()}}</p>
+<div class="review-container" [ngClass]="{ hidden: !shouldShowReview }">
+  <p class="review">{{ getReviewText() }}</p>
 </div>
 
-<app-story-info-modal 
+<app-story-info-modal
   *ngIf="shouldShowDetails"
   [story]="getStory()"
   [isReservable]="false"
   (closeEvent)="closeDetails($event)"
 ></app-story-info-modal>
 
-<app-add-review-form 
-  *ngIf="showAddForm" 
-  [reservation]="review" 
-  (closeEvent)="closeAddForm()">
+<app-add-review-form
+  *ngIf="showAddForm"
+  [reservation]="review"
+  (closeEvent)="closeAddForm()"
+>
 </app-add-review-form>

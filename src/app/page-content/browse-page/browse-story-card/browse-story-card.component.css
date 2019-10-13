@@ -1,91 +1,91 @@
 .card {
-    width: 70%;
-    height: 126px;
-    border: 1px solid grey;
-    margin: 10px auto;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
+  width: 70%;
+  height: 126px;
+  border: 1px solid grey;
+  margin: 10px auto;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
 }
 
 p {
-    margin-left: 10px;
-    line-height: 0.5em;
+  margin-left: 10px;
+  line-height: 0.5em;
 }
 
 button {
-    background-color: #2DABF3;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    padding: 8px 7px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin-left: 11px;
-    cursor: pointer;
+  background-color: #2dabf3;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 8px 7px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 11px;
+  cursor: pointer;
 }
 
 .info-col {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .cta-col {
-    position: relative;
-    width: 260px;
+  position: relative;
+  width: 260px;
 }
 
 .cta-buttons {
-    position: absolute;
-    bottom: 16px;
+  position: absolute;
+  bottom: 16px;
 }
 
 .indent {
-    padding-left: 20px;
-    line-height: 0em;
+  padding-left: 20px;
+  line-height: 0em;
 }
 
 .story-title {
-    font-size: larger;
-    line-height: 1em;
-    margin-bottom: 10px;
-    color: #1c5899;
+  font-size: larger;
+  line-height: 1em;
+  margin-bottom: 10px;
+  color: #1c5899;
 }
 
 .credit-container1 {
-    font-size: x-large;
+  font-size: x-large;
 }
 
 .credit-container2 {
-    display: flex;
-    margin-top: 10px;
+  display: flex;
+  margin-top: 10px;
 }
 
 .credit-display {
-    margin-left: auto;
-    margin-right: auto;
-    color: #1c5899;
+  margin-left: auto;
+  margin-right: auto;
+  color: #1c5899;
 }
 
 .dark-button {
-    background-color: #2378bc;
+  background-color: #2378bc;
 }
 
 .light-button {
-    border: 1px solid #2378bc;
-    color: #2378bc;
-    background-color: white;
+  border: 1px solid #2378bc;
+  color: #2378bc;
+  background-color: white;
 }
 
 .non-button {
-    border: 1px solid white;
-    color: #2378bc;
-    background-color: white;
+  border: 1px solid white;
+  color: #2378bc;
+  background-color: white;
 }
 
 .non-button:hover {
-    cursor: default;
+  cursor: default;
 }

@@ -7,13 +7,10 @@ import { User } from '../types/User';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
-
   public loggedInUser: User;
   constructor(dataStore: DataStore) {
     this.loggedInUser = dataStore.getLoggedInUser();
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

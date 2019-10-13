@@ -8,9 +8,8 @@ describe('AddReviewFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddReviewFormComponent ]
-    })
-    .compileComponents();
+      declarations: [AddReviewFormComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
