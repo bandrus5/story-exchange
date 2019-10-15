@@ -11,16 +11,19 @@ export class BrowsePageComponent implements OnInit {
   public displayedStories: Story[];
   public showingSearchResults = false;
   public searchString = '';
+  public allStories: Story[];
 
   @ViewChild('searchBar') searchBar;
 
   constructor(private dataStore: DataStore) {
     let loggedInName = this.dataStore.getLoggedInUser().getName();
-    this.displayedStories = this.dataStore
-      .getAllStories()
-      .filter(
-        story => story.author != loggedInName && story.getReviewsLeft() > 0
-      );
+    this.allStories = this.dataStore.allStories;
+    this.dataStore.allStoriesSubject.subscribe({
+      next: allStories => (this.allStories = allStories)
+    });
+    this.displayedStories = this.allStories.filter(
+      story => story.author != loggedInName && story.getReviewsLeft() > 0
+    );
   }
 
   search(value: string) {
@@ -39,11 +42,9 @@ export class BrowsePageComponent implements OnInit {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.showingSearchResults = false;
     let loggedInName = this.dataStore.getLoggedInUser().getName();
-    this.displayedStories = this.dataStore
-      .getAllStories()
-      .filter(
-        story => story.author != loggedInName && story.getReviewsLeft() > 0
-      );
+    this.displayedStories = this.allStories.filter(
+      story => story.author != loggedInName && story.getReviewsLeft() > 0
+    );
   }
 
   ngOnInit() {}
