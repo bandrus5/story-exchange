@@ -3,6 +3,7 @@ import { User } from '../types/User';
 import { Story } from '../types/Story';
 import { ReviewReservation } from '../types/ReviewReservation';
 import { ServerProxy } from './ServerProxy';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,9 @@ export class DataStore {
   allUsers: User[];
   allStories: Story[];
   allReviewReservations: ReviewReservation[];
+
+  private _loggedInUserSubject = new Subject<User>();
+  private _allStoriesSubject = new Subject<Story[]>();
 
   loremText = 'lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non'.split(
     ' '
@@ -39,7 +43,7 @@ export class DataStore {
   );
 
   private constructor(private server: ServerProxy) {
-    this.loggedInUser = null;
+    this.loggedInUser = new User('bettyTheBot', '', [], [], 50);
     this.allUsers = [];
     this.allStories = [];
     this.allReviewReservations = [];
@@ -48,6 +52,7 @@ export class DataStore {
   public async refresh() {
     this.server.getStories().subscribe(res => {
       this.allStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
+      this._allStoriesSubject.next(this.allStories);
     });
   }
 
@@ -83,6 +88,7 @@ export class DataStore {
 
   logInUser(user: User) {
     this.loggedInUser = user;
+    this._loggedInUserSubject.next(user);
   }
 
   getPostedStories(): Story[] {
@@ -160,5 +166,13 @@ export class DataStore {
       this.loremText[randomIndex] = this.loremText[randomIndex2];
       this.loremText[randomIndex2] = temp;
     }
+  }
+
+  get loggedInUserSubject() {
+    return this._loggedInUserSubject;
+  }
+
+  get allStoriesSubject() {
+    return this._allStoriesSubject;
   }
 }

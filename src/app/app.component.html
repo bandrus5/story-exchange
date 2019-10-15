@@ -5,9 +5,16 @@
       setServer(serverIp.value, serverPort.value); $event.preventDefault()
     "
   >
-    <input type="text" name="serverIp" placeholder="Server IP" #serverIp />
     <input
       type="text"
+      value="localhost"
+      name="serverIp"
+      placeholder="Server IP"
+      #serverIp
+    />
+    <input
+      type="text"
+      value="3000"
       name="serverPort"
       placeholder="Server Port"
       #serverPort

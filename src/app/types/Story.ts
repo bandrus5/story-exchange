@@ -10,9 +10,9 @@ export class Story {
       storyDTO.link,
       storyDTO.blurb,
       storyDTO.wordCount,
-      storyDTO.datePosted,
+      new Date(storyDTO.datePosted),
       storyDTO.desiredReviews,
-      storyDTO.completedReviews
+      []
     );
   }
 

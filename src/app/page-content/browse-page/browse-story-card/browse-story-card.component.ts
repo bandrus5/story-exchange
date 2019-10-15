@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Story } from '../../../types/Story';
 import { DataStore } from '../../../services/DataStore';
+import { User } from 'src/app/types/User';
 
 @Component({
   selector: 'app-browse-story-card',
@@ -10,7 +11,13 @@ import { DataStore } from '../../../services/DataStore';
 export class BrowseStoryCardComponent implements OnInit {
   @Input() story: Story;
   public shouldShowMore = false;
-  constructor(private dataStore: DataStore) {}
+  private loggedInUser: User;
+  constructor(private dataStore: DataStore) {
+    this.loggedInUser = this.dataStore.loggedInUser;
+    this.dataStore.loggedInUserSubject.subscribe({
+      next: user => (this.loggedInUser = user)
+    });
+  }
 
   ngOnInit() {}
 
@@ -31,16 +38,14 @@ export class BrowseStoryCardComponent implements OnInit {
   }
 
   reserved() {
-    let user = this.dataStore.getLoggedInUser();
-    let stories = user
+    let stories = this.loggedInUser
       .getReservedStories()
       .filter(rStory => rStory.story == this.story.title);
     return stories.length > 0;
   }
 
   reviewed() {
-    let user = this.dataStore.getLoggedInUser();
-    let stories = user
+    let stories = this.loggedInUser
       .getReviewedStories()
       .filter(rStory => rStory.story == this.story.title);
     return stories.length > 0;

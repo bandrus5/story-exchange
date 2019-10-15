@@ -8,8 +8,12 @@ import { User } from '../types/User';
 })
 export class BannerComponent implements OnInit {
   public loggedInUser: User;
+
   constructor(dataStore: DataStore) {
     this.loggedInUser = dataStore.getLoggedInUser();
+    dataStore.loggedInUserSubject.subscribe({
+      next: user => (this.loggedInUser = user)
+    });
   }
 
   ngOnInit() {}
