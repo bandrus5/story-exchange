@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../types/User';
 import { Story } from '../types/Story';
-import { ReviewReservation } from '../types/ReviewReservation';
 import { ServerProxy } from './ServerProxy';
 import { Subject } from 'rxjs';
 import { Reservation } from '../types/Reservation';
@@ -95,8 +94,8 @@ export class DataStore {
     return this.getLoggedInUser().getPostedStories();
   }
 
-  getStoryByName(name: string): Story {
-    return this.allStories.filter(story => story.title == name)[0];
+  getStoryByID(storyID: string): Story {
+    return this.allStories.filter(story => story.storyID == storyID)[0];
   }
 
   getReservedStories(): Reservation[] {

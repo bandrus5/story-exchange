@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ReviewReservation } from '../../../types/ReviewReservation';
 import { DataStore } from '../../../services/DataStore';
 import { Story } from '../../../types/Story';
+import { Review } from 'src/app/types/Review';
 
 @Component({
   selector: 'app-story-review-card',
@@ -12,7 +12,7 @@ export class StoryReviewCardComponent implements OnInit {
   @Input() title: string;
   @Input() completed: boolean;
 
-  @Input() review: ReviewReservation;
+  @Input() review: Review;
 
   public shouldShowDetails: boolean;
   public shouldShowReview: boolean;
@@ -24,7 +24,7 @@ export class StoryReviewCardComponent implements OnInit {
   ngOnInit() {}
 
   getStory(): Story {
-    return this.dataStore.getStoryByName(this.review.story);
+    return this.dataStore.getStoryByID(this.review.storyID);
   }
 
   showDetails() {
