@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DataStore } from '../../../services/DataStore';
-import { ReviewReservation } from '../../../types/ReviewReservation';
+import { Review } from '../../../types/Review';
 
 @Component({
   selector: 'app-add-review-form',
@@ -8,7 +8,7 @@ import { ReviewReservation } from '../../../types/ReviewReservation';
   styleUrls: ['./add-review-form.component.css']
 })
 export class AddReviewFormComponent implements OnInit {
-  @Input() reservation: ReviewReservation;
+  @Input() reservation: Review;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
   public charCount = 0;
   constructor(private dataStore: DataStore) {}
@@ -24,7 +24,9 @@ export class AddReviewFormComponent implements OnInit {
       this.reservation.reviewCompleted = new Date();
       let story = this.dataStore
         .getAllStories()
-        .filter(story => story.title == this.reservation.story)[0];
+        .filter(
+          story => parseInt(story.storyID) == this.reservation.storyID
+        )[0];
       this.dataStore
         .getLoggedInUser()
         .addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
