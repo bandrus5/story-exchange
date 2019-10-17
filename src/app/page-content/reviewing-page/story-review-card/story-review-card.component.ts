@@ -23,21 +23,6 @@ export class StoryReviewCardComponent implements OnInit {
 
   ngOnInit() {}
 
-  getDateStatement(): string {
-    let status = '';
-    let date: Date = null;
-    if (this.completed) {
-      date = this.review.reviewCompleted;
-      status = 'Reviewed on ';
-    } else {
-      date = this.review.dateReserved;
-      status = 'Reserved on ';
-    }
-    let stringDate =
-      date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
-    return status + stringDate;
-  }
-
   getStory(): Story {
     return this.dataStore.getStoryByName(this.review.story);
   }

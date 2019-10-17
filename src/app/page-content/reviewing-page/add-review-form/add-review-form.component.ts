@@ -24,26 +24,14 @@ export class AddReviewFormComponent implements OnInit {
       this.reservation.reviewCompleted = new Date();
       let story = this.dataStore
         .getAllStories()
-        .filter(
-          story => parseInt(story.storyID) == this.reservation.storyID
-        )[0];
-      this.dataStore
-        .getLoggedInUser()
-        .addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
+        .filter(story => story.storyID == this.reservation.storyID)[0];
+      const user = this.dataStore.getLoggedInUser();
+      user.addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
+      user.reviewStory(new Review(review, user.getUserID(), story.storyID));
       this.close();
     } else {
       console.log('Not enough detail my dude');
     }
-  }
-
-  getDateStatement(): string {
-    let status = '';
-    let date: Date = null;
-    date = this.reservation.dateReserved;
-    status = 'Reserved on ';
-    let stringDate =
-      date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
-    return status + stringDate;
   }
 
   updateCharCount(review: string) {

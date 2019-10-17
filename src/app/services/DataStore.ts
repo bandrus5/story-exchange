@@ -4,6 +4,8 @@ import { Story } from '../types/Story';
 import { ReviewReservation } from '../types/ReviewReservation';
 import { ServerProxy } from './ServerProxy';
 import { Subject } from 'rxjs';
+import { Reservation } from '../types/Reservation';
+import { Review } from '../types/Review';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class DataStore {
   loggedInUser: User | null;
   allUsers: User[];
   allStories: Story[];
-  allReviewReservations: ReviewReservation[];
+  reservations: Reservation[];
 
   private _loggedInUserSubject = new Subject<User>();
   private _allStoriesSubject = new Subject<Story[]>();
@@ -43,10 +45,10 @@ export class DataStore {
   );
 
   private constructor(private server: ServerProxy) {
-    this.loggedInUser = new User('bettyTheBot', '', [], [], 50);
+    this.loggedInUser = new User(0, 'bettyTheBot', [], [], [], 50);
     this.allUsers = [];
     this.allStories = [];
-    this.allReviewReservations = [];
+    this.reservations = [];
   }
 
   public async refresh() {
@@ -76,14 +78,12 @@ export class DataStore {
     this.allStories.push(...stories);
   }
 
-  addReviewReservations(revRes: ReviewReservation[]) {
-    revRes.forEach(reservation => {
-      let title = reservation.story;
-      this.allStories
-        .filter(story => story.title == title)[0]
-        .completedReviews.push(reservation);
-    });
-    this.allReviewReservations.push(...revRes);
+  addReservation(reservation: Reservation) {
+    const storyID = reservation.storyID;
+    // TODO: make sure this logic still works to decide reviews left. And the logic for adding completedReviews to the story
+    const story = this.allStories.filter(story => story.storyID == storyID)[0];
+    story.desiredReviews -= 1;
+    this.reservations.push(reservation);
   }
 
   logInUser(user: User) {
@@ -99,11 +99,11 @@ export class DataStore {
     return this.allStories.filter(story => story.title == name)[0];
   }
 
-  getReservedStories(): ReviewReservation[] {
+  getReservedStories(): Reservation[] {
     return this.getLoggedInUser().getReservedStories();
   }
 
-  getReviewedStories(): ReviewReservation[] {
+  getReviewedStories(): Review[] {
     return this.getLoggedInUser().getReviewedStories();
   }
 
@@ -112,17 +112,14 @@ export class DataStore {
   }
 
   getLoggedInUser(): User {
-    return this.loggedInUser || new User('Error: No User', '', [], [], 1);
+    return this.loggedInUser || new User(-1, 'Error: No User', [], [], [], 1);
   }
 
   reserveReview(story: Story) {
-    const reservation = new ReviewReservation(
-      story.title,
-      this.getLoggedInUser().getName(),
-      new Date()
-    );
-    this.getLoggedInUser().addReservedStory(reservation);
-    this.addReviewReservations([reservation]);
+    const user = this.getLoggedInUser();
+    const reservation = new Reservation(user.getUserID(), story.storyID);
+    user.addReservedStory(reservation);
+    this.addReservation(reservation);
   }
 
   searchStories(searchQuery: string): Story[] {

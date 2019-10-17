@@ -1,14 +1,14 @@
 export class Review {
   reviewText: string;
   reviewerID: number;
-  storyID: number;
+  storyID: string;
   stars?: number;
   reviewCompleted: Date;
 
   constructor(
     reviewText: string,
     reviewerID: number,
-    storyID?: number,
+    storyID?: string,
     reviewCompleted?: Date,
     stars?: number
   ) {

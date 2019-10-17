@@ -52,6 +52,6 @@ export class Story {
   }
 
   getReviewsLeft(): number {
-    return this.desiredReviews - this.completedReviews.length;
+    return this.desiredReviews;
   }
 }
