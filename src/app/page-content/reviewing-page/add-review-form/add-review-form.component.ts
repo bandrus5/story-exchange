@@ -29,7 +29,7 @@ export class AddReviewFormComponent implements OnInit {
       user.addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
       const review = new Review(reviewText, user.getUserID(), story.storyID);
       user.reviewStory(review);
-      // story.completedReviews.push(review);
+      story.completedReviews.push(review);
       this.close();
     } else {
       console.log('Not enough detail my dude');

@@ -61,8 +61,8 @@ export class PostedStoryCardComponent implements OnInit {
   }
 
   getStoryReviews() {
-    //TODO: add function to datastore, look through all reviews, grab the ones that are for this story. Could be the server.
-    // I think I'll leave it like this for now so this PR doesn't get huge, but there's a decent amount of logic we can still move to the server that's like this
+    //TODO: On the next refactor, we can probably get rid of completedReviews all together, as well as reservedReviews and
+    // reviewedStories on User, among other things, and move all of that logic to the server.
     return this.story.completedReviews;
   }
 
