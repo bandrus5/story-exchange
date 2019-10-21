@@ -61,9 +61,9 @@ export class PostedStoryCardComponent implements OnInit {
   }
 
   getStoryReviews() {
-    return this.story.completedReviews.filter(
-      review => review.reviewText != null
-    );
+    //TODO: add function to datastore, look through all reviews, grab the ones that are for this story. Could be the server.
+    // I think I'll leave it like this for now so this PR doesn't get huge, but there's a decent amount of logic we can still move to the server that's like this
+    return this.story.completedReviews;
   }
 
   reviewsAvailable() {

@@ -77,9 +77,15 @@ export class DataStore {
     this.allStories.push(...stories);
   }
 
+  reserveReview(story: Story) {
+    const user = this.getLoggedInUser();
+    const reservation = new Reservation(user.getUserID(), story.storyID);
+    user.addReservedStory(reservation);
+    this.addReservation(reservation);
+  }
+
   addReservation(reservation: Reservation) {
     const storyID = reservation.storyID;
-    // TODO: make sure this logic still works to decide reviews left. And the logic for adding completedReviews to the story
     const story = this.allStories.filter(story => story.storyID == storyID)[0];
     story.desiredReviews -= 1;
     this.reservations.push(reservation);
@@ -112,13 +118,6 @@ export class DataStore {
 
   getLoggedInUser(): User {
     return this.loggedInUser || new User(-1, 'Error: No User', [], [], [], 1);
-  }
-
-  reserveReview(story: Story) {
-    const user = this.getLoggedInUser();
-    const reservation = new Reservation(user.getUserID(), story.storyID);
-    user.addReservedStory(reservation);
-    this.addReservation(reservation);
   }
 
   searchStories(searchQuery: string): Story[] {

@@ -18,16 +18,18 @@ export class AddReviewFormComponent implements OnInit {
     this.closeEvent.emit();
   }
 
-  addReview(review: string) {
-    if (review.length > 600) {
-      this.reservation.reviewText = review;
+  addReview(reviewText: string) {
+    if (reviewText.length > 600) {
+      this.reservation.reviewText = reviewText;
       this.reservation.reviewCompleted = new Date();
       let story = this.dataStore
         .getAllStories()
         .filter(story => story.storyID == this.reservation.storyID)[0];
       const user = this.dataStore.getLoggedInUser();
       user.addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
-      user.reviewStory(new Review(review, user.getUserID(), story.storyID));
+      const review = new Review(reviewText, user.getUserID(), story.storyID);
+      user.reviewStory(review);
+      // story.completedReviews.push(review);
       this.close();
     } else {
       console.log('Not enough detail my dude');

@@ -8,7 +8,6 @@ import { DataStore } from '../services/DataStore';
   styleUrls: ['./story-info-modal.component.css']
 })
 export class StoryInfoModalComponent implements OnInit {
-  // TODO: this story appears to be undefined when the modal is opened on the Reviewing page. No info is shown.
   @Input() story: Story;
   @Input() isReservable: boolean;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
