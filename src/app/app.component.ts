@@ -20,4 +20,16 @@ export class AppComponent {
     this.serverPort = port;
     this.dataStore.refresh();
   }
+
+  isLoggedIn() {
+    return !!this.dataStore.getLoggedInUser();
+  }
+
+  register(username, password) {
+    this.dataStore.registerUser(username, password);
+  }
+
+  login(username, password) {
+    this.dataStore.logInUser(username, password);
+  }
 }

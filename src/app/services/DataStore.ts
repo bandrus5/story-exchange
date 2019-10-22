@@ -44,7 +44,6 @@ export class DataStore {
   );
 
   private constructor(private server: ServerProxy) {
-    this.loggedInUser = new User(0, 'bettyTheBot', [], [], [], 50);
     this.allUsers = [];
     this.allStories = [];
     this.reservations = [];
@@ -91,9 +90,42 @@ export class DataStore {
     this.reservations.push(reservation);
   }
 
-  logInUser(user: User) {
-    this.loggedInUser = user;
-    this._loggedInUserSubject.next(user);
+  async logInUser(username: string, password: string) {
+    this.server.login(username, password).subscribe(
+      (res: Response) => {
+        const user = res['user'];
+        this.loggedInUser = new User(
+          user['UserID'],
+          user['UserName'],
+          [],
+          [],
+          [],
+          user['Credit']
+        );
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  registerUser(username: string, password: string) {
+    this.server.register(username, password).subscribe(
+      (res: Response) => {
+        const user = res['user'];
+        this.loggedInUser = new User(
+          user['UserID'],
+          user['UserName'],
+          [],
+          [],
+          [],
+          user['Credit']
+        );
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   getPostedStories(): Story[] {
@@ -117,7 +149,7 @@ export class DataStore {
   }
 
   getLoggedInUser(): User {
-    return this.loggedInUser || new User(-1, 'Error: No User', [], [], [], 1);
+    return this.loggedInUser;
   }
 
   searchStories(searchQuery: string): Story[] {
