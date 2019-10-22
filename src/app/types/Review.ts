@@ -1,13 +1,13 @@
 export class Review {
   reviewText: string;
   reviewerID: number;
-  storyID: number;
+  storyID: string;
   stars?: number;
 
   constructor(
     reviewText: string,
     reviewerID: number,
-    storyID?: number,
+    storyID?: string,
     stars?: number
   ) {
     this.reviewText = reviewText;

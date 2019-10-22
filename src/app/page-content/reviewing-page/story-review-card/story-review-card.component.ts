@@ -1,19 +1,12 @@
-<<<<<<< HEAD
 import { Component, OnInit, Input } from '@angular/core';
 import { DataStore } from '../../../services/DataStore';
 import { Story } from '../../../types/Story';
 import { Review } from 'src/app/types/Review';
-=======
-import { Component, OnInit, Input } from "@angular/core";
-import { ReviewReservation } from "../../../types/ReviewReservation";
-import { DataStore } from "../../../services/DataStore";
-import { Story } from "../../../types/Story";
->>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
 
 @Component({
-  selector: "app-story-review-card",
-  templateUrl: "./story-review-card.component.html",
-  styleUrls: ["./story-review-card.component.css"]
+  selector: 'app-story-review-card',
+  templateUrl: './story-review-card.component.html',
+  styleUrls: ['./story-review-card.component.css']
 })
 export class StoryReviewCardComponent implements OnInit {
   @Input() title: string;
@@ -29,24 +22,6 @@ export class StoryReviewCardComponent implements OnInit {
   constructor(private dataStore: DataStore) {}
 
   ngOnInit() {}
-<<<<<<< HEAD
-=======
-
-  getDateStatement(): string {
-    let status = "";
-    let date: Date = null;
-    if (this.completed) {
-      date = this.review.reviewCompleted;
-      status = "Reviewed on ";
-    } else {
-      date = this.review.dateReserved;
-      status = "Reserved on ";
-    }
-    let stringDate =
-      date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
-    return status + stringDate;
-  }
->>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
 
   getStory(): Story {
     return this.dataStore.getStoryByID(this.review.storyID);

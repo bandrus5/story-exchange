@@ -10,15 +10,9 @@ export class Story {
       storyDTO.link,
       storyDTO.blurb,
       storyDTO.wordCount,
-<<<<<<< HEAD
-      new Date(storyDTO.datePosted),
-      storyDTO.desiredReviews,
-      []
-=======
       storyDTO.datePosted,
       storyDTO.desiredReviews,
       storyDTO.completedReviews
->>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
     );
   }
 
@@ -58,10 +52,6 @@ export class Story {
   }
 
   getReviewsLeft(): number {
-<<<<<<< HEAD
     return this.desiredReviews;
-=======
-    return this.desiredReviews - this.completedReviews.length;
->>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
   }
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { DataStore } from "../../../services/DataStore";
-import { Story } from "../../../types/Story";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { DataStore } from '../../../services/DataStore';
+import { Story } from '../../../types/Story';
 
 @Component({
-  selector: "app-add-story-form",
-  templateUrl: "./add-story-form.component.html",
-  styleUrls: ["./add-story-form.component.css"]
+  selector: 'app-add-story-form',
+  templateUrl: './add-story-form.component.html',
+  styleUrls: ['./add-story-form.component.css']
 })
 export class AddStoryFormComponent implements OnInit {
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
@@ -32,11 +32,7 @@ export class AddStoryFormComponent implements OnInit {
     if (title && genre && link && blurb && storyLength && storyReviews) {
       const newStory = new Story(
         title,
-<<<<<<< HEAD
         title + '1234',
-=======
-        title + "1234",
->>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
         this.dataStore.getLoggedInUser().getName(),
         genre,
         link,
