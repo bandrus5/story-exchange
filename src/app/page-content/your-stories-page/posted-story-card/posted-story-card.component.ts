@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DataStore } from '../../../services/DataStore';
-import { Story } from '../../../types/Story';
+import { Component, OnInit, Input } from "@angular/core";
+import { DataStore } from "../../../services/DataStore";
+import { Story } from "../../../types/Story";
 
 @Component({
-  selector: 'app-posted-story-card',
-  templateUrl: './posted-story-card.component.html',
-  styleUrls: ['./posted-story-card.component.css']
+  selector: "app-posted-story-card",
+  templateUrl: "./posted-story-card.component.html",
+  styleUrls: ["./posted-story-card.component.css"]
 })
 export class PostedStoryCardComponent implements OnInit {
   @Input() story: Story;
@@ -61,9 +61,15 @@ export class PostedStoryCardComponent implements OnInit {
   }
 
   getStoryReviews() {
+<<<<<<< HEAD
     //TODO: On the next refactor, we can probably get rid of completedReviews all together, as well as reservedReviews and
     // reviewedStories on User, among other things, and move all of that logic to the server.
     return this.story.completedReviews;
+=======
+    return this.story.completedReviews.filter(
+      review => review.reviewText != null
+    );
+>>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
   }
 
   reviewsAvailable() {
@@ -74,6 +80,6 @@ export class PostedStoryCardComponent implements OnInit {
     let month = date.getMonth();
     let day = date.getDay();
     let year = date.getFullYear();
-    return month + '/' + day + '/' + year;
+    return month + "/" + day + "/" + year;
   }
 }

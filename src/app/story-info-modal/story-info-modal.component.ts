@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Story } from '../types/Story';
-import { DataStore } from '../services/DataStore';
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { Story } from "../types/Story";
+import { DataStore } from "../services/DataStore";
 
 @Component({
-  selector: 'app-story-info-modal',
-  templateUrl: './story-info-modal.component.html',
-  styleUrls: ['./story-info-modal.component.css']
+  selector: "app-story-info-modal",
+  templateUrl: "./story-info-modal.component.html",
+  styleUrls: ["./story-info-modal.component.css"]
 })
 export class StoryInfoModalComponent implements OnInit {
   @Input() story: Story;

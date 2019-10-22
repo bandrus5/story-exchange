@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { DataStore } from '../../services/DataStore';
-import { Story } from '../../types/Story';
+import { Component, OnInit } from "@angular/core";
+import { DataStore } from "../../services/DataStore";
+import { Story } from "../../types/Story";
 
 @Component({
-  selector: 'app-your-stories-page',
-  templateUrl: './your-stories-page.component.html',
-  styleUrls: ['./your-stories-page.component.css']
+  selector: "app-your-stories-page",
+  templateUrl: "./your-stories-page.component.html",
+  styleUrls: ["./your-stories-page.component.css"]
 })
 export class YourStoriesPageComponent implements OnInit {
   public stories: Story[];

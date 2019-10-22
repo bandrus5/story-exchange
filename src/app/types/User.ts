@@ -30,12 +30,25 @@ export class User {
     return this.postedStories;
   }
 
+<<<<<<< HEAD
   public getReservedStories(): Reservation[] {
     return this.reservedStories;
   }
 
   public getReviewedStories(): Review[] {
     return this.reviewedStories;
+=======
+  public getReservedStories(): ReviewReservation[] {
+    return this.reservedStories.filter(
+      review => review.reviewCompleted == null
+    );
+  }
+
+  public getReviewedStories(): ReviewReservation[] {
+    return this.reservedStories.filter(
+      review => review.reviewCompleted != null
+    );
+>>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
   }
 
   public getCredit(): number {
@@ -50,6 +63,7 @@ export class User {
     return this.name;
   }
 
+<<<<<<< HEAD
   public getUserID(): number {
     return this.userID;
   }
@@ -63,5 +77,9 @@ export class User {
       reservation => reservation.storyID == review.storyID
     );
     this.reviewedStories.unshift(review);
+=======
+  public addReservedStory(review: ReviewReservation) {
+    this.reservedStories.unshift(review);
+>>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
   }
 }

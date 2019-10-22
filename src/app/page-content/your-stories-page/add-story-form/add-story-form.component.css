@@ -38,7 +38,11 @@
 .close-button {
   position: absolute;
   left: 577px;
+<<<<<<< HEAD
   font-family: 'Rambla', sans-serif;
+=======
+  font-family: "Rambla", sans-serif;
+>>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
 }
 
 .indent {
@@ -87,11 +91,19 @@ button {
 .wide-textarea {
   width: 572px;
   height: 100px;
+<<<<<<< HEAD
   font-family: 'Lora', serif;
 }
 
 input[type='text'],
 input[type='number'],
+=======
+  font-family: "Lora", serif;
+}
+
+input[type="text"],
+input[type="number"],
+>>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
 select,
 textarea {
   padding: 9px 9px;

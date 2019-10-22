@@ -38,7 +38,11 @@
 .close-button {
   position: absolute;
   left: 577px;
+<<<<<<< HEAD
   font-family: 'Rambla', sans-serif;
+=======
+  font-family: "Rambla", sans-serif;
+>>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
 }
 
 .indent {
@@ -86,11 +90,19 @@ button {
 
 .wide-textarea {
   width: 572px;
+<<<<<<< HEAD
   font-family: 'Lora', serif;
 }
 
 input[type='text'],
 input[type='number'],
+=======
+  font-family: "Lora", serif;
+}
+
+input[type="text"],
+input[type="number"],
+>>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
 select,
 textarea {
   padding: 9px 9px;
@@ -134,6 +146,16 @@ textarea {
   padding-left: 15px;
   color: #1c5899;
   font-size: 20px;
+<<<<<<< HEAD
+=======
+}
+
+.date {
+  padding-left: 30px;
+  padding-top: 0;
+  margin-top: 0;
+  line-height: 0;
+>>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
 }
 
 .left-text {
