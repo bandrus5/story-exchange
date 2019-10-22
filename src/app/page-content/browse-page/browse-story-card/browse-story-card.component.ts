@@ -17,7 +17,6 @@ import { DataStore } from "../../../services/DataStore";
 export class BrowseStoryCardComponent implements OnInit {
   @Input() story: Story;
   public shouldShowMore = false;
-<<<<<<< HEAD
   private loggedInUser: User;
   constructor(private dataStore: DataStore) {
     this.loggedInUser = this.dataStore.loggedInUser;
@@ -25,9 +24,6 @@ export class BrowseStoryCardComponent implements OnInit {
       next: user => (this.loggedInUser = user)
     });
   }
-=======
-  constructor(private dataStore: DataStore) {}
->>>>>>> f7b6d320835b0b0d7f85e609d244f1af571373ee
 
   ngOnInit() {}
 
