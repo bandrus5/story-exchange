@@ -13,10 +13,12 @@ export class DataStore {
   loggedInUser: User | null;
   allUsers: User[];
   allStories: Story[];
-  reservations: Reservation[];
+  reservations: Reservation[]; //TODO: split this into reservations and reviews
+  userReservations: Reservation[];
 
   private _loggedInUserSubject = new Subject<User>();
   private _allStoriesSubject = new Subject<Story[]>();
+  private _reservationsSubject = new Subject<Reservation[]>();
 
   loremText = 'lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non'.split(
     ' '
@@ -105,12 +107,18 @@ export class DataStore {
     return this.allStories.filter(story => story.storyID == storyID)[0];
   }
 
-  getReservedStories(): Reservation[] {
-    return this.server
+  getReservedStories() {
+    this.server
       .getReservationsByUser(this.getLoggedInUser().getUserID())
-      .then(reservations => {
-        return reservations;
-      });
+      .subscribe(
+        (reservations: Reservation[]) => {
+          this.userReservations = reservations;
+          this._reservationsSubject.next(this.userReservations);
+        },
+        err => {
+          console.log(err);
+        }
+      );
   }
 
   getReviewedStories(): Review[] {
@@ -174,5 +182,9 @@ export class DataStore {
 
   get allStoriesSubject() {
     return this._allStoriesSubject;
+  }
+
+  get reservationsSubject() {
+    return this._reservationsSubject;
   }
 }

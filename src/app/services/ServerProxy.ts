@@ -35,19 +35,10 @@ export class ServerProxy {
       .subscribe();
   }
 
-  public async getReservationsByUser(userID: number) {
-    return this.httpClient
-      .request('get', `http://${this.baseUrl}/reservations`, {
-        body: { userID: userID }
-      })
-      .subscribe(
-        (res: Response) => {
-          const resJson = res.json();
-          resolve(resJson);
-        },
-        err => {
-          reject(err);
-        }
-      );
+  public getReservationsByUser(userID: number) {
+    return this.httpClient.request(
+      'get',
+      `http://${this.baseUrl}/reservations/${userID}`
+    );
   }
 }

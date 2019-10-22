@@ -13,7 +13,9 @@ export class ReviewingPageComponent implements OnInit {
   public completedReviews: Review[];
 
   constructor(private dataStore: DataStore) {
-    this.reservations = this.dataStore.getReservedStories();
+    dataStore.reservationsSubject.subscribe({
+      next: reservations => (this.reservations = reservations)
+    });
     this.completedReviews = this.dataStore.getReviewedStories();
   }
 
