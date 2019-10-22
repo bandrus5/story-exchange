@@ -17,6 +17,7 @@ export class DataStore {
 
   private _loggedInUserSubject = new Subject<User>();
   private _allStoriesSubject = new Subject<Story[]>();
+  private _loginErrorMessageSubject = new Subject<string>();
 
   loremText = 'lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non'.split(
     ' '
@@ -104,7 +105,7 @@ export class DataStore {
         );
       },
       err => {
-        console.log(err);
+        this._loginErrorMessageSubject.next(err.error);
       }
     );
   }
@@ -123,7 +124,7 @@ export class DataStore {
         );
       },
       err => {
-        console.log(err);
+        this._loginErrorMessageSubject.next(err.error);
       }
     );
   }
@@ -201,5 +202,9 @@ export class DataStore {
 
   get allStoriesSubject() {
     return this._allStoriesSubject;
+  }
+
+  get loginErrorMessageSubject() {
+    return this._loginErrorMessageSubject;
   }
 }
