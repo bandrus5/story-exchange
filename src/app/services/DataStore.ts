@@ -81,6 +81,7 @@ export class DataStore {
     const user = this.getLoggedInUser();
     const reservation = new Reservation(user.getUserID(), story.storyID);
     user.addReservedStory(reservation);
+    this.server.reserveReview(user.getUserID(), parseInt(story.storyID));
     this.addReservation(reservation);
   }
 
@@ -105,7 +106,11 @@ export class DataStore {
   }
 
   getReservedStories(): Reservation[] {
-    return this.getLoggedInUser().getReservedStories();
+    return this.server
+      .getReservationsByUser(this.getLoggedInUser().getUserID())
+      .then(reservations => {
+        return reservations;
+      });
   }
 
   getReviewedStories(): Review[] {
