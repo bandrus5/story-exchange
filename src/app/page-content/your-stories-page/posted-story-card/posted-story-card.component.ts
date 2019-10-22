@@ -61,9 +61,9 @@ export class PostedStoryCardComponent implements OnInit {
   }
 
   getStoryReviews() {
-    return this.story.completedReviews.filter(
-      review => review.reviewText != null
-    );
+    //TODO: On the next refactor, we can probably get rid of completedReviews all together, as well as reservedReviews and
+    // reviewedStories on User, among other things, and move all of that logic to the server.
+    return this.story.completedReviews;
   }
 
   reviewsAvailable() {

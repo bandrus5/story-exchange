@@ -40,14 +40,14 @@ export class BrowseStoryCardComponent implements OnInit {
   reserved() {
     let stories = this.loggedInUser
       .getReservedStories()
-      .filter(rStory => rStory.story == this.story.title);
+      .filter(reservation => reservation.storyID == this.story.storyID);
     return stories.length > 0;
   }
 
   reviewed() {
     let stories = this.loggedInUser
       .getReviewedStories()
-      .filter(rStory => rStory.story == this.story.title);
+      .filter(review => review.storyID == this.story.storyID);
     return stories.length > 0;
   }
 }

@@ -25,4 +25,20 @@ export class ServerProxy {
   public getStories() {
     return this.httpClient.get(`http://${this.baseUrl}/stories`);
   }
+
+  public reserveStory(userID: number, storyID: number) {
+    return this.httpClient.request(
+      'post',
+      'http://${this.baseURL}/reservations',
+      { body: { userID: userID, storyID: storyID } }
+    );
+  }
+
+  public getReservationsByUser(userID: string) {
+    return this.httpClient.request(
+      'get',
+      `http://${this.baseUrl}/reservations`,
+      { body: { userID: userID } }
+    );
+  }
 }

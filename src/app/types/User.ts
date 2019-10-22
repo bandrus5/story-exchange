@@ -1,24 +1,28 @@
 import { Story } from './Story';
-import { ReviewReservation } from './ReviewReservation';
+import { Reservation } from './Reservation';
+import { Review } from './Review';
 
 export class User {
+  private userID: number;
   private name: string;
-  private emailAddress: string;
   private postedStories: Story[];
-  private reservedStories: ReviewReservation[];
+  private reservedStories: Reservation[];
+  private reviewedStories: Review[];
   private credit: number;
 
   constructor(
+    userID: number,
     name: string,
-    emailAddress: string,
     postedStories: Story[],
-    reservedStories: ReviewReservation[],
+    reservedStories: Reservation[],
+    reviewedStories: Review[],
     credit: number
   ) {
+    this.userID = userID;
     this.name = name;
-    this.emailAddress = emailAddress;
     this.postedStories = postedStories;
     this.reservedStories = reservedStories;
+    this.reviewedStories = reviewedStories;
     this.credit = credit;
   }
 
@@ -26,16 +30,12 @@ export class User {
     return this.postedStories;
   }
 
-  public getReservedStories(): ReviewReservation[] {
-    return this.reservedStories.filter(
-      review => review.reviewCompleted == null
-    );
+  public getReservedStories(): Reservation[] {
+    return this.reservedStories;
   }
 
-  public getReviewedStories(): ReviewReservation[] {
-    return this.reservedStories.filter(
-      review => review.reviewCompleted != null
-    );
+  public getReviewedStories(): Review[] {
+    return this.reviewedStories;
   }
 
   public getCredit(): number {
@@ -50,7 +50,18 @@ export class User {
     return this.name;
   }
 
-  public addReservedStory(review: ReviewReservation) {
-    this.reservedStories.unshift(review);
+  public getUserID(): number {
+    return this.userID;
+  }
+
+  public addReservedStory(reservation: Reservation) {
+    this.reservedStories.unshift(reservation);
+  }
+
+  public reviewStory(review: Review) {
+    this.reservedStories = this.reservedStories.filter(
+      reservation => reservation.storyID == review.storyID
+    );
+    this.reviewedStories.unshift(review);
   }
 }

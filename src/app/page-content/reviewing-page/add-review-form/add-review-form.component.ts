@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DataStore } from '../../../services/DataStore';
-import { ReviewReservation } from '../../../types/ReviewReservation';
+import { Review } from '../../../types/Review';
 
 @Component({
   selector: 'app-add-review-form',
@@ -8,7 +8,7 @@ import { ReviewReservation } from '../../../types/ReviewReservation';
   styleUrls: ['./add-review-form.component.css']
 })
 export class AddReviewFormComponent implements OnInit {
-  @Input() reservation: ReviewReservation;
+  @Input() reservation: Review;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
   public charCount = 0;
   constructor(private dataStore: DataStore) {}
@@ -18,30 +18,22 @@ export class AddReviewFormComponent implements OnInit {
     this.closeEvent.emit();
   }
 
-  addReview(review: string) {
-    if (review.length > 600) {
-      this.reservation.reviewText = review;
+  addReview(reviewText: string) {
+    if (reviewText.length > 600) {
+      this.reservation.reviewText = reviewText;
       this.reservation.reviewCompleted = new Date();
       let story = this.dataStore
         .getAllStories()
-        .filter(story => story.title == this.reservation.story)[0];
-      this.dataStore
-        .getLoggedInUser()
-        .addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
+        .filter(story => story.storyID == this.reservation.storyID)[0];
+      const user = this.dataStore.getLoggedInUser();
+      user.addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
+      const review = new Review(reviewText, user.getUserID(), story.storyID);
+      user.reviewStory(review);
+      story.completedReviews.push(review);
       this.close();
     } else {
       console.log('Not enough detail my dude');
     }
-  }
-
-  getDateStatement(): string {
-    let status = '';
-    let date: Date = null;
-    date = this.reservation.dateReserved;
-    status = 'Reserved on ';
-    let stringDate =
-      date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
-    return status + stringDate;
   }
 
   updateCharCount(review: string) {

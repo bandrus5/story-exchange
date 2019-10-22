@@ -1,4 +1,4 @@
-import { ReviewReservation } from './ReviewReservation';
+import { Review } from './Review';
 
 export class Story {
   static fromDTO(storyDTO): Story {
@@ -25,7 +25,7 @@ export class Story {
   wordCount: number;
   datePosted: Date;
   desiredReviews: number;
-  completedReviews: ReviewReservation[];
+  completedReviews: Review[];
 
   constructor(
     title: string,
@@ -37,7 +37,7 @@ export class Story {
     wordCount: number,
     datePosted: Date,
     desiredReviews: number,
-    completedReviews: ReviewReservation[]
+    completedReviews: Review[]
   ) {
     this.title = title;
     this.storyID = storyID;
@@ -52,6 +52,6 @@ export class Story {
   }
 
   getReviewsLeft(): number {
-    return this.desiredReviews - this.completedReviews.length;
+    return this.desiredReviews;
   }
 }
