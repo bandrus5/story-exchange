@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataStore } from '../../services/DataStore';
 import { Reservation } from '../../types/Reservation';
 import { Review } from '../../types/Review';
+import { Story } from 'src/app/types/Story';
 
 @Component({
   selector: 'app-reviewing-page',
@@ -9,10 +10,12 @@ import { Review } from '../../types/Review';
   styleUrls: ['./reviewing-page.component.css']
 })
 export class ReviewingPageComponent implements OnInit {
-  public reservations: Reservation[];
+  public reservations: Reservation[] = [];
+  public reservedStories: Story[];
   public completedReviews: Review[];
 
   constructor(private dataStore: DataStore) {
+    this.dataStore.getReservedStories();
     dataStore.reservationsSubject.subscribe({
       next: reservations => (this.reservations = reservations)
     });

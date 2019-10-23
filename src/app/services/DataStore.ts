@@ -59,6 +59,7 @@ export class DataStore {
     });
   }
 
+  // TODO: b.datePosted isn't a date, looks like its just the string. figure that out
   getStoriesByUsername(username: string): Story[] {
     return this.allStories
       .filter(story => {

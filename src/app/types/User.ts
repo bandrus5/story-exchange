@@ -20,6 +20,7 @@ export class User {
   ) {
     this.userID = userID;
     this.name = name;
+    //TODO: make sure these are being updated from server. then the button can be disabled when already reserved
     this.postedStories = postedStories;
     this.reservedStories = reservedStories;
     this.reviewedStories = reviewedStories;
