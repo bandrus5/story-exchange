@@ -1,5 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf="serverIp == ''">
+<div *ngIf="!serverIp" class="server-info">
+  <p>To start, confirm the IP address and port where your server is running.</p>
   <form
     (submit)="
       setServer(serverIp.value, serverPort.value); $event.preventDefault()
@@ -22,7 +23,31 @@
     <input type="submit" value="Submit" />
   </form>
 </div>
-<div *ngIf="serverIp != ''">
+<div *ngIf="serverIp && !isLoggedIn()" class="login-info">
+  <h3 class="less-bottom-margin">Welcome to Story Exchange!</h3>
+  <p>Login to start collaborating with authors around the world</p>
+  <br />
+  <p class="less-bottom-margin">Username</p>
+  <input type="text" class="fixed-size-input" name="username" #username />
+  <p class="less-bottom-margin">Password</p>
+  <input type="password" class="fixed-size-input" name="password" #password />
+  <div class="buttons">
+    <input
+      type="button"
+      value="Register"
+      class="login-button"
+      (click)="register(username.value, password.value)"
+    />
+    <input
+      type="button"
+      value="Log In"
+      class="login-button"
+      (click)="login(username.value, password.value)"
+    />
+  </div>
+  <p *ngIf="loginErrorMessage" class="error-message">{{ loginErrorMessage }}</p>
+</div>
+<div *ngIf="serverIp && isLoggedIn()">
   <app-banner></app-banner>
   <app-page-content></app-page-content>
   <link

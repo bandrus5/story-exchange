@@ -17,6 +17,7 @@ export class DataStore {
 
   private _loggedInUserSubject = new Subject<User>();
   private _allStoriesSubject = new Subject<Story[]>();
+  private _loginErrorMessageSubject = new Subject<string>();
 
   loremText = 'lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non'.split(
     ' '
@@ -44,7 +45,6 @@ export class DataStore {
   );
 
   private constructor(private server: ServerProxy) {
-    this.loggedInUser = new User(0, 'bettyTheBot', [], [], [], 50);
     this.allUsers = [];
     this.allStories = [];
     this.reservations = [];
@@ -91,9 +91,42 @@ export class DataStore {
     this.reservations.push(reservation);
   }
 
-  logInUser(user: User) {
-    this.loggedInUser = user;
-    this._loggedInUserSubject.next(user);
+  async logInUser(username: string, password: string) {
+    this.server.login(username, password).subscribe(
+      (res: Response) => {
+        const user = res['user'];
+        this.loggedInUser = new User(
+          user['UserID'],
+          user['UserName'],
+          [],
+          [],
+          [],
+          user['Credit']
+        );
+      },
+      err => {
+        this._loginErrorMessageSubject.next(err.error);
+      }
+    );
+  }
+
+  registerUser(username: string, password: string) {
+    this.server.register(username, password).subscribe(
+      (res: Response) => {
+        const user = res['user'];
+        this.loggedInUser = new User(
+          user['UserID'],
+          user['UserName'],
+          [],
+          [],
+          [],
+          user['Credit']
+        );
+      },
+      err => {
+        this._loginErrorMessageSubject.next(err.error);
+      }
+    );
   }
 
   getPostedStories(): Story[] {
@@ -117,7 +150,7 @@ export class DataStore {
   }
 
   getLoggedInUser(): User {
-    return this.loggedInUser || new User(-1, 'Error: No User', [], [], [], 1);
+    return this.loggedInUser;
   }
 
   searchStories(searchQuery: string): Story[] {
@@ -169,5 +202,9 @@ export class DataStore {
 
   get allStoriesSubject() {
     return this._allStoriesSubject;
+  }
+
+  get loginErrorMessageSubject() {
+    return this._loginErrorMessageSubject;
   }
 }
