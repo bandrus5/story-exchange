@@ -59,14 +59,15 @@ export class DataStore {
     });
   }
 
-  // TODO: b.datePosted isn't a date, looks like its just the string. figure that out
   getStoriesByUsername(username: string): Story[] {
     return this.allStories
       .filter(story => {
         return story.author == username;
       })
       .sort((a, b) => {
-        return b.datePosted.getTime() - a.datePosted.getTime();
+        return (
+          new Date(b.datePosted).getTime() - new Date(a.datePosted).getTime()
+        );
       });
   }
 
