@@ -1,7 +1,7 @@
 <h1 class="completion-label">Not Completed</h1>
-<div *ngFor="let review of getReservations()">
+<div *ngFor="let reservation of getReservations()">
   <app-story-review-card
-    [review]="review"
+    [storyID]="reservation.StoryID"
     [completed]="false"
   ></app-story-review-card>
 </div>
@@ -9,6 +9,7 @@
 <div *ngFor="let review of getCompletedReviews()">
   <app-story-review-card
     [review]="review"
+    [storyID]="review.storyID"
     [completed]="true"
   ></app-story-review-card>
 </div>

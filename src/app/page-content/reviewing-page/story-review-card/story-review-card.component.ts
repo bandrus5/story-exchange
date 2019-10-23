@@ -9,10 +9,11 @@ import { Review } from 'src/app/types/Review';
   styleUrls: ['./story-review-card.component.css']
 })
 export class StoryReviewCardComponent implements OnInit {
-  @Input() title: string;
   @Input() completed: boolean;
 
-  @Input() review: Review;
+  // TODO: I'll probably be removing this, but this was the easiest fix for now since a reservation does not have a review to pass in
+  @Input() review?: Review;
+  @Input() storyID: string;
 
   public shouldShowDetails: boolean;
   public shouldShowReview: boolean;
@@ -24,7 +25,7 @@ export class StoryReviewCardComponent implements OnInit {
   ngOnInit() {}
 
   getStory(): Story {
-    return this.dataStore.getStoryByID(this.review.storyID);
+    return this.dataStore.getStoryByID(this.storyID);
   }
 
   showDetails() {
@@ -52,6 +53,6 @@ export class StoryReviewCardComponent implements OnInit {
   }
 
   getReviewText() {
-    return this.review.reviewText;
+    return this.review ? this.review.reviewText : '';
   }
 }

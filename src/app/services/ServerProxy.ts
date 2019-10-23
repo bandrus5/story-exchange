@@ -27,19 +27,18 @@ export class ServerProxy {
     return this.httpClient.get(`http://${this.baseUrl}/stories`);
   }
 
-  public reserveStory(userID: number, storyID: number) {
-    return this.httpClient.request(
-      'post',
-      `http://${this.baseUrl}/reservations`,
-      { body: { userID: userID, storyID: storyID } }
-    );
+  public reserveReview(userID: number, storyID: number) {
+    this.httpClient
+      .request('post', `http://${this.baseUrl}/reservations`, {
+        body: { userID: userID, storyID: storyID }
+      })
+      .subscribe();
   }
 
-  public getReservationsByUser(userID: string) {
+  public getReservationsByUser(userID: number) {
     return this.httpClient.request(
       'get',
-      `http://${this.baseUrl}/reservations`,
-      { body: { userID: userID } }
+      `http://${this.baseUrl}/reservations/${userID}`
     );
   }
 

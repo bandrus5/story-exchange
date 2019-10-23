@@ -3,19 +3,16 @@ export class Review {
   reviewerID: number;
   storyID: string;
   stars?: number;
-  reviewCompleted: Date;
 
   constructor(
     reviewText: string,
     reviewerID: number,
     storyID?: string,
-    reviewCompleted?: Date,
     stars?: number
   ) {
     this.reviewText = reviewText;
     this.reviewerID = reviewerID;
     this.storyID = storyID;
-    this.reviewCompleted = reviewCompleted;
     this.stars = stars;
   }
 }

@@ -38,13 +38,15 @@ export class PostedStoryCardComponent implements OnInit {
 
   getTimeDiff() {
     return Math.round(
-      (this.story.datePosted.getTime() - this.now) / (1000 * 60 * 60 * 24)
+      (new Date(this.story.datePosted).getTime() - this.now) /
+        (1000 * 60 * 60 * 24)
     );
   }
 
   getTimeDiffStatement() {
     const days = Math.round(
-      (this.now - this.story.datePosted.getTime()) / (1000 * 60 * 60 * 24)
+      (this.now - new Date(this.story.datePosted).getTime()) /
+        (1000 * 60 * 60 * 24)
     );
     if (days > 0) {
       return days == 1 ? 'Posted yesterday' : 'Posted ' + days + ' day(s) ago';
@@ -68,12 +70,5 @@ export class PostedStoryCardComponent implements OnInit {
 
   reviewsAvailable() {
     return this.getStoryReviews().length >= 1;
-  }
-
-  getFormattedDate(date: Date) {
-    let month = date.getMonth();
-    let day = date.getDay();
-    let year = date.getFullYear();
-    return month + '/' + day + '/' + year;
   }
 }
