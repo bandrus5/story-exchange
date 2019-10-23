@@ -60,10 +60,9 @@ export class User {
   }
 
   public reviewStory(review: Review) {
-    // TODO: figure this logic out
-    // this.reservedStories = this.reservedStories.filter(
-    //   reservation => reservation.storyID == review.storyID
-    // );
+    this.reservedStories = this.reservedStories.filter(
+      reservation => reservation.storyID == review.storyID
+    );
     this.reviewedStories.unshift(review);
   }
 }

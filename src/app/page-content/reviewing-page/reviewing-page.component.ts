@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataStore } from '../../services/DataStore';
 import { Reservation } from '../../types/Reservation';
 import { Review } from '../../types/Review';
-import { Story } from 'src/app/types/Story';
 
 @Component({
   selector: 'app-reviewing-page',
@@ -10,8 +9,7 @@ import { Story } from 'src/app/types/Story';
   styleUrls: ['./reviewing-page.component.css']
 })
 export class ReviewingPageComponent implements OnInit {
-  public reservations: Reservation[] = [];
-  public reservedStories: Story[];
+  public reservations: Reservation[];
   public completedReviews: Review[];
 
   constructor(private dataStore: DataStore) {

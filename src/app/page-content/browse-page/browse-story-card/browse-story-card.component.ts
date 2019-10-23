@@ -38,6 +38,7 @@ export class BrowseStoryCardComponent implements OnInit {
   }
 
   reserved() {
+    // TODO: include this in next refactor
     let stories = this.loggedInUser
       .getReservedStories()
       .filter(reservation => reservation.storyID == this.story.storyID);
