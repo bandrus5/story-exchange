@@ -2,3 +2,31 @@
   /* font-family: 'Rambla', sans-serif; */
   font-family: 'Lora', serif;
 }
+
+.server-info {
+  margin: 30px auto;
+  width: 800px;
+}
+
+.login-info {
+  margin: 30px auto;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  flex-direction: row;
+}
+
+.fixed-size-input {
+  width: 300px;
+}
+
+.less-bottom-margin {
+  margin-bottom: 0;
+}
+
+.error-message {
+  color: red;
+}

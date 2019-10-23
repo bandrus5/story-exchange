@@ -1,6 +1,7 @@
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { resolve, reject } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,17 @@ export class ServerProxy {
       'get',
       `http://${this.baseUrl}/reservations/${userID}`
     );
+  }
+
+  public login(username: string, password: string) {
+    return this.httpClient.request('post', `http://${this.baseUrl}/login`, {
+      body: { UserName: username, Password: password }
+    });
+  }
+
+  public register(username: string, password: string) {
+    return this.httpClient.request('post', `http://${this.baseUrl}/register`, {
+      body: { UserName: username, Password: password }
+    });
   }
 }
