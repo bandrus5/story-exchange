@@ -13,7 +13,6 @@ export class DataStore {
   loggedInUser: User | null;
   allUsers: User[];
   allStories: Story[];
-  reservations: Reservation[]; //TODO: split this into reservations and reviews
   userReservations: Reservation[];
   userReviews: Review[];
 
@@ -51,14 +50,11 @@ export class DataStore {
   private constructor(private server: ServerProxy) {
     this.allUsers = [];
     this.allStories = [];
-    this.reservations = [];
   }
 
   public async refresh() {
     this.server.getStories().subscribe(res => {
       this.allStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
-      // TODO: remove this
-      this.allStories = [this.allStories[0]];
       this._allStoriesSubject.next(this.allStories);
     });
   }
@@ -96,7 +92,6 @@ export class DataStore {
     const storyID = reservation.StoryID;
     const story = this.allStories.filter(story => story.storyID == storyID)[0];
     story.desiredReviews -= 1;
-    this.reservations.push(reservation);
   }
 
   reviewStory(review: Review) {
@@ -123,7 +118,6 @@ export class DataStore {
           user['UserID'],
           user['UserName'],
           [],
-          [],
           user['Credit']
         );
       },
@@ -140,7 +134,6 @@ export class DataStore {
         this.loggedInUser = new User(
           user['UserID'],
           user['UserName'],
-          [],
           [],
           user['Credit']
         );
@@ -171,10 +164,6 @@ export class DataStore {
           console.log(err);
         }
       );
-  }
-
-  getReviewedStories(): Review[] {
-    return this.getLoggedInUser().getReviewedStories();
   }
 
   getCredit(): number {

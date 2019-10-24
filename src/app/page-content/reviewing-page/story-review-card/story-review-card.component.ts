@@ -11,7 +11,6 @@ import { Review } from 'src/app/types/Review';
 export class StoryReviewCardComponent implements OnInit {
   @Input() completed: boolean;
 
-  // TODO: I'll probably be removing this, but this was the easiest fix for now since a reservation does not have a review to pass in
   @Input() review?: Review;
   @Input() storyID: string;
 
