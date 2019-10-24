@@ -2,8 +2,6 @@ import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Review } from '../types/Review';
-import { Story } from '../types/Story';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
