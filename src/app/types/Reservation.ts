@@ -1,9 +1,9 @@
 export class Reservation {
-  userID: number;
-  storyID: string; //TODO: this should be changed to a number later, since this will be autoincremeting
+  UserID: number;
+  StoryID: string; //TODO: this should be changed to a number later, since this will be autoincremeting
 
-  constructor(userID: number, storyID: string) {
-    this.userID = userID;
-    this.storyID = storyID;
+  constructor(UserID: number, StoryID: string) {
+    this.UserID = UserID;
+    this.StoryID = StoryID;
   }
 }

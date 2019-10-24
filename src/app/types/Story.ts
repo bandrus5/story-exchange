@@ -25,6 +25,7 @@ export class Story {
   wordCount: number;
   datePosted: Date;
   desiredReviews: number;
+  // TODO: remove this and move its logic to the server
   completedReviews: Review[];
 
   constructor(

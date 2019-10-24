@@ -33,7 +33,7 @@
 </div>
 <div class="reviews" [ngClass]="{ hidden: !shouldShowReviews }">
   <p *ngFor="let review of getStoryReviews()">
-    {{ review.reviewText }}
+    {{ review.ReviewText }}
   </p>
 </div>
 <app-story-info-modal

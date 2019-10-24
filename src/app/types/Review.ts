@@ -1,18 +1,18 @@
 export class Review {
-  reviewText: string;
-  reviewerID: number;
-  storyID: string;
-  stars?: number;
+  ReviewText: string;
+  ReviewerID: number;
+  StoryID: string;
+  Stars?: number;
 
   constructor(
-    reviewText: string,
-    reviewerID: number,
-    storyID?: string,
-    stars?: number
+    ReviewText: string,
+    ReviewerID: number,
+    StoryID?: string,
+    Stars?: number
   ) {
-    this.reviewText = reviewText;
-    this.reviewerID = reviewerID;
-    this.storyID = storyID;
-    this.stars = stars;
+    this.ReviewText = ReviewText;
+    this.ReviewerID = ReviewerID;
+    this.StoryID = StoryID;
+    this.Stars = Stars;
   }
 }

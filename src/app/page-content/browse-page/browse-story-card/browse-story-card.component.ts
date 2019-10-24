@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Story } from '../../../types/Story';
 import { DataStore } from '../../../services/DataStore';
 import { User } from 'src/app/types/User';
+import { Reservation } from 'src/app/types/Reservation';
+import { Review } from 'src/app/types/Review';
 
 @Component({
   selector: 'app-browse-story-card',
@@ -11,11 +13,15 @@ import { User } from 'src/app/types/User';
 export class BrowseStoryCardComponent implements OnInit {
   @Input() story: Story;
   public shouldShowMore = false;
-  private loggedInUser: User;
+  private userReservations: Reservation[] = [];
+  private userReviews: Review[] = [];
+
   constructor(private dataStore: DataStore) {
-    this.loggedInUser = this.dataStore.loggedInUser;
-    this.dataStore.loggedInUserSubject.subscribe({
-      next: user => (this.loggedInUser = user)
+    this.dataStore.reservationsSubject.subscribe({
+      next: reservations => (this.userReservations = reservations)
+    });
+    this.dataStore.reviewsSubject.subscribe({
+      next: reviews => (this.userReviews = reviews)
     });
   }
 
@@ -38,17 +44,16 @@ export class BrowseStoryCardComponent implements OnInit {
   }
 
   reserved() {
-    // TODO: include this in next refactor
-    let stories = this.loggedInUser
-      .getReservedStories()
-      .filter(reservation => reservation.storyID == this.story.storyID);
-    return stories.length > 0;
+    const reservations = this.userReservations.filter(
+      reservation => reservation.StoryID == this.story.storyID
+    );
+    return reservations.length > 0;
   }
 
   reviewed() {
-    let stories = this.loggedInUser
-      .getReviewedStories()
-      .filter(review => review.storyID == this.story.storyID);
-    return stories.length > 0;
+    const reviews = this.userReviews.filter(
+      review => review.StoryID == this.story.storyID
+    );
+    return reviews.length > 0;
   }
 }
