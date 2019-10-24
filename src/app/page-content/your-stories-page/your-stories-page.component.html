@@ -1,9 +1,7 @@
 <div class="your-stories-container">
   <button class="add-button" (click)="openAddModal()">+ Add</button>
   <div *ngFor="let story of stories">
-    <div *ngIf="story">
-      <app-posted-story-card [story]="story"></app-posted-story-card>
-    </div>
+    <app-posted-story-card [story]="story"></app-posted-story-card>
   </div>
 </div>
 <app-add-story-form

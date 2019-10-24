@@ -45,6 +45,7 @@ export class ServerProxy {
   public reviewStory(review: Review) {
     return this.httpClient.request('post', `http://${this.baseUrl}/reviews`, {
       body: {
+        // TODO: once StoryID is a number, change this to just the passed in Review object
         review: {
           ReviewText: review.ReviewText,
           ReviewerID: review.ReviewerID,

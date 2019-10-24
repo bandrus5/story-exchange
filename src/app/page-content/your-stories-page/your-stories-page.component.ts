@@ -9,7 +9,7 @@ import { Review } from 'src/app/types/Review';
   styleUrls: ['./your-stories-page.component.css']
 })
 export class YourStoriesPageComponent implements OnInit {
-  public stories: Story[] = [];
+  public stories: Story[];
   public showAddModal = false;
 
   constructor(private dataStore: DataStore) {

@@ -59,9 +59,7 @@ export class DataStore {
       this.allStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
       this._allStoriesSubject.next(this.allStories);
       this.allStories.forEach(story => {
-        if (!(story.storyID in this._storyReviewsSubjects)) {
-          this._storyReviewsSubjects[story.storyID] = new Subject<Review[]>();
-        }
+        this._storyReviewsSubjects[story.storyID] = new Subject<Review[]>();
       });
     });
   }
@@ -91,6 +89,7 @@ export class DataStore {
   reserveReview(story: Story) {
     const user = this.getLoggedInUser();
     const reservation = new Reservation(user.getUserID(), story.storyID);
+    // TODO: remove parseInt once storyID is a number
     this.server.reserveReview(user.getUserID(), parseInt(story.storyID));
     this.userReservations.push(reservation);
     this._reservationsSubject.next(this.userReservations);
@@ -123,6 +122,7 @@ export class DataStore {
   }
 
   getReviewsByStory(storyID: string) {
+    // TODO: remove parseInt once storyID is a number
     this.server
       .getReviewsByStory(parseInt(storyID))
       .subscribe((reviews: Review[]) => {

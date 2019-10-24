@@ -15,15 +15,11 @@ export class ReviewingPageComponent implements OnInit {
   constructor(private dataStore: DataStore) {
     this.dataStore.getReservations();
     dataStore.reservationsSubject.subscribe({
-      next: reservations => {
-        this.reservations = reservations;
-      }
+      next: reservations => (this.reservations = reservations)
     });
     this.dataStore.getReviews();
     dataStore.reviewsSubject.subscribe({
-      next: reviews => {
-        this.reviews = reviews;
-      }
+      next: reviews => (this.reviews = reviews)
     });
   }
 
