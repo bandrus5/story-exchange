@@ -15,11 +15,13 @@ export class DataStore {
   allStories: Story[];
   userReservations: Reservation[];
   userReviews: Review[];
+  storyReviews: { string?: Review[] } = {};
 
   private _loggedInUserSubject = new Subject<User>();
   private _allStoriesSubject = new Subject<Story[]>();
   private _reservationsSubject = new Subject<Reservation[]>();
   private _reviewsSubject = new Subject<Review[]>();
+  private _storyReviewsSubjects: { string?: Subject<Review[]> } = {};
   private _loginErrorMessageSubject = new Subject<string>();
 
   loremText = 'lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non'.split(
@@ -56,6 +58,11 @@ export class DataStore {
     this.server.getStories().subscribe(res => {
       this.allStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
       this._allStoriesSubject.next(this.allStories);
+      this.allStories.forEach(story => {
+        if (!(story.storyID in this._storyReviewsSubjects)) {
+          this._storyReviewsSubjects[story.storyID] = new Subject<Review[]>();
+        }
+      });
     });
   }
 
@@ -85,6 +92,8 @@ export class DataStore {
     const user = this.getLoggedInUser();
     const reservation = new Reservation(user.getUserID(), story.storyID);
     this.server.reserveReview(user.getUserID(), parseInt(story.storyID));
+    this.userReservations.push(reservation);
+    this._reservationsSubject.next(this.userReservations);
     this.addReservation(reservation);
   }
 
@@ -95,7 +104,10 @@ export class DataStore {
   }
 
   reviewStory(review: Review) {
-    this.server.reviewStory(review);
+    this.server.reviewStory(review).subscribe(res => {
+      this.getReservations();
+      this.getReviews();
+    });
   }
 
   getReviews() {
@@ -108,6 +120,15 @@ export class DataStore {
         console.log(err);
       }
     );
+  }
+
+  getReviewsByStory(storyID: string) {
+    this.server
+      .getReviewsByStory(parseInt(storyID))
+      .subscribe((reviews: Review[]) => {
+        this.storyReviews[storyID] = reviews;
+        this._storyReviewsSubjects[storyID].next(reviews);
+      });
   }
 
   async logInUser(username: string, password: string) {
@@ -231,6 +252,10 @@ export class DataStore {
 
   get reviewsSubject() {
     return this._reviewsSubject;
+  }
+
+  get storyReviewsSubjects() {
+    return this._storyReviewsSubjects;
   }
 
   get loginErrorMessageSubject() {

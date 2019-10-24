@@ -11,8 +11,7 @@ export class Story {
       storyDTO.blurb,
       storyDTO.wordCount,
       storyDTO.datePosted,
-      storyDTO.desiredReviews,
-      storyDTO.completedReviews
+      storyDTO.desiredReviews
     );
   }
 
@@ -24,9 +23,9 @@ export class Story {
   blurb: string;
   wordCount: number;
   datePosted: Date;
+  // TODO: Set desired reviews to a constant instead of letting the user choose.
+  //        That way the logic can use the constant to determine the desiredReviews that are left
   desiredReviews: number;
-  // TODO: remove this and move its logic to the server
-  completedReviews: Review[];
 
   constructor(
     title: string,
@@ -37,8 +36,7 @@ export class Story {
     blurb: string,
     wordCount: number,
     datePosted: Date,
-    desiredReviews: number,
-    completedReviews: Review[]
+    desiredReviews: number
   ) {
     this.title = title;
     this.storyID = storyID;
@@ -49,7 +47,6 @@ export class Story {
     this.wordCount = wordCount;
     this.datePosted = datePosted;
     this.desiredReviews = desiredReviews;
-    this.completedReviews = completedReviews;
   }
 
   getReviewsLeft(): number {

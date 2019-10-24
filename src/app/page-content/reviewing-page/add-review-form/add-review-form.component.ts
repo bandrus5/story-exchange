@@ -31,7 +31,6 @@ export class AddReviewFormComponent implements OnInit {
       const user = this.dataStore.getLoggedInUser();
       user.addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
       const review = new Review(reviewText, user.getUserID(), story.storyID);
-      story.completedReviews.push(review);
       this.dataStore.reviewStory(review);
       this.close();
     } else {

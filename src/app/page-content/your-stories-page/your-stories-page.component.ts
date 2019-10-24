@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStore } from '../../services/DataStore';
 import { Story } from '../../types/Story';
+import { Review } from 'src/app/types/Review';
 
 @Component({
   selector: 'app-your-stories-page',
@@ -8,8 +9,9 @@ import { Story } from '../../types/Story';
   styleUrls: ['./your-stories-page.component.css']
 })
 export class YourStoriesPageComponent implements OnInit {
-  public stories: Story[];
+  public stories: Story[] = [];
   public showAddModal = false;
+
   constructor(private dataStore: DataStore) {
     this.stories = this.dataStore.getStoriesByUsername(
       this.dataStore.getLoggedInUser().getName()
