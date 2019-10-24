@@ -6,7 +6,6 @@ export class User {
   private userID: number;
   private name: string;
   private postedStories: Story[];
-  private reservedStories: Reservation[];
   private reviewedStories: Review[];
   private credit: number;
 
@@ -14,25 +13,19 @@ export class User {
     userID: number,
     name: string,
     postedStories: Story[],
-    reservedStories: Reservation[],
     reviewedStories: Review[],
     credit: number
   ) {
     this.userID = userID;
     this.name = name;
-    //TODO: make sure these are being updated from server. then the button can be disabled when already reserved
     this.postedStories = postedStories;
-    this.reservedStories = reservedStories;
+    //TODO: delete commented stuff if the logic is fine
     this.reviewedStories = reviewedStories;
     this.credit = credit;
   }
 
   public getPostedStories(): Story[] {
     return this.postedStories;
-  }
-
-  public getReservedStories(): Reservation[] {
-    return this.reservedStories;
   }
 
   public getReviewedStories(): Review[] {
@@ -55,14 +48,10 @@ export class User {
     return this.userID;
   }
 
-  public addReservedStory(reservation: Reservation) {
-    this.reservedStories.unshift(reservation);
-  }
-
-  public reviewStory(review: Review) {
-    this.reservedStories = this.reservedStories.filter(
-      reservation => reservation.storyID == review.storyID
-    );
-    this.reviewedStories.unshift(review);
-  }
+  // public reviewStory(review: Review) {
+  //   this.reservedStories = this.reservedStories.filter(
+  //     reservation => reservation.StoryID == review.StoryID
+  //   );
+  //   this.reviewedStories.unshift(review);
+  // }
 }

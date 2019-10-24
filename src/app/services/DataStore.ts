@@ -15,10 +15,12 @@ export class DataStore {
   allStories: Story[];
   reservations: Reservation[]; //TODO: split this into reservations and reviews
   userReservations: Reservation[];
+  userReviews: Review[];
 
   private _loggedInUserSubject = new Subject<User>();
   private _allStoriesSubject = new Subject<Story[]>();
   private _reservationsSubject = new Subject<Reservation[]>();
+  private _reviewsSubject = new Subject<Review[]>();
   private _loginErrorMessageSubject = new Subject<string>();
 
   loremText = 'lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non'.split(
@@ -55,6 +57,8 @@ export class DataStore {
   public async refresh() {
     this.server.getStories().subscribe(res => {
       this.allStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
+      // TODO: remove this
+      this.allStories = [this.allStories[0]];
       this._allStoriesSubject.next(this.allStories);
     });
   }
@@ -84,16 +88,31 @@ export class DataStore {
   reserveReview(story: Story) {
     const user = this.getLoggedInUser();
     const reservation = new Reservation(user.getUserID(), story.storyID);
-    user.addReservedStory(reservation);
     this.server.reserveReview(user.getUserID(), parseInt(story.storyID));
     this.addReservation(reservation);
   }
 
   addReservation(reservation: Reservation) {
-    const storyID = reservation.storyID;
+    const storyID = reservation.StoryID;
     const story = this.allStories.filter(story => story.storyID == storyID)[0];
     story.desiredReviews -= 1;
     this.reservations.push(reservation);
+  }
+
+  reviewStory(review: Review) {
+    this.server.reviewStory(review);
+  }
+
+  getReviews() {
+    this.server.getReviewsByUser(this.getLoggedInUser().getUserID()).subscribe(
+      (reviews: Review[]) => {
+        this.userReviews = reviews;
+        this._reviewsSubject.next(this.userReviews);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   async logInUser(username: string, password: string) {
@@ -103,7 +122,6 @@ export class DataStore {
         this.loggedInUser = new User(
           user['UserID'],
           user['UserName'],
-          [],
           [],
           [],
           user['Credit']
@@ -124,7 +142,6 @@ export class DataStore {
           user['UserName'],
           [],
           [],
-          [],
           user['Credit']
         );
       },
@@ -142,7 +159,7 @@ export class DataStore {
     return this.allStories.filter(story => story.storyID == storyID)[0];
   }
 
-  getReservedStories() {
+  getReservations() {
     this.server
       .getReservationsByUser(this.getLoggedInUser().getUserID())
       .subscribe(
@@ -221,6 +238,10 @@ export class DataStore {
 
   get reservationsSubject() {
     return this._reservationsSubject;
+  }
+
+  get reviewsSubject() {
+    return this._reviewsSubject;
   }
 
   get loginErrorMessageSubject() {

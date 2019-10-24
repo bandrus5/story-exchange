@@ -9,13 +9,13 @@
       class="form"
       (submit)="addReview(storyReview.value); $event.preventDefault()"
     >
-      <p class="title">{{ reservation.story }}</p>
+      <p class="title">{{ getStory().title }}</p>
       <textarea
         class="wide-textarea"
         rows="8"
         cols="80"
         name="review"
-        placeholder="What feedback do you have on {{ reservation.story }}?"
+        placeholder="What feedback do you have on {{ getStory().title }}?"
         (keyup)="updateCharCount(storyReview.value)"
         #storyReview
       ></textarea>

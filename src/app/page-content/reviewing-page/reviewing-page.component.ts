@@ -10,14 +10,17 @@ import { Review } from '../../types/Review';
 })
 export class ReviewingPageComponent implements OnInit {
   public reservations: Reservation[];
-  public completedReviews: Review[];
+  public reviews: Review[];
 
   constructor(private dataStore: DataStore) {
-    this.dataStore.getReservedStories();
+    this.dataStore.getReservations();
     dataStore.reservationsSubject.subscribe({
       next: reservations => (this.reservations = reservations)
     });
-    this.completedReviews = this.dataStore.getReviewedStories();
+    this.dataStore.getReviews();
+    dataStore.reviewsSubject.subscribe({
+      next: reviews => (this.reviews = reviews)
+    });
   }
 
   ngOnInit() {}
@@ -27,6 +30,6 @@ export class ReviewingPageComponent implements OnInit {
   }
 
   getCompletedReviews() {
-    return this.completedReviews;
+    return this.reviews;
   }
 }

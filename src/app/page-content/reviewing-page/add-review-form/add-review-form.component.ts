@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DataStore } from '../../../services/DataStore';
 import { Review } from '../../../types/Review';
+import { Story } from 'src/app/types/Story';
 
 @Component({
   selector: 'app-add-review-form',
@@ -8,7 +9,7 @@ import { Review } from '../../../types/Review';
   styleUrls: ['./add-review-form.component.css']
 })
 export class AddReviewFormComponent implements OnInit {
-  @Input() reservation: Review;
+  @Input() storyID: string;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
   public charCount = 0;
   constructor(private dataStore: DataStore) {}
@@ -18,16 +19,20 @@ export class AddReviewFormComponent implements OnInit {
     this.closeEvent.emit();
   }
 
+  getStory(): Story {
+    return this.dataStore.getStoryByID(this.storyID);
+  }
+
   addReview(reviewText: string) {
     if (reviewText.length > 600) {
-      this.reservation.reviewText = reviewText;
       let story = this.dataStore
         .getAllStories()
-        .filter(story => story.storyID == this.reservation.storyID)[0];
+        .filter(story => story.storyID == this.storyID)[0];
       const user = this.dataStore.getLoggedInUser();
       user.addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
       const review = new Review(reviewText, user.getUserID(), story.storyID);
       story.completedReviews.push(review);
+      this.dataStore.reviewStory(review);
       this.close();
     } else {
       console.log('Not enough detail my dude');

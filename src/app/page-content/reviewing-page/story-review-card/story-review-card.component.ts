@@ -53,6 +53,6 @@ export class StoryReviewCardComponent implements OnInit {
   }
 
   getReviewText() {
-    return this.review ? this.review.reviewText : '';
+    return this.review ? this.review.ReviewText : '';
   }
 }

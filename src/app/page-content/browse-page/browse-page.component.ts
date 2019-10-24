@@ -24,6 +24,8 @@ export class BrowsePageComponent implements OnInit {
     this.displayedStories = this.allStories.filter(
       story => story.author != loggedInName && story.getReviewsLeft() > 0
     );
+    this.dataStore.getReservations();
+    this.dataStore.getReviews();
   }
 
   search(value: string) {
