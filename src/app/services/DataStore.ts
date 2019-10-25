@@ -15,13 +15,13 @@ export class DataStore {
   allStories: Story[];
   userReservations: Reservation[];
   userReviews: Review[];
-  storyReviews: { string?: Review[] } = {};
+  storyReviews: Map<string, Review[]> = new Map();
 
   private _loggedInUserSubject = new Subject<User>();
   private _allStoriesSubject = new Subject<Story[]>();
   private _reservationsSubject = new Subject<Reservation[]>();
   private _reviewsSubject = new Subject<Review[]>();
-  private _storyReviewsSubjects: { string?: Subject<Review[]> } = {};
+  private _storyReviewsSubjects: Map<string, Subject<Review[]>> = new Map();
   private _loginErrorMessageSubject = new Subject<string>();
 
   loremText = 'lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque non euismod liber pellentesque ac augue lobortis facilisis magna ut molestie odio Ut sollicitudin condimentum venenati praesent ultricies feugiat augue non'.split(

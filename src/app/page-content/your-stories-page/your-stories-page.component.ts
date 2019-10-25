@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStore } from '../../services/DataStore';
 import { Story } from '../../types/Story';
-import { Review } from 'src/app/types/Review';
 
 @Component({
   selector: 'app-your-stories-page',
