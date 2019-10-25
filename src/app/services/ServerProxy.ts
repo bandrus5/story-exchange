@@ -1,7 +1,6 @@
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { resolve, reject } from 'q';
 import { Review } from '../types/Review';
 
 @Injectable({
@@ -44,23 +43,29 @@ export class ServerProxy {
   }
 
   public reviewStory(review: Review) {
-    this.httpClient
-      .request('post', `http://${this.baseUrl}/reviews`, {
-        body: {
-          review: {
-            ReviewText: review.ReviewText,
-            ReviewerID: review.ReviewerID,
-            StoryID: parseInt(review.StoryID)
-          }
+    return this.httpClient.request('post', `http://${this.baseUrl}/reviews`, {
+      body: {
+        // TODO: once StoryID is a number, change this to just the passed in Review object
+        review: {
+          ReviewText: review.ReviewText,
+          ReviewerID: review.ReviewerID,
+          StoryID: parseInt(review.StoryID)
         }
-      })
-      .subscribe();
+      }
+    });
   }
 
   public getReviewsByUser(userID: number) {
     return this.httpClient.request(
       'get',
       `http://${this.baseUrl}/reviews/user/${userID}`
+    );
+  }
+
+  public getReviewsByStory(storyID: number) {
+    return this.httpClient.request(
+      'get',
+      `http://${this.baseUrl}/reviews/story/${storyID}`
     );
   }
 

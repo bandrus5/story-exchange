@@ -39,8 +39,7 @@ export class AddStoryFormComponent implements OnInit {
         blurb,
         +storyLength,
         new Date(),
-        +storyReviews,
-        []
+        +storyReviews
       );
       this.dataStore.addStories([newStory]);
       this.dataStore.getLoggedInUser().addCredit(-1 * this.postingCostNow);

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataStore } from '../../../services/DataStore';
 import { Story } from '../../../types/Story';
+import { Review } from 'src/app/types/Review';
 
 @Component({
   selector: 'app-posted-story-card',
@@ -12,11 +13,19 @@ export class PostedStoryCardComponent implements OnInit {
   public shouldShowMore = false;
   public shouldShowReviews = false;
   private now: number;
+  public reviews: Review[] = [];
+
   constructor(private dataStore: DataStore) {
     this.now = Date.now();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const storyID = this.story.storyID;
+    this.dataStore.getReviewsByStory(storyID);
+    this.dataStore.storyReviewsSubjects[storyID].subscribe({
+      next: (reviews: Review[]) => (this.reviews = reviews)
+    });
+  }
 
   getStoryCredit(): number {
     return Math.round(
@@ -63,10 +72,10 @@ export class PostedStoryCardComponent implements OnInit {
   }
 
   getStoryReviews() {
-    return this.story.completedReviews;
+    return this.reviews;
   }
 
   reviewsAvailable() {
-    return this.getStoryReviews().length >= 1;
+    return this.reviews.length > 0;
   }
 }
