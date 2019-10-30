@@ -27,7 +27,7 @@ export class User {
   }
 
   public addCredit(newCredit: number) {
-    this.credit += newCredit;
+    this.credit += newCredit; // TODO: Update this on backend
   }
 
   public getName(): string {

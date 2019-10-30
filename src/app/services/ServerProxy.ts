@@ -2,6 +2,7 @@ import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Review } from '../types/Review';
+import { Story } from '../types/Story';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,39 @@ export class ServerProxy {
   }
 
   public getStories() {
-    return this.httpClient.get(`http://${this.baseUrl}/stories`);
+    return this.httpClient.request('get', `http://${this.baseUrl}/stories`);
+  }
+
+  public addStory(story: Story) {
+    return this.httpClient.request('post', `http://${this.baseUrl}/stories`, {
+        body: {
+          authorID: story.authorID,
+          link: story.link,
+          title: story.title,
+          genre: story.genre,
+          blurb: story.blurb,
+          wordCount: story.wordCount,
+          desiredReviews: story.desiredReviews
+        }
+      });
+  }
+
+  public getStoriesByUserID(userID: number) {
+    return this.httpClient.request('get', `http://${this.baseUrl}/stories/${userID}`);
+  }
+
+  public getStoryFeed(userID: number) {
+    return this.httpClient.request(
+      'get',
+      `http://${this.baseUrl}/feed/${userID}`
+    )
+  }
+
+  public searchStories(searchTerm: string, userID: number) {
+    return this.httpClient.request(
+      'get',
+      `http://${this.baseUrl}/stories/search/${searchTerm}?user=${userID}`
+    );
   }
 
   public reserveReview(userID: number, storyID: number) {
@@ -45,11 +78,10 @@ export class ServerProxy {
   public reviewStory(review: Review) {
     return this.httpClient.request('post', `http://${this.baseUrl}/reviews`, {
       body: {
-        // TODO: once StoryID is a number, change this to just the passed in Review object
         review: {
           ReviewText: review.ReviewText,
           ReviewerID: review.ReviewerID,
-          StoryID: parseInt(review.StoryID)
+          StoryID: review.StoryID
         }
       }
     });
