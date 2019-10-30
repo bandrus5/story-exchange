@@ -92,7 +92,11 @@ export class DataStore {
   reserveReview(story: Story) {
     const user = this.getLoggedInUser();
     const reservation = new Reservation(user.getUserID(), story.storyID);
-    this.server.reserveReview(user.getUserID(), story.storyID);
+    this.server
+      .reserveReview(user.getUserID(), story.storyID)
+      .subscribe(res => {
+        this.decrementDesiredReviews(reservation.StoryID);
+      });
     this.userReservations.push(reservation);
     this._reservationsSubject.next(this.userReservations);
     this.addReservation(reservation);
@@ -101,14 +105,28 @@ export class DataStore {
   addReservation(reservation: Reservation) {
     const storyID = reservation.StoryID;
     const story = this.allStories.filter(story => story.storyID == storyID)[0];
-    story.desiredReviews -= 1;
   }
 
   reviewStory(review: Review) {
     this.server.reviewStory(review).subscribe(res => {
+      this.decrementDesiredReviews(review.StoryID);
       this.getReservations();
       this.getReviews();
     });
+  }
+
+  decrementDesiredReviews(storyID: number) {
+    this.server
+      .decrementDesiredReviews(storyID)
+      .subscribe((storyDTO: Story) => {
+        let updatedStory = Story.fromDTO(storyDTO);
+        let curStory = this.allStories.filter(
+          story => story.storyID == storyID
+        )[0];
+        const ind = this.allStories.indexOf(curStory);
+        this.allStories[ind] = updatedStory;
+        this._allStoriesSubject.next(this.allStories);
+      });
   }
 
   getReviews() {

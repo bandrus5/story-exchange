@@ -12,7 +12,7 @@ export class Story {
       storyDTO.Blurb,
       storyDTO.WordCount,
       new Date(storyDTO.PostedDate),
-      storyDTO.desiredReviews
+      storyDTO.DesiredReviews
     );
   }
 
@@ -25,8 +25,6 @@ export class Story {
   blurb: string;
   wordCount: number;
   datePosted: Date;
-  // TODO: Set desired reviews to a constant instead of letting the user choose.
-  //        That way the logic can use the constant to determine the desiredReviews that are left
   desiredReviews: number;
 
   constructor(

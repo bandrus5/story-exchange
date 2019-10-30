@@ -18,6 +18,11 @@ export class BrowsePageComponent implements OnInit {
     this.dataStore.filteredStoriesSubject.subscribe({
       next: stories => (this.displayedStories = stories)
     });
+    this.dataStore.allStoriesSubject.subscribe({
+      next: stories => {
+        this.dataStore.searchStories(this.searchString);
+      }
+    });
     this.dataStore.getReservations();
     this.dataStore.getReviews();
     this.dataStore.searchStories('');

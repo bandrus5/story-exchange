@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Story } from '../../../types/Story';
 import { DataStore } from '../../../services/DataStore';
-import { User } from 'src/app/types/User';
 import { Reservation } from 'src/app/types/Reservation';
 import { Review } from 'src/app/types/Review';
 
