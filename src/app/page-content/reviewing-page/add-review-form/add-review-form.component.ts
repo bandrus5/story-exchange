@@ -9,7 +9,7 @@ import { Story } from 'src/app/types/Story';
   styleUrls: ['./add-review-form.component.css']
 })
 export class AddReviewFormComponent implements OnInit {
-  @Input() storyID: string;
+  @Input() storyID: number;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
   public charCount = 0;
   constructor(private dataStore: DataStore) {}

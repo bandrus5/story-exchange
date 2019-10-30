@@ -12,7 +12,7 @@ export class StoryReviewCardComponent implements OnInit {
   @Input() completed: boolean;
 
   @Input() review?: Review;
-  @Input() storyID: string;
+  @Input() storyID: number;
 
   public shouldShowDetails: boolean;
   public shouldShowReview: boolean;
