@@ -3,21 +3,23 @@ import { Review } from './Review';
 export class Story {
   static fromDTO(storyDTO): Story {
     return new Story(
-      storyDTO.title,
-      storyDTO.storyID,
-      storyDTO.author,
-      storyDTO.genre,
-      storyDTO.link,
-      storyDTO.blurb,
-      storyDTO.wordCount,
-      storyDTO.datePosted,
+      storyDTO.Title,
+      storyDTO.StoryID,
+      storyDTO.Writer,
+      storyDTO.WriterID,
+      storyDTO.Genre,
+      storyDTO.StoryURL,
+      storyDTO.Blurb,
+      storyDTO.WordCount,
+      new Date(storyDTO.PostedDate),
       storyDTO.desiredReviews
     );
   }
 
   title: string;
-  storyID: string;
+  storyID: number;
   author: string;
+  authorID: number;
   genre: string;
   link: string;
   blurb: string;
@@ -29,8 +31,9 @@ export class Story {
 
   constructor(
     title: string,
-    storyID: string,
+    storyID: number,
     author: string,
+    authorID: number,
     genre: string,
     link: string,
     blurb: string,
@@ -41,6 +44,7 @@ export class Story {
     this.title = title;
     this.storyID = storyID;
     this.author = author;
+    this.authorID = authorID;
     this.genre = genre;
     this.link = link;
     this.blurb = blurb;

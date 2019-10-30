@@ -12,9 +12,15 @@ export class YourStoriesPageComponent implements OnInit {
   public showAddModal = false;
 
   constructor(private dataStore: DataStore) {
-    this.stories = this.dataStore.getStoriesByUsername(
-      this.dataStore.getLoggedInUser().getName()
-    );
+    this.updateStories();
+    this.dataStore.currentUserStoriesSubject.subscribe({
+      next: stories => this.stories = stories
+    });
+  }
+
+  private updateStories() {
+    this.dataStore.refresh();
+    this.dataStore.getStoriesForCurrentUser();
   }
 
   ngOnInit() {}
@@ -25,8 +31,6 @@ export class YourStoriesPageComponent implements OnInit {
 
   closeAddModal() {
     this.showAddModal = false;
-    this.stories = this.dataStore.getStoriesByUsername(
-      this.dataStore.getLoggedInUser().getName()
-    );
+    this.updateStories();
   }
 }

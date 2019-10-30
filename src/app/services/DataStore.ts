@@ -19,6 +19,8 @@ export class DataStore {
 
   private _loggedInUserSubject = new Subject<User>();
   private _allStoriesSubject = new Subject<Story[]>();
+  private _currentUserStoriesSubject = new Subject<Story[]>();
+  private _filteredStoriesSubject = new Subject<Story[]>();
   private _reservationsSubject = new Subject<Reservation[]>();
   private _reviewsSubject = new Subject<Review[]>();
   private _storyReviewsSubjects: Map<string, Subject<Review[]>> = new Map();
@@ -64,15 +66,16 @@ export class DataStore {
     });
   }
 
-  getStoriesByUsername(username: string): Story[] {
-    return this.allStories
-      .filter(story => {
-        return story.author == username;
-      })
-      .sort((a, b) => {
-        return (
-          new Date(b.datePosted).getTime() - new Date(a.datePosted).getTime()
-        );
+  getStoriesForCurrentUser() {
+    this.server.getStoriesByUserID(this.loggedInUser.getUserID())
+      .subscribe(res => {
+        const currentUserStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO))
+          .sort((a, b) => {
+            return (
+              b.datePosted.getTime() - a.datePosted.getTime()
+            );
+          });
+        this._currentUserStoriesSubject.next(currentUserStories);
       });
   }
 
@@ -82,15 +85,14 @@ export class DataStore {
     });
   }
 
-  addStories(stories: Story[]) {
-    this.allStories.push(...stories);
+  addStory(story: Story) {
+    return this.server.addStory(story);
   }
 
   reserveReview(story: Story) {
     const user = this.getLoggedInUser();
     const reservation = new Reservation(user.getUserID(), story.storyID);
-    // TODO: remove parseInt once storyID is a number
-    this.server.reserveReview(user.getUserID(), parseInt(story.storyID));
+    this.server.reserveReview(user.getUserID(), story.storyID);
     this.userReservations.push(reservation);
     this._reservationsSubject.next(this.userReservations);
     this.addReservation(reservation);
@@ -121,10 +123,9 @@ export class DataStore {
     );
   }
 
-  getReviewsByStory(storyID: string) {
-    // TODO: remove parseInt once storyID is a number
+  getReviewsByStory(storyID: number) {
     this.server
-      .getReviewsByStory(parseInt(storyID))
+      .getReviewsByStory(storyID)
       .subscribe((reviews: Review[]) => {
         this.storyReviews[storyID] = reviews;
         this._storyReviewsSubjects[storyID].next(reviews);
@@ -195,15 +196,19 @@ export class DataStore {
     return this.loggedInUser;
   }
 
-  searchStories(searchQuery: string): Story[] {
-    return this.allStories.filter(story => {
-      return (
-        (story.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          story.genre.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          story.title.toLowerCase().includes(searchQuery.toLowerCase())) &&
-        story.author !== this.getLoggedInUser().getName()
-      );
-    });
+  searchStories(searchQuery?: string) {
+    const handleResult = res => {
+        const filteredStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
+        this._filteredStoriesSubject.next(filteredStories);
+      };
+
+    if (searchQuery) {
+      this.server.searchStories(searchQuery, this.loggedInUser.getUserID())
+        .subscribe(handleResult);
+    } else {
+      this.server.getStoryFeed(this.loggedInUser.getUserID())
+        .subscribe(handleResult);
+    }
   }
 
   getAllStories() {
@@ -244,6 +249,14 @@ export class DataStore {
 
   get allStoriesSubject() {
     return this._allStoriesSubject;
+  }
+
+  get currentUserStoriesSubject() {
+    return this._currentUserStoriesSubject;
+  }
+
+  get filteredStoriesSubject() {
+    return this._filteredStoriesSubject;
   }
 
   get reservationsSubject() {

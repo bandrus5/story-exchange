@@ -32,8 +32,9 @@ export class AddStoryFormComponent implements OnInit {
     if (title && genre && link && blurb && storyLength && storyReviews) {
       const newStory = new Story(
         title,
-        title + '1234',
+        -1,
         this.dataStore.getLoggedInUser().getName(),
+        this.dataStore.getLoggedInUser().getUserID(),
         genre,
         link,
         blurb,
@@ -41,9 +42,11 @@ export class AddStoryFormComponent implements OnInit {
         new Date(),
         +storyReviews
       );
-      this.dataStore.addStories([newStory]);
+      this.dataStore.addStory(newStory)
+        .subscribe(() => {
+          this.close();
+        });
       this.dataStore.getLoggedInUser().addCredit(-1 * this.postingCostNow);
-      this.close();
     } else {
       console.log('Not enough detail my dude');
     }

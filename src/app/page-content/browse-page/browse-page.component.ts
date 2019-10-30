@@ -11,31 +11,21 @@ export class BrowsePageComponent implements OnInit {
   public displayedStories: Story[];
   public showingSearchResults = false;
   public searchString = '';
-  public allStories: Story[];
 
   @ViewChild('searchBar') searchBar;
 
   constructor(private dataStore: DataStore) {
-    let loggedInName = this.dataStore.getLoggedInUser().getName();
-    this.allStories = this.dataStore.allStories;
-    this.dataStore.allStoriesSubject.subscribe({
-      next: allStories => (this.allStories = allStories)
+    this.dataStore.filteredStoriesSubject.subscribe({
+      next: stories => (this.displayedStories = stories)
     });
-    this.displayedStories = this.allStories.filter(
-      story => story.author != loggedInName && story.getReviewsLeft() > 0
-    );
     this.dataStore.getReservations();
     this.dataStore.getReviews();
+    this.dataStore.searchStories('');
   }
 
   search(value: string) {
     this.searchString = value;
-    let loggedInName = this.dataStore.getLoggedInUser().getName();
-    this.displayedStories = this.dataStore
-      .searchStories(value)
-      .filter(
-        story => story.author != loggedInName && story.getReviewsLeft() > 0
-      );
+    this.dataStore.searchStories(value);
     this.searchBar.nativeElement.value = '';
     this.showingSearchResults = true;
   }
@@ -43,10 +33,7 @@ export class BrowsePageComponent implements OnInit {
   clearSearch() {
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.showingSearchResults = false;
-    let loggedInName = this.dataStore.getLoggedInUser().getName();
-    this.displayedStories = this.allStories.filter(
-      story => story.author != loggedInName && story.getReviewsLeft() > 0
-    );
+    this.dataStore.searchStories('');
   }
 
   ngOnInit() {}
