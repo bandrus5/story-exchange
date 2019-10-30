@@ -67,13 +67,13 @@ export class DataStore {
   }
 
   getStoriesForCurrentUser() {
-    this.server.getStoriesByUserID(this.loggedInUser.getUserID())
+    this.server
+      .getStoriesByUserID(this.loggedInUser.getUserID())
       .subscribe(res => {
-        const currentUserStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO))
+        const currentUserStories = (res as any[])
+          .map(storyDTO => Story.fromDTO(storyDTO))
           .sort((a, b) => {
-            return (
-              b.datePosted.getTime() - a.datePosted.getTime()
-            );
+            return b.datePosted.getTime() - a.datePosted.getTime();
           });
         this._currentUserStoriesSubject.next(currentUserStories);
       });
@@ -124,12 +124,10 @@ export class DataStore {
   }
 
   getReviewsByStory(storyID: number) {
-    this.server
-      .getReviewsByStory(storyID)
-      .subscribe((reviews: Review[]) => {
-        this.storyReviews[storyID] = reviews;
-        this._storyReviewsSubjects[storyID].next(reviews);
-      });
+    this.server.getReviewsByStory(storyID).subscribe((reviews: Review[]) => {
+      this.storyReviews[storyID] = reviews;
+      this._storyReviewsSubjects[storyID].next(reviews);
+    });
   }
 
   async logInUser(username: string, password: string) {
@@ -170,7 +168,7 @@ export class DataStore {
     return this.getLoggedInUser().getPostedStories();
   }
 
-  getStoryByID(storyID: string): Story {
+  getStoryByID(storyID: number): Story {
     return this.allStories.filter(story => story.storyID == storyID)[0];
   }
 
@@ -198,15 +196,19 @@ export class DataStore {
 
   searchStories(searchQuery?: string) {
     const handleResult = res => {
-        const filteredStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
-        this._filteredStoriesSubject.next(filteredStories);
-      };
+      const filteredStories = (res as any[]).map(storyDTO =>
+        Story.fromDTO(storyDTO)
+      );
+      this._filteredStoriesSubject.next(filteredStories);
+    };
 
     if (searchQuery) {
-      this.server.searchStories(searchQuery, this.loggedInUser.getUserID())
+      this.server
+        .searchStories(searchQuery, this.loggedInUser.getUserID())
         .subscribe(handleResult);
     } else {
-      this.server.getStoryFeed(this.loggedInUser.getUserID())
+      this.server
+        .getStoryFeed(this.loggedInUser.getUserID())
         .subscribe(handleResult);
     }
   }

@@ -1,13 +1,13 @@
 export class Review {
   ReviewText: string;
   ReviewerID: number;
-  StoryID: string;
+  StoryID: number;
   Stars?: number;
 
   constructor(
     ReviewText: string,
     ReviewerID: number,
-    StoryID?: string,
+    StoryID?: number,
     Stars?: number
   ) {
     this.ReviewText = ReviewText;
