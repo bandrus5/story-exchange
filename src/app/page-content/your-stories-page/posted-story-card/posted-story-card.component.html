@@ -1,7 +1,7 @@
 <div class="card">
   <div class="info-col">
     <p class="story-title">{{ story.title }}</p>
-    <p class="indent">{{ getTimeDiffStatement() }}</p>
+    <p class="indent">Posted {{ story.getDaysSincePostedString() }}</p>
     <p class="indent">
       Awaiting {{ story.getReviewsLeft() }} review{{
         story.getReviewsLeft() == 1 ? '' : 's'
