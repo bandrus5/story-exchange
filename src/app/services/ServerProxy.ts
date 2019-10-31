@@ -92,13 +92,6 @@ export class ServerProxy {
     });
   }
 
-  public decrementDesiredReviews(storyID: number) {
-    return this.httpClient.request(
-      'post',
-      `http://${this.baseUrl}/stories/desired-reviews/${storyID}`
-    );
-  }
-
   public getReviewsByUser(userID: number) {
     return this.httpClient.request(
       'get',
