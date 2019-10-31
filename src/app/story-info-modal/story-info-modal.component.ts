@@ -7,14 +7,12 @@ import { DataStore } from '../services/DataStore';
   templateUrl: './story-info-modal.component.html',
   styleUrls: ['./story-info-modal.component.css']
 })
-export class StoryInfoModalComponent implements OnInit {
+export class StoryInfoModalComponent {
   @Input() story: Story;
   @Input() isReservable: boolean;
   @Output() closeEvent: EventEmitter<any> = new EventEmitter();
 
   constructor(private dataStore: DataStore) {}
-
-  ngOnInit() {}
 
   close() {
     this.closeEvent.emit();

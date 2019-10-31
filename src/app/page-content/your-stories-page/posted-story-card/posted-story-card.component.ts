@@ -52,17 +52,6 @@ export class PostedStoryCardComponent implements OnInit {
     );
   }
 
-  getTimeDiffStatement() {
-    const days = Math.round(
-      (this.now - new Date(this.story.datePosted).getTime()) /
-        (1000 * 60 * 60 * 24)
-    );
-    if (days > 0) {
-      return days == 1 ? 'Posted yesterday' : 'Posted ' + days + ' day(s) ago';
-    }
-    return 'Posted today';
-  }
-
   showReviews() {
     this.shouldShowReviews = true;
   }
