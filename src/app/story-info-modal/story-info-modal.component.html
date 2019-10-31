@@ -6,7 +6,7 @@
     </div>
     <div class="info">
       <p class="story-title">{{ story.title }}</p>
-      <p class="indent">Posted by {{ story.author }} two days ago</p>
+      <p class="indent">Posted by {{ story.author }} {{ story.getDaysSincePostedString() }}</p>
       <p class="indent">Genre: {{ story.genre }}</p>
       <p class="indent">{{ story.wordCount }} words</p>
       <p class="indent">
