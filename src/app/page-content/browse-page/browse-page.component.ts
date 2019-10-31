@@ -20,7 +20,6 @@ export class BrowsePageComponent implements OnInit {
     });
     this.dataStore.allStoriesSubject.subscribe({
       next: stories => {
-        console.log('searching');
         this.dataStore.searchStories(this.searchString);
       }
     });
