@@ -92,20 +92,18 @@ export class DataStore {
   reserveReview(story: Story) {
     const user = this.getLoggedInUser();
     const reservation = new Reservation(user.getUserID(), story.storyID);
-    this.server.reserveReview(user.getUserID(), story.storyID);
+    this.server
+      .reserveReview(user.getUserID(), story.storyID)
+      .subscribe(res => {
+        this.refresh();
+      });
     this.userReservations.push(reservation);
     this._reservationsSubject.next(this.userReservations);
-    this.addReservation(reservation);
-  }
-
-  addReservation(reservation: Reservation) {
-    const storyID = reservation.StoryID;
-    const story = this.allStories.filter(story => story.storyID == storyID)[0];
-    story.desiredReviews -= 1;
   }
 
   reviewStory(review: Review) {
     this.server.reviewStory(review).subscribe(res => {
+      this.refresh();
       this.getReservations();
       this.getReviews();
     });

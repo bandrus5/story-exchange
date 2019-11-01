@@ -30,27 +30,30 @@ export class ServerProxy {
 
   public addStory(story: Story) {
     return this.httpClient.request('post', `http://${this.baseUrl}/stories`, {
-        body: {
-          authorID: story.authorID,
-          link: story.link,
-          title: story.title,
-          genre: story.genre,
-          blurb: story.blurb,
-          wordCount: story.wordCount,
-          desiredReviews: story.desiredReviews
-        }
-      });
+      body: {
+        authorID: story.authorID,
+        link: story.link,
+        title: story.title,
+        genre: story.genre,
+        blurb: story.blurb,
+        wordCount: story.wordCount,
+        desiredReviews: story.desiredReviews
+      }
+    });
   }
 
   public getStoriesByUserID(userID: number) {
-    return this.httpClient.request('get', `http://${this.baseUrl}/stories/${userID}`);
+    return this.httpClient.request(
+      'get',
+      `http://${this.baseUrl}/stories/${userID}`
+    );
   }
 
   public getStoryFeed(userID: number) {
     return this.httpClient.request(
       'get',
       `http://${this.baseUrl}/feed/${userID}`
-    )
+    );
   }
 
   public searchStories(searchTerm: string, userID: number) {
@@ -61,11 +64,13 @@ export class ServerProxy {
   }
 
   public reserveReview(userID: number, storyID: number) {
-    this.httpClient
-      .request('post', `http://${this.baseUrl}/reservations`, {
+    return this.httpClient.request(
+      'post',
+      `http://${this.baseUrl}/reservations`,
+      {
         body: { userID: userID, storyID: storyID }
-      })
-      .subscribe();
+      }
+    );
   }
 
   public getReservationsByUser(userID: number) {
