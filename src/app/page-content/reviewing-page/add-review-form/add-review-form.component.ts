@@ -29,9 +29,11 @@ export class AddReviewFormComponent implements OnInit {
         .getAllStories()
         .filter(story => story.storyID == this.storyID)[0];
       const user = this.dataStore.getLoggedInUser();
-      user.addCredit(5 + Math.floor(Math.round(story.wordCount / 1000)));
+      // TODO: should there also be credit subtracted from the user who wrote the story being reviewed?
+      //        I'm not sure how the math works on that
       const review = new Review(reviewText, user.getUserID(), story.storyID);
-      this.dataStore.reviewStory(review);
+      const creditEarned = 5 + Math.floor(Math.round(story.wordCount / 1000));
+      this.dataStore.reviewStory(review, creditEarned);
       this.close();
     } else {
       console.log('Not enough detail my dude');

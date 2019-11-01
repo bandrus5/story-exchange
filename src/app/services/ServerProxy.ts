@@ -28,7 +28,7 @@ export class ServerProxy {
     return this.httpClient.request('get', `http://${this.baseUrl}/stories`);
   }
 
-  public addStory(story: Story) {
+  public addStory(story: Story, postingCost: number) {
     return this.httpClient.request('post', `http://${this.baseUrl}/stories`, {
       body: {
         authorID: story.authorID,
@@ -37,7 +37,8 @@ export class ServerProxy {
         genre: story.genre,
         blurb: story.blurb,
         wordCount: story.wordCount,
-        desiredReviews: story.desiredReviews
+        desiredReviews: story.desiredReviews,
+        postingCost: postingCost
       }
     });
   }
@@ -80,14 +81,15 @@ export class ServerProxy {
     );
   }
 
-  public reviewStory(review: Review) {
+  public reviewStory(review: Review, creditEarned: number) {
     return this.httpClient.request('post', `http://${this.baseUrl}/reviews`, {
       body: {
         review: {
           ReviewText: review.ReviewText,
           ReviewerID: review.ReviewerID,
           StoryID: review.StoryID
-        }
+        },
+        creditEarned: creditEarned
       }
     });
   }
