@@ -42,11 +42,10 @@ export class AddStoryFormComponent implements OnInit {
         new Date(),
         +storyReviews
       );
-      this.dataStore.addStory(newStory)
-        .subscribe(() => {
-          this.close();
-        });
-      this.dataStore.getLoggedInUser().addCredit(-1 * this.postingCostNow);
+      this.dataStore.addStory(newStory, this.postingCostNow).subscribe(() => {
+        this.dataStore.getLoggedInUser().addCredit(-1 * this.postingCostNow);
+        this.close();
+      });
     } else {
       console.log('Not enough detail my dude');
     }

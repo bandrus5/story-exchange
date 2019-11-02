@@ -85,8 +85,8 @@ export class DataStore {
     });
   }
 
-  addStory(story: Story) {
-    return this.server.addStory(story);
+  addStory(story: Story, postingCost: number) {
+    return this.server.addStory(story, postingCost);
   }
 
   reserveReview(story: Story) {
@@ -101,8 +101,9 @@ export class DataStore {
     this._reservationsSubject.next(this.userReservations);
   }
 
-  reviewStory(review: Review) {
-    this.server.reviewStory(review).subscribe(res => {
+  reviewStory(review: Review, creditEarned: number) {
+    this.server.reviewStory(review, creditEarned).subscribe(res => {
+      this.getLoggedInUser().addCredit(creditEarned);
       this.refresh();
       this.getReservations();
       this.getReviews();
