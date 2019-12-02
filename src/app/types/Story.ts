@@ -54,7 +54,6 @@ export class Story {
   getDaysSincePostedString(): string {
     const timeDiff = new Date().getTime() - this.datePosted.getTime();
     const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
     if (dayDiff === 0) {
       return 'today';
     } else if (dayDiff === 1) {
