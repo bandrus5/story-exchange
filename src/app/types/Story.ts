@@ -4,7 +4,7 @@ export class Story {
   static fromDTO(storyDTO): Story {
     return new Story(
       storyDTO.Title,
-      storyDTO.StoryID,
+      Story.getID('StoryID', storyDTO),
       storyDTO.Writer,
       storyDTO.WriterID,
       storyDTO.Genre,
@@ -66,5 +66,9 @@ export class Story {
 
   getReviewsLeft(): number {
     return this.desiredReviews;
+  }
+
+  private static getID(idName: string, obj: any): number {
+    return obj[idName] ? obj[idName] : obj['_id'];
   }
 }
