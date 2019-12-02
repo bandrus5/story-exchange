@@ -56,6 +56,10 @@ export class DataStore {
     this.allStories = [];
   }
 
+  private getID(idName: string, obj: any): number {
+    return obj[idName] ? obj[idName] : obj['_id'];
+  }
+
   public async refresh() {
     this.server.getStories().subscribe(res => {
       this.allStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
@@ -134,7 +138,7 @@ export class DataStore {
       (res: Response) => {
         const user = res['user'];
         this.loggedInUser = new User(
-          user['UserID'],
+          this.getID('UserID', user),
           user['UserName'],
           [],
           user['Credit']
@@ -151,7 +155,7 @@ export class DataStore {
       (res: Response) => {
         const user = res['user'];
         this.loggedInUser = new User(
-          user['UserID'],
+          this.getID('UserID', user),
           user['UserName'],
           [],
           user['Credit']
