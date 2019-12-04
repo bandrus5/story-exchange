@@ -4,7 +4,7 @@ export class Story {
   static fromDTO(storyDTO): Story {
     return new Story(
       storyDTO.Title,
-      storyDTO.StoryID,
+      Story.getID('StoryID', storyDTO),
       storyDTO.Writer,
       storyDTO.WriterID,
       storyDTO.Genre,
@@ -54,7 +54,6 @@ export class Story {
   getDaysSincePostedString(): string {
     const timeDiff = new Date().getTime() - this.datePosted.getTime();
     const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
     if (dayDiff === 0) {
       return 'today';
     } else if (dayDiff === 1) {
@@ -66,5 +65,9 @@ export class Story {
 
   getReviewsLeft(): number {
     return this.desiredReviews;
+  }
+
+  private static getID(idName: string, obj: any): number {
+    return obj[idName] ? obj[idName] : obj['_id'];
   }
 }

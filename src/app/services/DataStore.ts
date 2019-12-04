@@ -65,7 +65,9 @@ export class DataStore {
       this.allStories = (res as any[]).map(storyDTO => Story.fromDTO(storyDTO));
       this._allStoriesSubject.next(this.allStories);
       this.allStories.forEach(story => {
-        this._storyReviewsSubjects[story.storyID] = new Subject<Review[]>();
+        if (this._storyReviewsSubjects[story.storyID] === undefined) {
+          this._storyReviewsSubjects[story.storyID] = new Subject<Review[]>();
+        }
       });
     });
   }
